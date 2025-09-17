@@ -1,5 +1,5 @@
 import React from "react";
-import ThreeDImage GalleryPreview from "./_components/preview";
+import ThreeDImageGalleryPreview from "./_components/preview";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  return <ThreeDImage GalleryPreview />;
+  return <ThreeDImageGalleryPreview />;
 };
 
 export default Page;

@@ -177,15 +177,12 @@ export const ScrollCarousel = forwardRef<HTMLDivElement, ScrollCarouselProps>(
           ref={(el: HTMLDivElement | null) => {
             if (el) refs.current[index] = el;
           }}
-          className="feature-card flex-shrink-0 w-full md:w-full  h-full
-          z-10 gap-4  group relative transition-all duration-300 ease-in-out"
+          className="feature-card flex-shrink-0 w-full md:w-full h-full z-10 gap-4 group relative transition-all duration-300 ease-in-out"
         >
           <div
             className={cn(
-              `relative h-full p-4 lg:p-8 rounded-3xl backdrop-blur-sm 
-              flex items-center justify-center z-10 
-              transition-all duration-300 my-4`,
-              `backdrop-blur-lg border text-black dark:text-white`,
+              "relative h-full p-4 lg:p-8 rounded-3xl backdrop-blur-sm flex items-center justify-center z-10 transition-all duration-300 my-4",
+              "backdrop-blur-lg border text-black dark:text-white",
               "group-hover:scale-105 centered:scale-105"
             )}
           >
@@ -195,14 +192,13 @@ export const ScrollCarousel = forwardRef<HTMLDivElement, ScrollCarouselProps>(
                 "https://images.pexels.com/photos/9934462/pexels-photo-9934462.jpeg"
               }
               alt=""
-              className="absolute inset-0 w-full h-full 
-              object-cover z-[-1] rounded-3xl "
+              className="absolute inset-0 w-full h-full object-cover z-[-1] rounded-3xl"
             />
             {/* <RippleLoader className="!absolute z-[-1]" icon={feature.icon} /> */}
             <div className="absolute bottom-4 z-10 w-full px-4">
               <div
                 className={cn(
-                  `flex flex-col justify-end h-full opacity-100 translate-y-4 transition-all duration-300 ease-out text-center`
+                  "flex flex-col justify-end h-full opacity-100 translate-y-4 transition-all duration-300 ease-out text-center"
                 )}
               >
                 <h3 className="text-2xl mb-0 font-bold text-white transition-all duration-300">
@@ -233,14 +229,11 @@ export const ScrollCarousel = forwardRef<HTMLDivElement, ScrollCarouselProps>(
       >
         <div
           ref={containerRef}
-          className="relative overflow-hidden md:h-screen md:py-20 
-          flex flex-col gap-0 z-10 
-          lg:[mask-image:_linear-gradient(to_right,transparent_0,_black_5%,_black_95%,transparent_100%)]"
+          className="relative overflow-hidden md:h-screen md:py-20 flex flex-col gap-0 z-10 lg:[mask-image:_linear-gradient(to_right,transparent_0,_black_5%,_black_95%,transparent_100%)]"
         >
           <div
             ref={scrollContainerRef}
-            className="flex flex-col md:flex-row gap-8 
-            items-center h-full px-6 md:px-0"
+            className="flex flex-col md:flex-row gap-8 items-center h-full px-6 md:px-0"
           >
             {renderFeatureCards(features, cardRefs)}
           </div>

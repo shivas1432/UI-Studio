@@ -1,5 +1,5 @@
 import React from "react";
-import ThreeDHover GalleryPreview from "./_components/preview";
+import ThreeDHoverGalleryPreview from "./_components/preview";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  return <ThreeDHover GalleryPreview />;
+  return <ThreeDHoverGalleryPreview />;
 };
 
 export default Page;
