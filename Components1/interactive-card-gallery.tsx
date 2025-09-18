@@ -13,7 +13,7 @@ export interface CardProps {
 }
 
 interface InteractiveCardGalleryProps {
-  cards: CardProps[];
+  cards?: CardProps[]; // Make optional to avoid undefined errors
   className?: string;
   cardHeight?: string;
   columns?: 1 | 2 | 3 | 4;
@@ -63,7 +63,7 @@ const CardItem = ({
 };
 
 export function InteractiveCardGallery({
-  cards,
+  cards = [], // Fallback to empty array to prevent runtime errors
   className,
   cardHeight = "h-64",
   columns = 4,
@@ -72,11 +72,15 @@ export function InteractiveCardGallery({
 }: InteractiveCardGalleryProps) {
   const getGridCols = () => {
     switch (columns) {
-      case 1: return "grid-cols-1";
-      case 2: return "sm:grid-cols-2";
-      case 3: return "sm:grid-cols-2 lg:grid-cols-3";
+      case 1:
+        return "grid-cols-1";
+      case 2:
+        return "sm:grid-cols-2";
+      case 3:
+        return "sm:grid-cols-2 lg:grid-cols-3";
       case 4:
-      default: return "sm:grid-cols-2 lg:grid-cols-4";
+      default:
+        return "sm:grid-cols-2 lg:grid-cols-4";
     }
   };
 
@@ -88,7 +92,7 @@ export function InteractiveCardGallery({
       )}
       style={{
         "--hover-scale": hoverScale,
-        "--transition-duration": `${transitionDuration}ms`
+        "--transition-duration": `${transitionDuration}ms`,
       } as React.CSSProperties}
     >
       {cards.map((card, index) => (
