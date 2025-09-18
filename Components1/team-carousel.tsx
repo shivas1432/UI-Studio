@@ -294,7 +294,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
           style={{ transformStyle: "preserve-3d" }}
         >
           <AnimatePresence initial={false} custom={direction}>
-            {members.map((member, index): React.ReactNode => {
+            {(members || []).map((member, index): React.ReactNode => {
               const position = calculatePosition(index);
               const isCurrent = index === currentIndex;
               if (position === "hidden" && !isCurrent) return null;
@@ -390,7 +390,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
 
       {showDots && (
         <div className="flex justify-center gap-3 mt-15">
-          {members.map((_, index) => (
+         {(members || []).map((_, index) => (
             <motion.button
               key={index}
               onClick={() => {

@@ -266,7 +266,7 @@ const handleKeyDown = React.useCallback((e: React.KeyboardEvent, index: number) 
         </div>
 
         {}
-        {showTooltip && values.map((value, index) => (
+        {showTooltip && (values || []).map((value, index) => (
           <div
             key={`tooltip-${index}`}
             className={cn(
@@ -288,7 +288,7 @@ const handleKeyDown = React.useCallback((e: React.KeyboardEvent, index: number) 
         ))}
 
         {}
-        {values.map((value, index) => (
+        {(values || []).map((value, index) => (
           <div
             key={`thumb-${index}`}
             className={cn(

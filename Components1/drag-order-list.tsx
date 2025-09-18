@@ -40,7 +40,7 @@ export function DragOrderList({ items, onReorder }: DragOrderListProps) {
       className="space-y-4 w-full max-w-2xl mx-auto"
     >
       {Array.isArray(list) &&
-        list.map((item) => <DragOrderItem key={item.id} item={item} />)}
+        (list || []).map((item) => <DragOrderItem key={item.id} item={item} />)}
     </Reorder.Group>
   );
 }

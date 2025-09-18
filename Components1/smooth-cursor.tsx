@@ -328,7 +328,7 @@ export function SmoothCursor({
   return (
     <>
       {}
-      {showTrail && trail.map(function (pos, index) {
+      {showTrail && (trail || []).map(function (pos, index) {
         return (
           <motion.div
             key={index}

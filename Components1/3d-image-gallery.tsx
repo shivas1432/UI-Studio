@@ -121,7 +121,7 @@ const ThreeDImageGallery: React.FC<Image3DGalleryProps> = ({
       >
         {}
         <AnimatePresence initial={false}>
-          {images.map((img, index) => {
+          {(images || []).map((img, index) => {
             // Calculate offset from the active image
             const offset = index - activeIndex;
             // Scale of the image (active image is full size, others are smaller)

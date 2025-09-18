@@ -305,7 +305,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             menuDirection === "horizontal" && "flex flex-wrap "
           )}
         >
-          {items.map((item, index) => (
+        {(items || []).map((item, index) => (
             <li
               key={index}
               className={cn(

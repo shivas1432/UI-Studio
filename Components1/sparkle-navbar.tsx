@@ -264,7 +264,7 @@ const SparkleNavbar: React.FC<SparkleNavbarProps> = ({
 
       <nav className="navigation-menu" ref={navRef}>
         <ul>
-          {items.map((item, index) => (
+         {(items || []).map((item, index) => (
             <li key={item} className={index === activeIndex ? "active" : ""}>
               <button
                 ref={(el) => {
@@ -285,3 +285,4 @@ const SparkleNavbar: React.FC<SparkleNavbarProps> = ({
 };
 
 export default SparkleNavbar;
+

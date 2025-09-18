@@ -178,7 +178,7 @@ export const DynamicNavigation = ({
       ></div>
 
       <ul className="flex justify-between items-center gap-4 py-2 relative z-10">
-        {links.map((link) => (
+        {(links || []).map((link) => (
           <li
             key={link.id}
             className="flex-1 rounded-full mx-1 lg:mx-2 px-4"

@@ -95,7 +95,7 @@ export function InteractiveCardGallery({
         "--transition-duration": `${transitionDuration}ms`,
       } as React.CSSProperties}
     >
-      {cards.map((card, index) => (
+      {(cards || []).map((card, index) => (
         <div key={index} className={cn("group", cardHeight)}>
           <CardItem {...card} />
         </div>

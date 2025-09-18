@@ -183,7 +183,7 @@ export const ScrollCarousel = forwardRef<HTMLDivElement, ScrollCarouselProps>(
       featureSet: FeatureItem[],
       refs: React.MutableRefObject<(HTMLDivElement | null)[]>
     ) =>
-      featureSet.map((feature, index) => (
+      (featureSet || []).map((feature, index) => (
         <div
           key={index}
           ref={(el) => {

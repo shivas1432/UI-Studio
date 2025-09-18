@@ -107,7 +107,7 @@ const ScrollList = <T,>({
       // Inline style for fixed height and scrollability of the main container
       style={{ height: "600px", overflowY: "auto" }}
     >
-      {data.map((item, index) => {
+      {(data || []).map((item, index) => {
         let variant = "hidden"; // Default variant
 
         // Determine the animation variant based on the item's position relative to the focused item

@@ -44,7 +44,7 @@ export const TypingText = ({
         return node.toString();
       }
       if (Array.isArray(node)) {
-        return node.map(extractText).join("");
+        return (node || []).map(extractText).join("");
       }
       if (
         React.isValidElement(node) &&
@@ -58,7 +58,7 @@ export const TypingText = ({
     setTextContent(extractText(children));
   }, [children]);
 
-  const characters = textContent.split("").map((char) =>
+  const characters = (textContent || "").split("").map((char) =>
     char === " " ? "\u00A0" : char
   );
 
@@ -98,7 +98,7 @@ export const TypingText = ({
         aria-label={textContent}
         role="text"
       >
-        {characters.map((char, index) => (
+        {(characters || []).map((char, index) => (
           <motion.span
             key={`${char}-${index}`}
             className="inline-block"

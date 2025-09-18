@@ -295,7 +295,8 @@ export const TypewriterInput: React.FC<TypewriterInputProps> = ({
             textClassName
           )}
         >
-          {characters.map(function (char, index) {
+        {(characters || []).map(function (char, index) {
+
             return (
               <span
                 key={char + "-" + index}

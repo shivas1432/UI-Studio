@@ -284,7 +284,7 @@ export function SlidingLogoMarquee({
             )}
 
             <ul className="sliding-marquee-list text-foreground">
-              {items.map((item, index) => (
+              {(items || []).map((item, index) => (
                 <li
                   key={item.id}
                   className="sliding-marquee-item text-foreground"

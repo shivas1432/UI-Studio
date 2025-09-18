@@ -127,7 +127,7 @@ const CodeHoverCards: React.FC<CodeHoverCardsProps> = ({
     <div className={cn('w-full flex items-center justify-center px-0 py-4 bg-background text-foreground', className)}>
       <div className="container mx-auto">
         <div className={cn('grid', getColumnClass())} style={{ gap: cardGap }}>
-          {cards.map((card) => {
+          {(cards || []).map((card) => {
             const IconComponent = card.icon;
             const position = mousePositions[card.id] || { x: 0, y: 0 };
             const randomText = randomTexts[card.id] || '';

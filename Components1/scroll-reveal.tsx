@@ -165,7 +165,7 @@ export function ScrollReveal({
         // Changed to `isInView` to match the behavior of triggering on view
         animate={isInView ? "visible" : "hidden"}
       >
-        {splitText.map((item) => ( // Map over 'item' directly as it's always an object
+       {(splitText || []).map((item) => (
           item.isSpace ? (
             // Render spaces as a regular span
             <span key={`space-${item.originalIndex}`}>{item.value}</span>

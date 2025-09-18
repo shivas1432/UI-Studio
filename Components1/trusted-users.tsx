@@ -31,7 +31,7 @@ export const TrustedUsers: React.FC<TrustedUsersProps> = ({
       )}
     >
       <div className="flex -space-x-4">
-        {avatars.map((src, i) => (
+        {(avatars || []).map((src, i) => (
           <div
             key={i}
             className={`w-10 h-10 rounded-full overflow-hidden ring-1 ring-offset-2 ring-offset-black ${

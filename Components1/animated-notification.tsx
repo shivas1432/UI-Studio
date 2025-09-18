@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
@@ -96,7 +95,7 @@ const Avatar: React.FC<{
         />
       ) : (
         <span className="text-xs font-bold text-white drop-shadow-sm">
-          {user.initials || user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+          {user.initials || (user.name || "").split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
         </span>
       )}
     </div>
@@ -264,7 +263,7 @@ const AnimatedNotification: React.FC<AnimatedNotificationProps> = ({
         return prev;
       }
 
-      const updatedNotes = prev.map(note =>
+     const updatedNotes = (prev || []).map(note =>
         note.id === id ? { ...note, fadingOut: true } : note
       );
 
@@ -294,7 +293,7 @@ const AnimatedNotification: React.FC<AnimatedNotificationProps> = ({
         const oldestNote = currentNotes[0];
 
         if (oldestNote && !oldestNote.fadingOut) {
-          currentNotes = currentNotes.map((note, i) =>
+          currentNotes = (currentNotes || []).map((note, i) =>
             i === 0 ? { ...note, fadingOut: true } : note
           );
 
@@ -404,9 +403,9 @@ const AnimatedNotification: React.FC<AnimatedNotificationProps> = ({
       }} />
 
       <div className={cn(getPositionStyles(), className)}>
-        <Flipper flipKey={notes.map((note) => note.id).join("")}>
+        <Flipper flipKey={(notes || []).map((note) => note.id).join("")}>
           <div className="flex flex-col gap-4 items-center" style={{ width }}>
-            {notes.map((note) => (
+            {(notes || []).map((note) => (
               <Flipped key={note.id} flipId={note.id}>
                 <div
                   className={cn(

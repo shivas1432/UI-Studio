@@ -33,7 +33,7 @@ export default function StackList({
     >
       <div className="flex flex-col gap-4 relative">
         <AnimatePresence initial={false}>
-          {visibleItems.map((item, index) => (
+          {(visibleItems || []).map((item, index) => (
             <motion.div
               key={item.title + index}
               initial={{ opacity: 0, y: 20, scale: 0.95 }}

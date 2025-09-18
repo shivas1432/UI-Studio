@@ -82,7 +82,7 @@ const ImageMarquee: React.FC<ImageMarqueeProps> = ({
           willChange: "transform", // Optimize for animation
         }}
       >
-        {allImages.map((src, idx) => (
+        {(allImages || []).map((src, idx) => (
           <div
             key={idx}
             className={`${imageWidth} ${imageHeight} ${imageMarginX} flex-shrink-0

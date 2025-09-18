@@ -28,7 +28,7 @@ const RippleLoader: React.FC<RippleLoaderProps> = ({
       className="relative"
       style={{ width: size, height: size }}
     >
-      {rippleBoxes.map((box, i) => (
+     {(rippleBoxes || []).map((box, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full border-t backdrop-blur-[5px]"

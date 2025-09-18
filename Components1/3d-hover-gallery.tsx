@@ -205,7 +205,7 @@ const ThreeDHoverGallery: React.FC<ThreeDHoverGalleryProps> = ({
           gap: `${gap}rem`,
         }}
       >
-        {images.map((image, index) => (
+       {(images || []).map((image, index) => (
           <div
             key={index}
             // Individual image item, applies styling, interactivity, and accessibility attributes.

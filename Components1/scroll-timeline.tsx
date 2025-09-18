@@ -299,7 +299,7 @@ export const ScrollTimeline = ({
           {}
 
           <div className="relative z-20">
-            {events.map((event, index) => {
+            {(events || []).map((event, index) => {
               const yOffset = useTransform(
                 smoothProgress,
                 [0, 1],

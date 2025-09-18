@@ -147,7 +147,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
               className="relative w-full max-w-5xl mx-auto flex-shrink-0"
               style={{ height: cardHeight }}
             >
-              {cards.slice(0, 5).map((card, index) => {
+             {(cards || []).slice(0, 5).map((card, index) => {
                 const cardTransform = getCardTransform(index);
                 const backgroundImage =
                   card.backgroundImage ||

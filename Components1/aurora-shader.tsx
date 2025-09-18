@@ -127,7 +127,7 @@ export default function AuroraShader({
         uBlend: { value: blend },
         uResolution: { value: [container.offsetWidth, container.offsetHeight] },
         uColorStops: {
-          value: colorStops.map((hex) => {
+          value: (colorStops || []).map((hex) => {
             const c = new Color(hex);
             return [c.r, c.g, c.b];
           }),

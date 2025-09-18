@@ -182,7 +182,7 @@ export default function Dock({
         role="toolbar"
         aria-label="Application dock"
       >
-        {items.map((item, index) => (
+        {(items || []).map((item, index) => (
           <DockItem
             key={index}
             icon={item.icon}

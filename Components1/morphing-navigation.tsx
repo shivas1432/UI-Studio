@@ -193,7 +193,7 @@ export const MorphingNavigation: React.FC<MorphingNavigationProps> = ({
         >
           <AnimatePresence>
             {!isMobile && !isSticky &&
-              links.map((link, i) => (
+              (links || []).map((link, i) => (
                 <motion.a
                   key={link.id}
                   href={link.href}
@@ -255,7 +255,7 @@ export const MorphingNavigation: React.FC<MorphingNavigationProps> = ({
               exit={{ opacity: 0 }}
             >
               <div className="flex flex-col space-y-4">
-                {links.map((link) => (
+                {(links || []).map((link) => (
                   <a
                     key={link.id}
                     href={link.href}

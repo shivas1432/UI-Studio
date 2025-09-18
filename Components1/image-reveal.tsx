@@ -70,7 +70,7 @@ const ImageReveal: React.FC = () => {
       onMouseMove={onMouseTrack}
       onMouseLeave={onHoverDeactivate}
     >
-      {visualData.map((item) => (
+     {(visualData || []).map((item) => (
         <div
           key={item.key}
           className="p-4 cursor-pointer relative sm:flex items-center justify-between"

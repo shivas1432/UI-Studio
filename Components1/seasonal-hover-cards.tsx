@@ -54,7 +54,7 @@ export function SeasonalHoverCards({
 }: SeasonalHoverCardsProps) {
   return (
     <div className={cn("flex flex-wrap md:flex-nowrap gap-4 w-full px-4", className)}>
-      {cards.map((card, index) => (
+      {(cards || []).map((card, index) => (
         <SeasonCard
           key={index}
           title={card.title}

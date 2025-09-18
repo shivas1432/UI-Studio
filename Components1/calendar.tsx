@@ -118,7 +118,7 @@ const Calendar = () => {
         {mode === "multiple" && multipleDates && (
           <p>
             Selected:{" "}
-            {multipleDates.map((date) => (
+           {(multipleDates || []).map((date) => (
               <span key={date.toString()} className="mx-1">
                 {date.toLocaleDateString("en-US")}
               </span>

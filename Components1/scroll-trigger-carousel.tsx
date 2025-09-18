@@ -55,7 +55,7 @@ const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
 
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div style={{ x, gap }} className="flex">
-          {items.map((item) => (
+          {(items || []).map((item) => (
             <React.Fragment key={item.id}>
               <div className="flex flex-col items-center justify-center">
                 <div
