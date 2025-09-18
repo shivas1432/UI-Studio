@@ -327,7 +327,7 @@ export function SmoothCursor({
 
   return (
     <>
-      {/* Trail Effect */}
+      {}
       {showTrail && trail.map(function (pos, index) {
         return (
           <motion.div
@@ -348,7 +348,7 @@ export function SmoothCursor({
         );
       })}
 
-      {/* Main Cursor */}
+      {}
       <motion.div
         style={{
           position: "fixed",

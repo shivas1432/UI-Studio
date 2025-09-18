@@ -115,7 +115,7 @@ export const InteractiveGradient = ({
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Gradient border */}
+      {}
       <style>
         {`
           .interactive-gradient-card::before {

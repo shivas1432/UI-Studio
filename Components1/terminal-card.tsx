@@ -56,7 +56,7 @@ const TerminalCard: React.FC<TerminalCardProps> = ({ command, language = "tsx", 
         className
       )}
     >
-      {/* Header */}
+      {}
       <div className="flex items-center justify-between px-3 py-2 bg-gray-100 dark:bg-[#202425] rounded-t-lg text-sm font-semibold text-gray-700 dark:text-gray-400">
         <div className="flex items-center gap-2">
           <Terminal className="w-4 h-4 text-blue-500" />
@@ -71,7 +71,7 @@ const TerminalCard: React.FC<TerminalCardProps> = ({ command, language = "tsx", 
         </button>
       </div>
 
-      {/* Content with Syntax Highlighting */}
+      {}
       <div className="rounded-b-lg text-sm font-mono p-3 bg-black text-white dark:bg-black max-h-[300px] overflow-auto">
         {isComplete ? (
           <SyntaxHighlighter

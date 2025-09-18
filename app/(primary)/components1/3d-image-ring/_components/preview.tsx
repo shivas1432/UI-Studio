@@ -10,7 +10,7 @@ import {
   commandMap,
   utilcode,
   packagesMap,
-  threeDImage Ring,
+  threeDImageRing,
 } from "../show-code";
 import ToggleButtonGroup from "@/components/content/togglebuttongroup";
 import MainTitle from "@/components/content/maintitle";
@@ -23,12 +23,24 @@ import { CommandBlock } from "@/components/code/commmand-block";
 import ToggleManualCli from "@/components/content/togglemanualcli";
 import { CodeBlock } from "@/components/code/CodeBlock";
 import PropsTable from "@/components/content/props-table";
-import ThreeDImage Ring from "@/Components1/3d-image-ring";
+import ThreeDImageRing from "@/Components1/3d-image-ring";
 
-const ThreeDImage RingPreview = () => {
+const ThreeDImageRingPreview = () => {
   const [sourceCode, setSourceCode] = useState(false);
   const [sourceManual, setSourceManual] = useState(true);
   const { previous, next } = getNavigationFeaturedItems(title);
+
+  // Sample images data for the 3D Image Ring
+  const sampleImages = [
+    "/api/placeholder/400/600",
+    "/api/placeholder/400/600",
+    "/api/placeholder/400/600",
+    "/api/placeholder/400/600",
+    "/api/placeholder/400/600",
+    "/api/placeholder/400/600",
+    "/api/placeholder/400/600",
+    "/api/placeholder/400/600"
+  ];
 
   return (
     <MainContentContainer>
@@ -40,7 +52,7 @@ const ThreeDImage RingPreview = () => {
       />
       {!sourceCode ? (
         <PreviewComponentContainer>
-          <ThreeDImage Ring />
+          <ThreeDImageRing images={sampleImages} />
         </PreviewComponentContainer>
       ) : (
         <CodeBlock
@@ -86,10 +98,10 @@ const ThreeDImage RingPreview = () => {
           ></Dependencies>
         </>
       )}
-      <PropsTable propsData={threeDImage Ring} />
+      <PropsTable propsData={threeDImageRing} />
       <ComponentNavigation previous={previous} next={next} />
     </MainContentContainer>
   );
 };
 
-export default ThreeDImage RingPreview;
+export default ThreeDImageRingPreview;

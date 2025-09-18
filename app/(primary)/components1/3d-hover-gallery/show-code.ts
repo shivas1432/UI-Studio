@@ -28,7 +28,7 @@ export const packagesMap = {
   bun: `bun add ${packagescript}`,
 };
 
-export const threeDHover Gallery = [
+export const threeDHoverGallery = [
   // Add component props here
 ];
 
@@ -54,5 +54,5 @@ const ThreeDHover Gallery = () => {
   );
 };
 
-export default ThreeDHover Gallery;
+export default ThreeDHoverGallery;
 `;

@@ -67,7 +67,7 @@ const AnimatedPlaceholder = ({ showSearch }: { showSearch: boolean }) => (
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -5 }}
       transition={{ duration: 0.1 }}
-      className="pointer-events-none w-[1500px] text-sm absolute 
+      className="pointer-events-none w-[1500px] text-sm absolute
       text-black/70 dark:text-white/70"
     >
       {showSearch ? "Search the web..." : "Ask Skiper Ai..."}

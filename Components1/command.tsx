@@ -221,7 +221,7 @@ const CommandInput = React.forwardRef<HTMLInputElement, CommandInputProps>(
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           className={cn(
-            `flex h-11 w-full rounded-md bg-transparent py-3 text-sm border-none focus:border-none focus:ring-0 focus:outline-none 
+            `flex h-11 w-full rounded-md bg-transparent py-3 text-sm border-none focus:border-none focus:ring-0 focus:outline-none
    active:border-none active:ring-0 active:outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50`,
             className
           )}

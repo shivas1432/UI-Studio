@@ -5,84 +5,44 @@ import { cn } from "../lib/utils";
 import { motion } from "framer-motion";
 
 export interface AnimatedBlobBackgroundProps {
-  /**
-   * Additional class name for the background container
-   */
+
   className?: string;
-  /**
-   * Custom styles for the background container
-   */
+
   style?: React.CSSProperties;
-  /**
-   * The amount of blur applied to the blobs (in pixels or viewport units)
-   */
+
   blurAmount?: string;
-  /**
-   * Array of colors for the first blob gradient
-   */
+
   firstBlobColors?: string[];
-  /**
-   * Array of colors for the second blob gradient
-   */
+
   secondBlobColors?: string[];
-  /**
-   * Custom SVG path for the blob shapes
-   */
+
   blobPath?: string;
-  /**
-   * Speed of the first blob rotation animation in ms
-   */
+
   firstBlobSpeed?: number;
-  /**
-   * Speed of the second blob rotation animation in ms
-   */
+
   secondBlobSpeed?: number;
-  /**
-   * Opacity of the first blob (0-1)
-   */
+
   firstBlobOpacity?: number;
-  /**
-   * Opacity of the second blob (0-1)
-   */
+
   secondBlobOpacity?: number;
-  /**
-   * Initial rotation angle for the first blob in degrees
-   */
+
   firstBlobRotation?: number;
-  /**
-   * Initial rotation angle for the second blob in degrees
-   */
+
   secondBlobRotation?: number;
-  /**
-   * Should the animation run or be paused
-   */
+
   isAnimating?: boolean;
-  /**
-   * Enable interactive hover effects that respond to mouse movement
-   */
+
   interactive?: boolean;
-  /**
-   * Z-index for the background container
-   */
+
   zIndex?: number;
-  /**
-   * Number of blobs to show (1 or 2)
-   */
+
   blobCount?: 1 | 2;
-  /**
-   * Children elements to render on top of the background
-   */
+
   children?: React.ReactNode;
-  /**
-   * Intensity of the interactive effect (1-10)
-   */
+
   interactiveIntensity?: number;
 }
 
-/**
- * AnimatedBlobBackground component displays animated gradient blobs with
- * configurable shapes, colors, and animation properties.
- */
 export const AnimatedBlobBackground = ({
   className,
   style,
@@ -120,47 +80,47 @@ export const AnimatedBlobBackground = ({
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
-      
+
       // Calculate normalized position (-1 to 1)
       const normalizedX = (clientX / innerWidth) * 2 - 1;
       const normalizedY = (clientY / innerHeight) * 2 - 1;
-      
+
       setMousePosition({ x: normalizedX, y: normalizedY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [interactive]);
 
   return (
-    <div 
+    <div
       className={cn("absolute inset-0 grid overflow-hidden", className)}
-      style={{ 
+      style={{
         filter: `blur(${blurAmount})`,
         zIndex,
         ...style,
       }}
     >
-      {/* First blob */}
+      {}
       <motion.div
         className="shape absolute inset-0 mx-auto"
-        style={{ 
-          clipPath: blobPath, 
+        style={{
+          clipPath: blobPath,
           background: createGradient(firstBlobColors),
           opacity: firstBlobOpacity,
           transform: `rotate(${firstBlobRotation}deg)`,
         }}
         animate={
-          isAnimating 
-            ? { rotate: 360 + firstBlobRotation } 
+          isAnimating
+            ? { rotate: 360 + firstBlobRotation }
             : { rotate: firstBlobRotation }
         }
-        transition={{ 
-          duration: firstBlobSpeed / 1000, 
-          ease: "linear", 
+        transition={{
+          duration: firstBlobSpeed / 1000,
+          ease: "linear",
           repeat: Infinity,
         }}
         {...(interactive && {
@@ -172,33 +132,33 @@ export const AnimatedBlobBackground = ({
           transition: {
             x: { duration: 0.3, ease: "easeOut" },
             y: { duration: 0.3, ease: "easeOut" },
-            rotate: { 
-              duration: firstBlobSpeed / 1000, 
-              ease: "linear", 
+            rotate: {
+              duration: firstBlobSpeed / 1000,
+              ease: "linear",
               repeat: Infinity,
             },
           }
         })}
       />
 
-      {/* Second blob, only rendered if blobCount is 2 */}
+      {}
       {blobCount === 2 && (
         <motion.div
           className="shape absolute inset-0 mx-auto"
-          style={{ 
-            clipPath: blobPath, 
+          style={{
+            clipPath: blobPath,
             background: createGradient(secondBlobColors),
             opacity: secondBlobOpacity,
             transform: `rotate(${secondBlobRotation}deg)`,
           }}
           animate={
-            isAnimating 
-              ? { rotate: 360 + secondBlobRotation } 
+            isAnimating
+              ? { rotate: 360 + secondBlobRotation }
               : { rotate: secondBlobRotation }
           }
-          transition={{ 
-            duration: secondBlobSpeed / 1000, 
-            ease: "linear", 
+          transition={{
+            duration: secondBlobSpeed / 1000,
+            ease: "linear",
             repeat: Infinity,
           }}
           {...(interactive && {
@@ -210,9 +170,9 @@ export const AnimatedBlobBackground = ({
             transition: {
               x: { duration: 0.3, ease: "easeOut" },
               y: { duration: 0.3, ease: "easeOut" },
-              rotate: { 
-                duration: secondBlobSpeed / 1000, 
-                ease: "linear", 
+              rotate: {
+                duration: secondBlobSpeed / 1000,
+                ease: "linear",
                 repeat: Infinity,
               },
             }
@@ -220,7 +180,7 @@ export const AnimatedBlobBackground = ({
         />
       )}
 
-      {/* Render children on top if provided */}
+      {}
       {children}
     </div>
   );

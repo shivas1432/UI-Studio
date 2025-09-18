@@ -28,25 +28,25 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   ({ className, type = "multiple", value, defaultValue = [], onValueChange, children, ...props }, ref) => {
     // Always ensure values is an array, even if a single string is passed
     const [values, setValues] = React.useState<string[]>(
-      Array.isArray(value) ? value : 
-      value ? [value] : 
-      Array.isArray(defaultValue) ? defaultValue : 
+      Array.isArray(value) ? value :
+      value ? [value] :
+      Array.isArray(defaultValue) ? defaultValue :
       defaultValue ? [defaultValue] : []
     );
-    
+
     React.useEffect(() => {
       if (value !== undefined) {
         setValues(Array.isArray(value) ? value : value ? [value] : []);
       }
     }, [value]);
-    
+
     const handleValueChange = React.useCallback((newValues: string[]) => {
       if (value === undefined) {
         setValues(newValues);
       }
       onValueChange?.(newValues);
     }, [onValueChange, value]);
-    
+
     return (
       <AccordionContext.Provider value={{ value: values, onValueChange: handleValueChange }}>
         <div ref={ref} className={cn(className)} {...props}>
@@ -88,29 +88,29 @@ const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTriggerPro
   ({ className, children, ...props }, ref) => {
     const context = React.useContext(AccordionContext);
     if (!context) throw new Error("AccordionTrigger must be used within an Accordion");
-    
+
     const itemContext = React.useContext(AccordionItemContext);
     if (!itemContext) throw new Error("AccordionTrigger must be used within an AccordionItem");
-    
+
     const { value: values, onValueChange } = context;
     const { value: itemValue } = itemContext;
-    
+
     const isOpen = values.includes(itemValue);
-    
+
     const handleToggle = () => {
       const newValues = isOpen
         ? values.filter(v => v !== itemValue)
         : [...values, itemValue];
-      
+
       onValueChange(newValues);
     };
-    
+
     return (
       <button
         ref={ref}
         type="button"
         className={cn(
-          `flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline 
+          `flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline
           [&[data-state=open]>svg]:rotate-180`,
           className
         )}
@@ -132,15 +132,15 @@ const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>
   ({ className, children, ...props }, ref) => {
     const context = React.useContext(AccordionContext);
     if (!context) throw new Error("AccordionContent must be used within an Accordion");
-    
+
     const itemContext = React.useContext(AccordionItemContext);
     if (!itemContext) throw new Error("AccordionContent must be used within an AccordionItem");
-    
+
     const { value: values } = context;
     const { value: itemValue } = itemContext;
-    
+
     const isOpen = values.includes(itemValue);
-    
+
     return (
       <div
         ref={ref}
@@ -162,3 +162,5 @@ const AccordionContent = React.forwardRef<HTMLDivElement, AccordionContentProps>
 AccordionContent.displayName = "AccordionContent";
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+
+export default Accordion;

@@ -1,5 +1,5 @@
 // Complete contants/index.ts file with both original and Components1 constants
-
+// TODO: Add all components1 navigation entries for animated-bubble-particles, border-beam, sparkle-navbar, etc.
 // ORIGINAL CONSTANTS (that NavbarDrawer needs)
 export const navItems = [
   { name: 'Home', href: '/' },
@@ -45,7 +45,8 @@ export const eliteItems = [
 
 // Original 3D Components
 export const threeDComponents = [
-  { name: '3D Carousel', href: '/components/3d-carousel' },
+  { name: '3D Carousel', href: '/components1/3d-carousel' },
+  { name: '3D Carousel V2', href: '/components/3d-carousel-v2' },
   { name: '3D Hover Gallery', href: '/components/3d-hover-gallery' },
   { name: '3D Image Gallery', href: '/components/3d-image-gallery' },
   { name: '3D Image Ring', href: '/components/3d-image-ring' },

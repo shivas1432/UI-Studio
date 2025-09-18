@@ -42,7 +42,7 @@ export * from './globe';
 export * from './glowing-background';
 export * from './glowing-cards';
 // Skip: './glowing-lights' - has export conflicts
-// Skip: './gradient-background' - has export conflicts  
+// Skip: './gradient-background' - has export conflicts
 // Skip: './gradient-btn-home' - has export conflicts
 // Skip: './gradient-button' - has export conflicts
 // Skip: './grid-dot-backgrounds' - has export conflicts

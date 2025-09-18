@@ -11,53 +11,53 @@ export interface MenuItem {
 }
 
 export interface HamburgerMenuOverlayProps {
-  /** Array of menu items */
+
   items: MenuItem[];
-  /** Button position from top */
+
   buttonTop?: string;
-  /** Button position from left */
+
   buttonLeft?: string;
-  /** Button size */
+
   buttonSize?: "sm" | "md" | "lg";
-  /** Button background color */
+
   buttonColor?: string;
-  /** Overlay background color/gradient */
+
   overlayBackground?: string;
-  /** Menu text color */
+
   textColor?: string;
-  /** Menu font size */
+
   fontSize?: "sm" | "md" | "lg" | "xl" | "2xl";
-  /** Font family */
+
   fontFamily?: string;
-  /** Font weight */
+
   fontWeight?: "normal" | "medium" | "semibold" | "bold";
-  /** Animation duration in seconds */
+
   animationDuration?: number;
-  /** Stagger delay between menu items */
+
   staggerDelay?: number;
-  /** Menu items alignment */
+
   menuAlignment?: "left" | "center" | "right";
-  /** Custom class for container */
+
   className?: string;
-  /** Custom class for button */
+
   buttonClassName?: string;
-  /** Custom class for menu items */
+
   menuItemClassName?: string;
-  /** Disable overlay close on item click */
+
   keepOpenOnItemClick?: boolean;
-  /** Custom button content */
+
   customButton?: React.ReactNode;
-  /** ARIA label for accessibility */
+
   ariaLabel?: string;
-  /** Callback when menu opens */
+
   onOpen?: () => void;
-  /** Callback when menu closes */
+
   onClose?: () => void;
-  /** Menu items layout direction */
+
   menuDirection?: "vertical" | "horizontal";
-  /** Enable blur backdrop */
+
   enableBlur?: boolean;
-  /** Z-index for overlay */
+
   zIndex?: number;
 }
 
@@ -149,7 +149,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
       <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=Krona+One:wght@400&display=swap');
-          
+
           .hamburger-overlay-${zIndex} {
             position: relative;
             top: 0;
@@ -165,11 +165,11 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             transition: clip-path ${animationDuration}s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             ${enableBlur ? "backdrop-filter: blur(10px);" : ""}
           }
-          
+
           .hamburger-overlay-${zIndex}.open {
             clip-path: circle(150% at ${buttonLeft} ${buttonTop});
           }
-          
+
           .hamburger-button-${zIndex} {
             position: absolute;
             left: ${buttonLeft};
@@ -182,22 +182,22 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             cursor: pointer;
             transition: all 0.3s ease;
           }
-          
+
           .hamburger-button-${zIndex}:hover {
             transform: translate(-50%, -50%) scale(1.1);
           }
-          
+
           .hamburger-button-${zIndex}:focus {
             outline: 2px solid ${textColor};
             outline-offset: 2px;
           }
-          
+
           .menu-items-${zIndex} {
             ${menuDirection === "horizontal" ? "display: flex; flex-wrap: wrap; gap: 1rem;" : ""}
             ${menuAlignment === "center" ? "text-align: center;" : ""}
             ${menuAlignment === "right" ? "text-align: right;" : ""}
           }
-          
+
           .menu-item-${zIndex} {
             position: relative;
             list-style: none;
@@ -211,12 +211,12 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             color: ${textColor};
             ${menuDirection === "horizontal" ? "display: inline-block; margin: 0 1rem;" : ""}
           }
-          
+
           .menu-item-${zIndex}.visible {
             transform: translateX(0);
             opacity: 1;
           }
-          
+
           .menu-item-${zIndex}::before {
             content: "";
             position: absolute;
@@ -231,12 +231,12 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             transition: all 0.25s ease;
             pointer-events: none;
           }
-          
+
           .menu-item-${zIndex}:hover::before {
             opacity: 1;
             transform: translate(-50%, -50%) translateX(0);
           }
-          
+
           .menu-item-${zIndex} span {
             opacity: 0.7;
             transition: opacity 0.25s ease;
@@ -244,48 +244,47 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
             align-items: center;
             gap: 0.5rem;
           }
-          
+
           .menu-item-${zIndex}:hover span {
             opacity: 1;
           }
-          
+
           .menu-item-${zIndex}:focus {
             outline: 2px solid ${textColor};
             outline-offset: 2px;
             border-radius: 4px;
           }
-          
-          /* Mobile responsiveness */
-          @media (max-width: 768px) {
+
+@media (max-width: 768px) {
             .hamburger-button-${zIndex} {
               left: 30px;
               top: 30px;
             }
-            
+
             .hamburger-overlay-${zIndex} {
               clip-path: circle(0px at 30px 30px);
             }
-            
+
             .hamburger-overlay-${zIndex}.open {
               clip-path: circle(150% at 30px 30px);
             }
-            
+
             .menu-items-${zIndex} {
               padding: 1rem;
               max-height: 80vh;
               overflow-y: auto;
             }
-            
+
             .menu-item-${zIndex} {
               padding: 1rem 0;
             }
           }
-          
+
           @media (max-width: 480px) {
             .menu-items-${zIndex} {
               ${menuDirection === "horizontal" ? "flex-direction: column; gap: 0;" : ""}
             }
-            
+
             .menu-item-${zIndex} {
               ${menuDirection === "horizontal" ? "display: block; margin: 0;" : ""}
             }
@@ -293,7 +292,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
         `}
       </style>
 
-      {/* Navigation Overlay */}
+      {}
       <div
         ref={navRef}
         className={cn(`flex flex-col items-center justify-center h-full
@@ -338,7 +337,7 @@ export const HamburgerMenuOverlay: React.FC<HamburgerMenuOverlayProps> = ({
         </ul>
       </div>
 
-      {/* Hamburger Button */}
+      {}
       <button
         className={cn(
           `hamburger-button-${zIndex}`,

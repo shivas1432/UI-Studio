@@ -4,33 +4,33 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 
 interface TopLoaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Whether the loader is currently active */
+
   isLoading?: boolean;
-  /** The color of the loader bar */
+
   color?: string;
-  /** The height of the loader bar in pixels */
+
   height?: number;
-  /** The speed of the loader animation in milliseconds */
+
   speed?: number;
-  /** Whether to show the spinner */
+
   showSpinner?: boolean;
-  /** The easing function for the animation */
+
   easing?: string;
-  /** The minimum percentage to start at */
+
   minimum?: number;
-  /** The parent element to render the loader in */
+
   parent?: string;
-  /** Whether to automatically increment the loader */
+
   trickle?: boolean;
-  /** How much to increase during trickle */
+
   trickleRate?: number;
-  /** How often to trickle in milliseconds */
+
   trickleSpeed?: number;
-  /** Custom template for the loader */
+
   template?: string;
-  /** Z-index for the loader elements */
+
   zIndex?: number;
-  /** Current progress value (0-1) */
+
   progress?: number;
 }
 
@@ -112,7 +112,7 @@ const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
       n = clamp(n, minimum, 1);
       progressRef.current = n;
       setCurrentProgress(n);
-      
+
       if (n === 1) {
         setTimeout(() => {
           setCurrentProgress(0);
@@ -125,16 +125,16 @@ const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
 
     const inc = React.useCallback((amount?: number) => {
       let n = progressRef.current;
-      
+
       if (!isStartedRef.current) {
         set(minimum);
         return;
       }
-      
+
       if (typeof amount !== 'number') {
         amount = (1 - n) * clamp(Math.random() * n, 0.1, 0.95);
       }
-      
+
       n = clamp(n + amount, 0, 0.994);
       set(n);
     }, [minimum, set]);
@@ -145,12 +145,12 @@ const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
 
     React.useEffect(() => {
       if (!mounted) return;
-      
+
       if (progress !== undefined) {
         set(progress);
         return;
       }
-      
+
       if (isLoading && trickle) {
         const tick = () => {
           if (!isLoading) return;
@@ -161,9 +161,9 @@ const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
             }
           }, trickleSpeed);
         };
-        
+
         tick();
-        
+
         return () => {
           if (requestRef.current) {
             window.clearTimeout(requestRef.current);
@@ -175,7 +175,7 @@ const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
 
     React.useEffect(() => {
       setMounted(true);
-      
+
       const style = document.createElement('style');
       style.textContent = `
         @keyframes top-loader-spinner {
@@ -184,7 +184,7 @@ const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
         }
       `;
       document.head.appendChild(style);
-      
+
       return () => {
         document.head.removeChild(style);
         if (requestRef.current) {
@@ -195,7 +195,7 @@ const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
 
     React.useEffect(() => {
       if (!mounted) return;
-      
+
       if (isLoading) {
         if (currentProgress === 0) {
           set(minimum);

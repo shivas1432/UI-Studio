@@ -107,7 +107,6 @@ const SheetTrigger = React.forwardRef<HTMLButtonElement, SheetTriggerProps>(
 );
 SheetTrigger.displayName = "SheetTrigger";
 
-
 const SheetClose = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>

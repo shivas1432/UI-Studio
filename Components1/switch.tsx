@@ -117,7 +117,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
         role="switch" // ARIA role for accessibility
         aria-checked={isChecked} // ARIA state for accessibility
       >
-        {/* Hidden native checkbox to handle form submissions and accessibility */}
+        {}
         <input
           type="checkbox"
           className="absolute h-0 w-0 opacity-0" // Visually hide the checkbox
@@ -127,7 +127,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           aria-hidden="true" // Hide from accessibility tree as visual role="switch" is used
           {...props} // Pass any other standard input props
         />
-        {/* The thumb element that visually moves */}
+        {}
         <span
           className={cn(
             "pointer-events-none block rounded-full bg-background shadow-lg ring-0",

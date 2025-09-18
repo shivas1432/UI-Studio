@@ -24,36 +24,36 @@ export interface ToggleProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
-  ({ 
-    className, 
-    variant = "default", 
-    size = "default", 
-    children, 
-    pressed, 
+  ({
+    className,
+    variant = "default",
+    size = "default",
+    children,
+    pressed,
     defaultPressed = false, // Add default value
     onPressedChange,
-    ...props 
+    ...props
   }, ref) => {
     // Use internal state if uncontrolled
     const [isPressed, setIsPressed] = React.useState(defaultPressed);
-    
+
     // Determine if we're in controlled or uncontrolled mode
     const isControlled = pressed !== undefined;
     const dataState = isControlled ? pressed : isPressed;
-    
+
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       // Don't update internal state if controlled
       if (!isControlled) {
         setIsPressed(!isPressed);
       }
-      
+
       // Call the change handler if provided
       onPressedChange?.(!dataState);
-      
+
       // Call the original onClick handler if it exists
       props.onClick?.(event);
     };
-    
+
     return (
       <button
         ref={ref}

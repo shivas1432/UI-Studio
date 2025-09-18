@@ -3,27 +3,27 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 
 interface SeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** The orientation of the separator */
+
   orientation?: "horizontal" | "vertical";
-  /** Whether the separator is decorative or functional */
+
   decorative?: boolean;
-  /** The thickness of the separator */
+
   thickness?: "thin" | "default" | "thick";
-  /** The style of the separator */
+
   lineStyle?: "solid" | "dashed" | "dotted";
-  /** The color variant of the separator */
+
   variant?: "default" | "muted" | "accent" | "primary";
 }
 
 const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
-  ({ 
-    className, 
-    orientation = "horizontal", 
-    decorative = true, 
+  ({
+    className,
+    orientation = "horizontal",
+    decorative = true,
     thickness = "default",
     lineStyle = "solid",
     variant = "default",
-    ...props 
+    ...props
   }, ref) => {
     // Thickness classes
     const thicknessClasses = {

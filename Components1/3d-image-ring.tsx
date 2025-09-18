@@ -6,43 +6,43 @@ import { cn } from "../lib/utils"; // Assuming you have this utility for class n
 import { animate } from "framer-motion";
 
 export interface ThreeDImageRingProps {
-  /** Array of image URLs to display in the ring */
+
   images: string[];
-  /** Container width in pixels (will be scaled) */
+
   width?: number;
-  /** 3D perspective value */
+
   perspective?: number;
-  /** Distance of images from center (z-depth) */
+
   imageDistance?: number;
-  /** Initial rotation of the ring */
+
   initialRotation?: number;
-  /** Animation duration for entrance */
+
   animationDuration?: number;
-  /** Stagger delay between images */
+
   staggerDelay?: number;
-  /** Hover opacity for non-hovered images */
+
   hoverOpacity?: number;
-  /** Custom container className */
+
   containerClassName?: string;
-  /** Custom ring className */
+
   ringClassName?: string;
-  /** Custom image className */
+
   imageClassName?: string;
-  /** Background color of the stage */
+
   backgroundColor?: string;
-  /** Enable/disable drag functionality */
+
   draggable?: boolean;
-  /** Animation ease for entrance */
+
   ease?: string;
-  /** Breakpoint for mobile responsiveness (e.g., 768 for iPad mini) */
+
   mobileBreakpoint?: number;
-  /** Scale factor for mobile (e.g., 0.7 for 70% size) */
+
   mobileScaleFactor?: number;
-  /** Power for the drag end inertia animation (higher means faster stop) */
+
   inertiaPower?: number;
-  /** Time constant for the drag end inertia animation (duration of deceleration in ms) */
+
   inertiaTimeConstant?: number;
-  /** Multiplier for initial velocity when drag ends (influences initial "spin") */
+
   inertiaVelocityMultiplier?: number;
 }
 
@@ -186,8 +186,7 @@ const handleDragEnd = () => {
   velocity.current = 0;
 };
 
-
-  // Corrected imageVariants: no function for 'visible' state
+// Corrected imageVariants: no function for 'visible' state
   const imageVariants = {
     hidden: { y: 200, opacity: 0 },
     visible: {

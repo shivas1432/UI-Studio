@@ -3,34 +3,34 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 
 interface ScrollAreaProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Reference to the viewport element */
+
   viewportRef?: React.RefObject<HTMLDivElement>;
-  /** Maximum height of the scroll area */
+
   maxHeight?: string | number;
-  /** Whether to show scrollbars */
+
   showScrollbars?: boolean;
-  /** Whether to allow scrolling */
+
   scrollable?: boolean;
-  /** The orientation of the scroll area */
+
   orientation?: "vertical" | "horizontal" | "both";
-  /** Whether to smooth scroll */
+
   smooth?: boolean;
-  /** Theme for the scrollbar */
+
   theme?: "default" | "minimal" | "none";
 }
 
 const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
-  ({ 
-    className, 
-    children, 
-    viewportRef, 
+  ({
+    className,
+    children,
+    viewportRef,
     maxHeight,
     showScrollbars = true,
     scrollable = true,
     orientation = "vertical",
     smooth = false,
     theme = "default",
-    ...props 
+    ...props
   }, ref) => {
     const internalRef = React.useRef<HTMLDivElement>(null);
     const resolvedRef = viewportRef || internalRef;
@@ -79,21 +79,21 @@ const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
 ScrollArea.displayName = "ScrollArea";
 
 interface ScrollBarProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** The orientation of the scrollbar */
+
   orientation?: "vertical" | "horizontal";
-  /** Size of the scrollbar */
+
   size?: "thin" | "default" | "thick";
-  /** Whether the scrollbar is visible */
+
   visible?: boolean;
 }
 
 const ScrollBar = React.forwardRef<HTMLDivElement, ScrollBarProps>(
-  ({ 
-    className, 
-    orientation = "vertical", 
+  ({
+    className,
+    orientation = "vertical",
     size = "default",
     visible = false,
-    ...props 
+    ...props
   }, ref) => {
     // Size classes
     const sizeClasses = {

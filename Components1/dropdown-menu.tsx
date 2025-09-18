@@ -203,7 +203,7 @@ const DropdownMenuTrigger = React.forwardRef<
 DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
 
 const dropdownMenuContentVariants = cva(
-  `z-50 min-w-[8rem] overflow-hidden rounded-md border  
+  `z-50 min-w-[8rem] overflow-hidden rounded-md border
    bg-popover p-1 text-popover-foreground shadow-md`,
   {
     variants: {
@@ -524,9 +524,9 @@ const DropdownMenuItem = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        `relative flex cursor-default select-none items-center 
-        rounded-sm px-2 py-1.5 text-sm outline-none 
-        focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground 
+        `relative flex cursor-default select-none items-center
+        rounded-sm px-2 py-1.5 text-sm outline-none
+        focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground
         data-[disabled]:pointer-events-none data-[disabled]:opacity-50`,
         inset && "pl-8",
         className

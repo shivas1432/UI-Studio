@@ -114,7 +114,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <TooltipContext.Provider value={contextValue}>
-      {/* This is the relative container for both trigger and tooltip content */}
+      {}
       <div className="relative inline-block">
         {disabled ? children : (
           <TooltipTrigger
@@ -126,7 +126,7 @@ const Tooltip: React.FC<TooltipProps> = ({
             {children}
           </TooltipTrigger>
         )}
-        {/* TooltipContentDisplay is now a sibling and will position absolutely within this parent */}
+        {}
         <TooltipContentDisplay />
       </div>
     </TooltipContext.Provider>
@@ -251,8 +251,7 @@ const TooltipContentDisplay = () => {
     };
   }, [config]);
 
-
-  // Callback to update the tooltip's position
+// Callback to update the tooltip's position
   const updatePosition = React.useCallback(() => {
     if (!contentRef.current || !triggerRef.current) return;
 
@@ -262,8 +261,7 @@ const TooltipContentDisplay = () => {
     // We assume the parentElement of contentRef.current is the `relative inline-block` container.
     const parentRect = contentRef.current.parentElement!.getBoundingClientRect();
 
-
-    let x = 0;
+let x = 0;
     let y = 0;
     const { side, align, sideOffset } = config;
 
@@ -389,8 +387,7 @@ const TooltipContentDisplay = () => {
     return style;
   }, [config]);
 
-
-  // Get variant-based background and text colors for tooltip body and arrow
+// Get variant-based background and text colors for tooltip body and arrow
   const getVariantClasses = React.useCallback(() => {
     const { variant } = config;
 
@@ -413,7 +410,7 @@ const TooltipContentDisplay = () => {
 
   return (
     <AnimatePresence>
-      {/* The motion.div is now absolutely positioned within its parent */}
+      {}
       <motion.div
         ref={contentRef}
         style={{

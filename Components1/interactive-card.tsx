@@ -75,7 +75,7 @@ export const InteractiveCard = ({
         }}
         className="w-full h-full rounded-xl overflow-hidden border shadow-lg"
       >
-        {/* Background Interactive Layer */}
+        {}
         <motion.div
           className="absolute inset-0 rounded-xl z-0"
           style={{
@@ -86,7 +86,7 @@ export const InteractiveCard = ({
           }}
         />
 
-        {/* Content */}
+        {}
         <div
           // Use cn to combine your custom className with the Tailwind background class
           // You can also add dark mode classes here

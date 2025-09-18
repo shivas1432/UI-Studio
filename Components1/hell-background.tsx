@@ -2,9 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * Valid blur sizes supported by Tailwind CSS.
- */
 export type BlurSize = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
 interface HellBackgroundProps {
@@ -13,9 +10,6 @@ interface HellBackgroundProps {
   color?: string; // e.g., "#FF0000"
 }
 
-/**
- * A mapping from simplified blur size names to full Tailwind CSS backdrop-blur classes.
- */
 const blurClassMap: Record<BlurSize, string> = {
   none: "backdrop-blur-none",
   sm: "backdrop-blur-sm",

@@ -3,28 +3,28 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 
 interface AspectRatioProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** The aspect ratio to maintain (width/height) */
+
   ratio?: number;
-  /** Predefined aspect ratios for common use cases */
+
   preset?: "square" | "video" | "portrait" | "widescreen" | "ultrawide" | "golden";
-  /** Whether to apply rounded corners */
+
   rounded?: boolean;
-  /** Whether to show a border */
+
   bordered?: boolean;
-  /** Optional object-fit style for child elements */
+
   objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
 }
 
 const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
-  ({ 
-    className, 
-    ratio: propRatio, 
+  ({
+    className,
+    ratio: propRatio,
     preset,
     rounded = false,
     bordered = false,
     objectFit,
-    style, 
-    ...props 
+    style,
+    ...props
   }, ref) => {
     // Predefined aspect ratios
     const presetRatios = {
@@ -57,7 +57,7 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
         {...props}
       >
         {props.children && (
-          <div 
+          <div
             className={cn(
               "absolute inset-0 h-full w-full",
               objectFit && `[&>img]:object-${objectFit} [&>video]:object-${objectFit}`

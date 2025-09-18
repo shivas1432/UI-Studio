@@ -129,7 +129,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   return (
     <section
       ref={scrollableSectionRef}
-      className="relative max-h-screen w-full lg:w-[100%] overflow-y-scroll 
+      className="relative max-h-screen w-full lg:w-[100%] overflow-y-scroll
       scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300"
     >
       <div
@@ -138,7 +138,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         style={{ height: `${sectionHeightMultiplier * 85}vh` }}
       >
         <div
-          className={`sticky top-0 w-full h-screen flex items-center 
+          className={`sticky top-0 w-full h-screen flex items-center
             justify-center overflow-hidden ${backgroundColor}`} // Applied as a Tailwind class
         >
           <div className="container px-6 lg:px-8 mx-auto h-full flex flex-col justify-center">
@@ -156,7 +156,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
                 return (
                   <div
                     key={index}
-                    className={`absolute z-50 overflow-hidden shadow-xl 
+                    className={`absolute z-50 overflow-hidden shadow-xl
                       transition-all duration-300`}
                     style={{
                       ...cardStyle,

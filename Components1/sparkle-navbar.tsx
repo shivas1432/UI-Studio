@@ -3,26 +3,12 @@ import { gsap } from "gsap";
 
 // Define the props for the reusable component.
 interface SparkleNavbarProps {
-  /**
-   * An array of strings representing the navigation menu items.
-   * Each string will be the text for a button.
-   * @example ['Home', 'About', 'Contact']
-   */
+
   items: string[];
-  /**
-   * The color for the active state text shadow, box shadow, and other effects.
-   * @example '#1E90FF' (a shade of blue)
-   */
+
   color?: string;
 }
 
-/**
- * A reusable navigation menu component with a dynamic, animated active state indicator.
- * All CSS and animation logic are self-contained within this single TSX file.
- *
- * @param {SparkleNavbarProps} props - The component props.
- * @returns {JSX.Element} The rendered navigation menu.
- */
 const SparkleNavbar: React.FC<SparkleNavbarProps> = ({
   items,
   color = "#00fffc",
@@ -274,7 +260,7 @@ const SparkleNavbar: React.FC<SparkleNavbarProps> = ({
         }
       `}</style>
 
-      {/* The main container for the component, replicating the body styles. */}
+      {}
 
       <nav className="navigation-menu" ref={navRef}>
         <ul>

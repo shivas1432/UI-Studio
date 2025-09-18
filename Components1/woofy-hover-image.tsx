@@ -53,7 +53,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
 
   const vertexShader = `
     varying vec2 v_uv;
-    
+
     void main() {
       v_uv = uv;
       gl_Position = vec4(position, 1.0);
@@ -88,23 +88,23 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
     float simplex_noise(vec3 p) {
       const float K1 = 0.333333333;
       const float K2 = 0.166666667;
-      
+
       vec3 i = floor(p + (p.x + p.y + p.z) * K1);
       vec3 d0 = p - (i - (i.x + i.y + i.z) * K2);
-      
+
       vec3 e = step(vec3(0.0), d0 - d0.yzx);
       vec3 i1 = e * (1.0 - e.zxy);
       vec3 i2 = 1.0 - e.zxy * (1.0 - e);
-      
+
       vec3 d1 = d0 - (i1 - K2);
       vec3 d2 = d0 - (i2 - K2 * 2.0);
       vec3 d3 = d0 - (1.0 - 3.0 * K2);
-      
+
       vec3 x0 = d0;
       vec3 x1 = d1;
       vec3 x2 = d2;
       vec3 x3 = d3;
-      
+
       vec4 h = max(0.6 - vec4(dot(x0, x0), dot(x1, x1), dot(x2, x2), dot(x3, x3)), 0.0);
       vec4 n = h * h * h * h * vec4(
         dot(x0, hash33(i) * 2.0 - 1.0),
@@ -112,46 +112,46 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
         dot(x2, hash33(i + i2) * 2.0 - 1.0),
         dot(x3, hash33(i + 1.0) * 2.0 - 1.0)
       );
-      
+
       return 0.5 + 0.5 * 31.0 * dot(n, vec4(1.0));
     }
 
     vec2 curl(vec2 p, float time) {
       const float epsilon = 0.001;
-      
+
       float n1 = simplex_noise(vec3(p.x, p.y + epsilon, time));
       float n2 = simplex_noise(vec3(p.x, p.y - epsilon, time));
       float n3 = simplex_noise(vec3(p.x + epsilon, p.y, time));
       float n4 = simplex_noise(vec3(p.x - epsilon, p.y, time));
-      
+
       float x = (n2 - n1) / (2.0 * epsilon);
       float y = (n4 - n3) / (2.0 * epsilon);
-      
+
       return vec2(x, y);
     }
 
     float inkMarbling(vec2 p, float time, float intensity) {
       float result = 0.0;
-      
+
       vec2 flow = curl(p * 1.5, time * 0.1) * intensity * 2.0;
       vec2 p1 = p + flow * 0.3;
       result += simplex_noise(vec3(p1 * 2.0, time * 0.15)) * 0.5;
-      
+
       vec2 flow2 = curl(p * 3.0 + vec2(sin(time * 0.2), cos(time * 0.15)), time * 0.2) * intensity;
       vec2 p2 = p + flow2 * 0.2;
       result += simplex_noise(vec3(p2 * 4.0, time * 0.25)) * 0.3;
-      
+
       vec2 flow3 = curl(p * 6.0 + vec2(cos(time * 0.3), sin(time * 0.25)), time * 0.3) * intensity * 0.5;
       vec2 p3 = p + flow3 * 0.1;
       result += simplex_noise(vec3(p3 * 8.0, time * 0.4)) * 0.2;
-      
+
       float dist = length(p - vec2(0.5));
       float angle = atan(p.y - 0.5, p.x - 0.5);
       float spiral = sin(dist * 15.0 - angle * 2.0 + time * 0.3) * 0.5 + 0.5;
-      
+
       result = mix(result, spiral, 0.3);
       result = result * 0.5 + 0.5;
-      
+
       return result;
     }
 
@@ -177,7 +177,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
     vec3 applyBlur(sampler2D tex, vec2 uv, float blurAmount) {
       float dx = blurAmount * (1.0 / u_resolution.x);
       float dy = blurAmount * (1.0 / u_resolution.y);
-      
+
       vec3 sum = vec3(0.0);
       sum += texture2D(tex, uv + vec2(-dx, -dy)).rgb * 0.0625;
       sum += texture2D(tex, uv + vec2(0.0, -dy)).rgb * 0.125;
@@ -188,7 +188,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
       sum += texture2D(tex, uv + vec2(-dx, dy)).rgb * 0.0625;
       sum += texture2D(tex, uv + vec2(0.0, dy)).rgb * 0.125;
       sum += texture2D(tex, uv + vec2(dx, dy)).rgb * 0.0625;
-      
+
       return sum;
     }
 
@@ -205,11 +205,11 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
       vec4 tex = texture2D(u_texture, texCoord);
       vec3 originalColor = tex.rgb;
       vec3 effectColor = originalColor;
-      
+
       if (u_effectType == 1) {
         float gray = dot(originalColor, vec3(0.299, 0.587, 0.114));
         effectColor = vec3(gray);
-      } 
+      }
       else if (u_effectType == 2) {
         effectColor = applySepia(originalColor);
       }
@@ -222,17 +222,17 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
       else if (u_effectType == 5) {
         effectColor = applyBlur(u_texture, texCoord, u_effectIntensity * 5.0);
       }
-      
+
       vec2 correctedUV = uv;
       correctedUV.x *= screenAspect;
       vec2 correctedMouse = u_mouse;
       correctedMouse.x *= screenAspect;
 
       float dist = distance(correctedUV, correctedMouse);
-      
+
       float marbleEffect = inkMarbling(uv * 2.0 + u_time * u_speed * 0.1, u_time, u_turbulenceIntensity * 2.0);
       float jaggedDist = dist + (marbleEffect - 0.5) * u_turbulenceIntensity * 2.0;
-      
+
       float mask = u_radius > 0.001 ? step(jaggedDist, u_radius) : 0.0;
 
       vec3 invertedColor = vec3(0.0);
@@ -249,7 +249,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
       } else {
         finalColor = mix(effectColor, invertedColor, mask);
       }
-      
+
       gl_FragColor = vec4(finalColor, 1.0);
     }
   `;
@@ -277,7 +277,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
 
     loader.load(src, (texture) => {
       const imageAspect = texture.image.width / texture.image.height;
-      
+
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
       texture.anisotropy = 8;
@@ -368,7 +368,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
     if (!containerRef.current || !uniformsRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
-    const inside = e.clientX >= rect.left && e.clientX <= rect.right && 
+    const inside = e.clientX >= rect.left && e.clientX <= rect.right &&
                   e.clientY >= rect.top && e.clientY <= rect.bottom;
 
     if (inside) {
@@ -378,46 +378,46 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
       if (!isMouseInsideRef.current) {
         isMouseInsideRef.current = true;
         onHover?.();
-        
+
         // Animate radius to target value
         const startRadius = uniformsRef.current.u_radius.value;
         const targetRadius = maskRadius;
         const startTime = Date.now();
-        
+
         const animateRadius = () => {
           const elapsed = (Date.now() - startTime) / 1000;
           const progress = Math.min(elapsed / appearDuration, 1);
           const easeProgress = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-          
+
           uniformsRef.current.u_radius.value = startRadius + (targetRadius - startRadius) * easeProgress;
-          
+
           if (progress < 1) {
             requestAnimationFrame(animateRadius);
           }
         };
-        
+
         animateRadius();
       }
     } else if (isMouseInsideRef.current) {
       isMouseInsideRef.current = false;
       onLeave?.();
-      
+
       // Animate radius to zero
       const startRadius = uniformsRef.current.u_radius.value;
       const startTime = Date.now();
-      
+
       const animateRadius = () => {
         const elapsed = (Date.now() - startTime) / 1000;
         const progress = Math.min(elapsed / disappearDuration, 1);
         const easeProgress = Math.pow(progress, 3); // ease-in cubic
-        
+
         uniformsRef.current.u_radius.value = startRadius * (1 - easeProgress);
-        
+
         if (progress < 1) {
           requestAnimationFrame(animateRadius);
         }
       };
-      
+
       animateRadius();
     }
   }, [maskRadius, appearDuration, disappearDuration, onHover, onLeave]);
@@ -429,11 +429,11 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      
+
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
-      
+
       if (rendererRef.current) {
         rendererRef.current.dispose();
       }
@@ -443,7 +443,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
   return (
     <div
       ref={containerRef}
-      className={cn(`relative overflow-hidden flex 
+      className={cn(`relative overflow-hidden flex
         items-center justify-center`, className)}
       style={{ width, height }}
     >

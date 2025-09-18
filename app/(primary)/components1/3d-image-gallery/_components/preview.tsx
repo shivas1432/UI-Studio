@@ -10,7 +10,7 @@ import {
   commandMap,
   utilcode,
   packagesMap,
-  threeDImage Gallery,
+  threeDImageGallery,
 } from "../show-code";
 import ToggleButtonGroup from "@/components/content/togglebuttongroup";
 import MainTitle from "@/components/content/maintitle";
@@ -23,9 +23,9 @@ import { CommandBlock } from "@/components/code/commmand-block";
 import ToggleManualCli from "@/components/content/togglemanualcli";
 import { CodeBlock } from "@/components/code/CodeBlock";
 import PropsTable from "@/components/content/props-table";
-import ThreeDImage Gallery from "@/Components1/3d-image-gallery";
+import ThreeDImageGallery from "@/Components1/3d-image-gallery";
 
-const ThreeDImage GalleryPreview = () => {
+const ThreeDImageGalleryPreview = () => {
   const [sourceCode, setSourceCode] = useState(false);
   const [sourceManual, setSourceManual] = useState(true);
   const { previous, next } = getNavigationFeaturedItems(title);
@@ -40,7 +40,7 @@ const ThreeDImage GalleryPreview = () => {
       />
       {!sourceCode ? (
         <PreviewComponentContainer>
-          <ThreeDImage Gallery />
+          <ThreeDImageGallery />
         </PreviewComponentContainer>
       ) : (
         <CodeBlock
@@ -86,10 +86,10 @@ const ThreeDImage GalleryPreview = () => {
           ></Dependencies>
         </>
       )}
-      <PropsTable propsData={threeDImage Gallery} />
+      <PropsTable propsData={threeDImageGallery} />
       <ComponentNavigation previous={previous} next={next} />
     </MainContentContainer>
   );
 };
 
-export default ThreeDImage GalleryPreview;
+export default ThreeDImageGalleryPreview;

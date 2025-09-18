@@ -24,39 +24,39 @@ export interface NotificationItem {
 }
 
 export interface AnimatedNotificationProps {
-  /** Maximum number of notifications to show at once */
+
   maxNotifications?: number;
-  /** Interval between auto-generated notifications (in ms) */
+
   autoInterval?: number;
-  /** Enable auto-generation of notifications */
+
   autoGenerate?: boolean;
-  /** Custom notification data */
+
   notifications?: NotificationItem[];
-  /** Custom messages for auto-generation */
+
   customMessages?: string[];
-  /** Animation duration for fade transitions */
+
   animationDuration?: number;
-  /** Position of the notification center */
+
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center';
-  /** Width of notification cards */
+
   width?: number;
-  /** Enable/disable user avatars */
+
   showAvatars?: boolean;
-  /** Enable/disable timestamps */
+
   showTimestamps?: boolean;
-  /** Custom CSS class */
+
   className?: string;
-  /** Callback when notification is clicked */
+
   onNotificationClick?: (notification: NotificationItem) => void;
-  /** Callback when notification is dismissed */
+
   onNotificationDismiss?: (notification: NotificationItem) => void;
-  /** Enable manual dismiss */
+
   allowDismiss?: boolean;
-  /** Auto dismiss timeout (0 to disable) */
+
   autoDismissTimeout?: number;
-  /** Custom API endpoint for fetching users */
+
   userApiEndpoint?: string;
-  /** Theme variant */
+
   variant?: 'default' | 'minimal' | 'glass' | 'bordered';
 }
 
@@ -81,9 +81,9 @@ const Avatar: React.FC<{
 
   return (
     <div
-      className="flex-shrink-0 w-10 h-10 rounded-full 
-      overflow-hidden bg-gradient-to-br from-primary/20 to-primary/40 
-      flex items-center justify-center transition-all duration-300 
+      className="flex-shrink-0 w-10 h-10 rounded-full
+      overflow-hidden bg-gradient-to-br from-primary/20 to-primary/40
+      flex items-center justify-center transition-all duration-300
       hover:scale-110 backdrop-blur-sm"
       style={{ backgroundColor: user.color }}
     >
@@ -134,7 +134,7 @@ const Notification: React.FC<{
   };
 
 const getPriorityStyles = () => {
-  switch (notification.priority) { 
+  switch (notification.priority) {
     case 'high':
       return 'border-l-4 border-l-red-500 shadow-red-500/20 dark:border-l-red-500 dark:shadow-red-500/20';
     case 'medium':
@@ -146,8 +146,7 @@ const getPriorityStyles = () => {
   }
 };
 
-
-  return (
+return (
     <div
       className={cn(
         "group relative transition-all duration-500 ease-out transform hover:scale-[1.02] hover:-translate-y-1",

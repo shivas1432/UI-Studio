@@ -2,30 +2,30 @@ import React, { useEffect, useRef, useState } from "react";
 import { cn } from "../lib/utils";
 
 export interface DynamicNavigationProps {
-  /** Navigation links */
+
   links: {
     id: string;
     label: string;
     href: string;
     icon?: React.ReactNode;
   }[];
-  /** Background color */
+
   backgroundColor?: string;
-  /** Text color */
+
   textColor?: string;
-  /** Highlight color */
+
   highlightColor?: string;
-  /** Glow effect intensity (0-10) */
+
   glowIntensity?: number;
-  /** CSS class name */
+
   className?: string;
-  /** Whether to show labels on mobile */
+
   showLabelsOnMobile?: boolean;
-  /** Callback when a link is clicked */
+
   onLinkClick?: (id: string) => void;
-  /** Initially active link ID */
+
   activeLink?: string;
-  /** Enable ripple effect on click */
+
   enableRipple?: boolean;
 }
 
@@ -152,7 +152,7 @@ export const DynamicNavigation = ({
     <nav
       ref={navRef}
       className={cn(
-        `relative rounded-full  backdrop-blur-md border 
+        `relative rounded-full  backdrop-blur-md border
         shadow-lg transition-all duration-300`,
         defaultThemeStyles.bg,
         defaultThemeStyles.border,
@@ -164,11 +164,11 @@ export const DynamicNavigation = ({
         color: textColor,
       }}
     >
-      {/* Background highlight */}
+      {}
       <div
         ref={highlightRef}
         className={cn(
-          `absolute top-0 left-0 h-full rounded-full transition-all 
+          `absolute top-0 left-0 h-full rounded-full transition-all
           duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] z-0`,
           defaultThemeStyles.highlight
         )}
@@ -187,8 +187,8 @@ export const DynamicNavigation = ({
             <a
               href={link.href}
               className={cn(
-                `flex gap-1 items-center justify-center h-8 md:h-8 text-xs md:text-sm 
-                rounded-full font-medium transition-all duration-300 hover:scale-105 
+                `flex gap-1 items-center justify-center h-8 md:h-8 text-xs md:text-sm
+                rounded-full font-medium transition-all duration-300 hover:scale-105
                 relative overflow-hidden`,
                 defaultThemeStyles.text,
                 active === link.id && "font-semibold"

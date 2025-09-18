@@ -17,12 +17,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       if (checked !== undefined) {
         setIsChecked(checked);
         setIsAnimating(true);
-        
+
         // Reset animation state after transition completes
         const timer = setTimeout(() => {
           setIsAnimating(false);
         }, 300);
-        
+
         return () => clearTimeout(timer);
       }
     }, [checked]);
@@ -31,12 +31,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       const newChecked = event.target.checked;
       setIsChecked(newChecked);
       setIsAnimating(true);
-      
+
       // Reset animation state after transition completes
       setTimeout(() => {
         setIsAnimating(false);
       }, 300);
-      
+
       onCheckedChange?.(newChecked);
       props.onChange?.(event);
     };

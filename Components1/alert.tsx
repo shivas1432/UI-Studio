@@ -23,31 +23,31 @@ const alertVariants = {
 };
 
 interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** The style variant of the alert */
+
   variant?: keyof typeof alertVariants.variant;
-  /** The size of the alert */
+
   size?: keyof typeof alertVariants.size;
-  /** Whether the alert should be dismissible */
+
   dismissible?: boolean;
-  /** Callback fired when dismissing the alert */
+
   onDismiss?: () => void;
-  /** Whether to display an icon */
+
   withIcon?: boolean;
-  /** Custom icon to display */
+
   icon?: React.ReactNode;
 }
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
-  ({ 
-    className, 
-    variant = "default", 
-    size = "default", 
+  ({
+    className,
+    variant = "default",
+    size = "default",
     dismissible = false,
     onDismiss,
     withIcon = false,
     icon,
     children,
-    ...props 
+    ...props
   }, ref) => {
     // Icon mapping based on variant
     const variantIcons = {
@@ -82,10 +82,10 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         {children}
         {dismissible && (
           <button
-            className="absolute top-4 right-4 rounded-full p-1 
-            text-foreground/70 opacity-70 
-            transition-opacity hover:opacity-100 
-            focus:outline-none focus:ring-2 focus:ring-ring 
+            className="absolute top-4 right-4 rounded-full p-1
+            text-foreground/70 opacity-70
+            transition-opacity hover:opacity-100
+            focus:outline-none focus:ring-2 focus:ring-ring
             focus:ring-offset-2"
             onClick={handleDismiss}
             aria-label="Dismiss alert"
@@ -102,7 +102,7 @@ Alert.displayName = "Alert";
 const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement> & {
-    /** Size of the title */
+
     size?: "sm" | "default" | "lg";
   }
 >(({ className, size = "default", ...props }, ref) => {
@@ -125,14 +125,14 @@ AlertTitle.displayName = "AlertTitle";
 const AlertDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement> & {
-    /** Text color intensity */
+
     intensity?: "muted" | "default";
   }
 >(({ className, intensity = "default", ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "text-sm [&_p]:leading-relaxed", 
+      "text-sm [&_p]:leading-relaxed",
       intensity === "muted" ? "text-muted-foreground" : "",
       className
     )}

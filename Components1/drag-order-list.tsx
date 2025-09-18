@@ -56,7 +56,7 @@ function DragOrderItem({ item }: { item: DragItem }) {
       style={{ boxShadow, y }}
       dragListener={false}
       dragControls={dragControls}
-      className="flex justify-between items-start p-4 bg-background 
+      className="flex justify-between items-start p-4 bg-background
      text-foreground rounded-xl border border-border shadow-sm"
     >
       <div className="flex flex-col space-y-1 flex-1">

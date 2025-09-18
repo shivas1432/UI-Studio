@@ -7,73 +7,44 @@ import { Eye, EyeOff, Check, X } from "lucide-react";
 export type StrengthLevel = "empty" | "weak" | "medium" | "strong" | "very-strong";
 
 export interface PasswordStrengthIndicatorProps {
-  /**
-   * The value of the password input
-   */
+
   value: string;
-  
-  /**
-   * Class name for the container
-   */
-  className?: string;
-  
-  /**
-   * Label text for the password field
-   */
-  label?: string;
-  
-  /**
-   * Show strength score as text
-   */
-  showScore?: boolean;
-  
-  /**
-   * Show strength score as number
-   */
-  showScoreNumber?: boolean;
-  
-  /**
-   * Function called when password changes
-   */
-  onChange?: (value: string) => void;
-  
-  /**
-   * Function called when strength level changes
-   */
-  onStrengthChange?: (strength: StrengthLevel) => void;
-  
-  /**
-   * Placeholder text for input
-   */
-  placeholder?: string;
-  
-  /**
-   * Show toggle for password visibility
-   */
-  showVisibilityToggle?: boolean;
-  
-  /**
-   * Additional props for the input element
-   */
-  inputProps?: InputProps; // <--- Use the imported InputProps here
+
+className?: string;
+
+label?: string;
+
+showScore?: boolean;
+
+showScoreNumber?: boolean;
+
+onChange?: (value: string) => void;
+
+onStrengthChange?: (strength: StrengthLevel) => void;
+
+placeholder?: string;
+
+showVisibilityToggle?: boolean;
+
+inputProps?: InputProps; // <--- Use the imported InputProps here
 }
 
 // Password strength calculation based on common rules
 const calculateStrength = (password: string): { score: number; level: StrengthLevel } => {
   if (!password) return { score: 0, level: "empty" };
-  
+
   let score = 0;
-  
+
   // Length check
   if (password.length > 5) score += 1;
   if (password.length > 8) score += 1;
-  
+
   // Character variety checks
   if (/[A-Z]/.test(password)) score += 1;
   if (/[a-z]/.test(password)) score += 1;
   if (/[0-9]/.test(password)) score += 1;
   if (/[^A-Za-z0-9]/.test(password)) score += 1;
-  
+
   // Determine level based on score
   let level: StrengthLevel = "empty";
   if (score === 0) level = "empty";
@@ -81,7 +52,7 @@ const calculateStrength = (password: string): { score: number; level: StrengthLe
   else if (score <= 4) level = "medium";
   else if (score <= 5) level = "strong";
   else level = "very-strong";
-  
+
   return { score, level };
 };
 
@@ -119,19 +90,19 @@ export function PasswordStrengthIndicator({
   const [showPassword, setShowPassword] = useState(false);
   const { score, level } = calculateStrength(password);
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   useEffect(() => {
     if (onStrengthChange) {
       onStrengthChange(level);
     }
   }, [level, onStrengthChange]);
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setPassword(newValue);
     if (onChange) onChange(newValue);
   };
-  
+
   const toggleVisibility = () => {
     setShowPassword(!showPassword);
     // Focus back on input after toggling visibility
@@ -139,7 +110,7 @@ export function PasswordStrengthIndicator({
       if (inputRef.current) inputRef.current.focus();
     }, 0);
   };
-  
+
   return (
     <div className={cn("space-y-2", className)}>
       {label && (
@@ -152,7 +123,7 @@ export function PasswordStrengthIndicator({
           )}
         </div>
       )}
-      
+
       <div className="relative">
         <Input
           ref={inputRef}
@@ -164,7 +135,7 @@ export function PasswordStrengthIndicator({
           className="pr-10"
           {...inputProps}
         />
-        
+
         {showVisibilityToggle && (
           <button
             type="button"
@@ -179,7 +150,7 @@ export function PasswordStrengthIndicator({
             )}
           </button>
         )}
-        
+
         {password && (
           <div className="absolute right-10 top-1/2 -translate-y-1/2">
             <div className={cn(
@@ -195,8 +166,8 @@ export function PasswordStrengthIndicator({
           </div>
         )}
       </div>
-      
-      {/* Password strength bar */}
+
+      {}
       <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden flex gap-0.5">
         {Array.from({ length: 4 }).map((_, i) => (
           <div
@@ -208,8 +179,8 @@ export function PasswordStrengthIndicator({
           />
         ))}
       </div>
-      
-      {/* Strength label */}
+
+      {}
       {showScore && level !== "empty" && (
         <p className={cn(
           "text-xs transition-colors",

@@ -10,7 +10,7 @@ import {
   commandMap,
   utilcode,
   packagesMap,
-  threeDHoverGallery,
+  threeDCarousel,
 } from "../show-code";
 import ToggleButtonGroup from "@/components/content/togglebuttongroup";
 import MainTitle from "@/components/content/maintitle";
@@ -23,12 +23,52 @@ import { CommandBlock } from "@/components/code/commmand-block";
 import ToggleManualCli from "@/components/content/togglemanualcli";
 import { CodeBlock } from "@/components/code/CodeBlock";
 import PropsTable from "@/components/content/props-table";
-import ThreeDHoverGallery from "@/Components1/3d-hover-gallery";
+import ThreeDCarousel from "@/components/3d-carousel-v2";
 
-const ThreeDHoverGalleryPreview = () => {
+const ThreeDCarouselPreview = () => {
   const [sourceCode, setSourceCode] = useState(false);
   const [sourceManual, setSourceManual] = useState(true);
   const { previous, next } = getNavigationFeaturedItems(title);
+
+  // Sample data for the carousel
+  const sampleItems = [
+    {
+      id: 1,
+      title: "Smart Textile Solutions",
+      brand: "TechFabric",
+      description: "Revolutionary smart textiles for healthcare monitoring with advanced sensor technology.",
+      tags: ["Healthcare", "IoT", "Sensors"],
+      imageUrl: "/api/placeholder/400/300",
+      link: "/learn-more"
+    },
+    {
+      id: 2,
+      title: "Athletic Performance Tracking",
+      brand: "SportTech",
+      description: "Performance tracking through intelligent fabric sensors for professional athletes.",
+      tags: ["Sports", "Performance", "Analytics"],
+      imageUrl: "/api/placeholder/400/300",
+      link: "/sports-tech"
+    },
+    {
+      id: 3,
+      title: "Industrial Safety Monitoring",
+      brand: "SafetyFirst",
+      description: "Workplace safety monitoring with smart textiles for enhanced worker protection.",
+      tags: ["Safety", "Industrial", "Monitoring"],
+      imageUrl: "/api/placeholder/400/300",
+      link: "/safety-solutions"
+    },
+    {
+      id: 4,
+      title: "Fashion Tech Innovation",
+      brand: "FashionTech",
+      description: "Cutting-edge fashion technology integrating style with smart functionality.",
+      tags: ["Fashion", "Innovation", "Wearables"],
+      imageUrl: "/api/placeholder/400/300",
+      link: "/fashion-tech"
+    }
+  ];
 
   return (
     <MainContentContainer>
@@ -40,7 +80,7 @@ const ThreeDHoverGalleryPreview = () => {
       />
       {!sourceCode ? (
         <PreviewComponentContainer>
-          <ThreeDHoverGallery />
+          <ThreeDCarousel items={sampleItems} />
         </PreviewComponentContainer>
       ) : (
         <CodeBlock
@@ -86,10 +126,10 @@ const ThreeDHoverGalleryPreview = () => {
           ></Dependencies>
         </>
       )}
-      <PropsTable propsData={threeDHoverGallery} />
+      <PropsTable propsData={threeDCarousel} />
       <ComponentNavigation previous={previous} next={next} />
     </MainContentContainer>
   );
 };
 
-export default ThreeDHoverGalleryPreview;
+export default ThreeDCarouselPreview;

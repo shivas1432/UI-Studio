@@ -58,7 +58,7 @@ const Globe: React.FC<GlobeProps> = ({
   baseColor = "#ffffff", // Removed default here, handled in useEffect
   markerColor = "#ffffff", // Removed default here
   glowColor = "#ffffff", // Removed default here
-  
+
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const globeRef = useRef<any>(null); // To store the cobe globe instance

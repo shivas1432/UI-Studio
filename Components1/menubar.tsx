@@ -77,7 +77,7 @@ interface MenubarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
 function MenubarTrigger({ className, children, ...props }: MenubarTriggerProps) {
   const { openMenu, setOpenMenu } = useMenubarContext();
   const triggerRef = React.useRef<HTMLButtonElement>(null);
-  
+
   const [menuId, setMenuId] = React.useState<string>("");
 
   React.useEffect(() => {
@@ -119,7 +119,7 @@ interface MenubarContentProps extends HTMLMotionProps<"div"> {
 function MenubarContent({ className, children, ...props }: MenubarContentProps) {
   const { openMenu } = useMenubarContext();
   const menuContentRef = React.useRef<HTMLDivElement>(null);
-  
+
   const [currentMenuId, setCurrentMenuId] = React.useState<string | null>(null);
 
   React.useEffect(() => {

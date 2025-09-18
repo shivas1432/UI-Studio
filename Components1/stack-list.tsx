@@ -28,7 +28,7 @@ export default function StackList({
 
   return (
     <div
-      className={`bg-transparent text-foreground mx-auto  
+      className={`bg-transparent text-foreground mx-auto
          overflow-hidden ${className}`}
     >
       <div className="flex flex-col gap-4 relative">
@@ -42,7 +42,7 @@ export default function StackList({
               transition={{ duration: 0.3, delay: index * 0.05 }}
               className="flex items-center gap-4 p-4 bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-700 rounded-2xl shadow-sm"
             >
-              <div className="w-12 h-12 bg-background rounded-xl 
+              <div className="w-12 h-12 bg-background rounded-xl
               flex items-center justify-center text-foreground">
                 {item.icon}
               </div>
@@ -64,8 +64,8 @@ export default function StackList({
         <button
           onClick={() => setExpanded((prev) => !prev)}
           className="mt-4 mx-auto flex items-center justify-center gap-2 px-4 py-2
-           border border-gray-300 dark:border-gray-700 rounded-full 
-           text-xs xl:text-sm font-medium text-gray-600 dark:text-gray-300 transition 
+           border border-gray-300 dark:border-gray-700 rounded-full
+           text-xs xl:text-sm font-medium text-gray-600 dark:text-gray-300 transition
            hover:bg-gray-100 dark:hover:bg-neutral-800"
         >
           <span>{expanded ? "Hide" : "Show All"}</span>

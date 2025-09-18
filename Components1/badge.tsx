@@ -51,30 +51,30 @@ export interface BadgeProps
   highlighted?: boolean;
 }
 
-function Badge({ 
-  className, 
-  variant, 
+function Badge({
+  className,
+  variant,
   size,
   shape,
   withDot,
   dotColor = "currentColor",
   interactive,
   highlighted,
-  ...props 
+  ...props
 }: BadgeProps) {
   return (
-    <div 
+    <div
       className={cn(
-        badgeVariants({ variant, size, shape }), 
+        badgeVariants({ variant, size, shape }),
         interactive && "cursor-pointer hover:opacity-80",
         highlighted && "ring-2 ring-offset-2 ring-ring",
         className
-      )} 
+      )}
       {...props}
     >
       {withDot && (
-        <span 
-          className="mr-1 h-1.5 w-1.5 rounded-full inline-block" 
+        <span
+          className="mr-1 h-1.5 w-1.5 rounded-full inline-block"
           style={{ backgroundColor: dotColor }}
         />
       )}

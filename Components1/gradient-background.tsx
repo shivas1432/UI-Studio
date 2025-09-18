@@ -2,24 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * Valid blur sizes supported by Tailwind CSS.
- */
 export type BlurSize = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
-/**
- * @typedef {Object} HellBackgroundProps
- * @property {BlurSize} [backdropBlurAmount] - The size of the backdrop blur to apply.
- * @property {string} [className] - Additional CSS classes to apply to the container div.
- */
 interface HellBackgroundProps {
   backdropBlurAmount?: string;
   className?: string;
 }
 
-/**
- * A mapping from simplified blur size names to full Tailwind CSS backdrop-blur classes.
- */
 const blurClassMap: Record<BlurSize, string> = {
   none: "backdrop-blur-none",
   sm: "backdrop-blur-sm",
@@ -89,7 +78,6 @@ void main() {
   mainImage(gl_FragColor, gl_FragCoord.xy);
 }
 `;
-
 
 function GradientBackground({
   backdropBlurAmount = "none",

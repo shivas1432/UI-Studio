@@ -10,7 +10,7 @@ import {
   commandMap,
   utilcode,
   packagesMap,
-  threeDPerspective Card,
+  threeDPerspectiveCard,
 } from "../show-code";
 import ToggleButtonGroup from "@/components/content/togglebuttongroup";
 import MainTitle from "@/components/content/maintitle";
@@ -23,9 +23,9 @@ import { CommandBlock } from "@/components/code/commmand-block";
 import ToggleManualCli from "@/components/content/togglemanualcli";
 import { CodeBlock } from "@/components/code/CodeBlock";
 import PropsTable from "@/components/content/props-table";
-import ThreeDPerspective Card from "@/Components1/3d-perspective-card";
+import ThreeDPerspectiveCard from "@/Components1/3d-perspective-card";
 
-const ThreeDPerspective CardPreview = () => {
+const ThreeDPerspectiveCardPreview = () => {
   const [sourceCode, setSourceCode] = useState(false);
   const [sourceManual, setSourceManual] = useState(true);
   const { previous, next } = getNavigationFeaturedItems(title);
@@ -40,7 +40,7 @@ const ThreeDPerspective CardPreview = () => {
       />
       {!sourceCode ? (
         <PreviewComponentContainer>
-          <ThreeDPerspective Card />
+          <ThreeDPerspectiveCard />
         </PreviewComponentContainer>
       ) : (
         <CodeBlock
@@ -86,10 +86,10 @@ const ThreeDPerspective CardPreview = () => {
           ></Dependencies>
         </>
       )}
-      <PropsTable propsData={threeDPerspective Card} />
+      <PropsTable propsData={threeDPerspectiveCard} />
       <ComponentNavigation previous={previous} next={next} />
     </MainContentContainer>
   );
 };
 
-export default ThreeDPerspective CardPreview;
+export default ThreeDPerspectiveCardPreview;

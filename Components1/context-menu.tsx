@@ -33,7 +33,7 @@ const ContextMenu = ({ children }: ContextMenuProps) => {
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
   const [subMenuOpen, setSubMenuOpen] = React.useState<Record<string, boolean>>({});
   const [activeItem, setActiveItem] = React.useState<string | null>(null);
-  
+
   return (
     <ContextMenuContext.Provider
       value={{
@@ -57,13 +57,13 @@ interface ContextMenuTriggerProps extends React.HTMLAttributes<HTMLDivElement> {
 const ContextMenuTrigger = React.forwardRef<HTMLDivElement, ContextMenuTriggerProps>(
   ({ children, ...props }, ref) => {
     const { setOpen, setPosition } = useContextMenu();
-    
+
     const handleContextMenu = (e: React.MouseEvent) => {
       e.preventDefault();
       setPosition({ x: e.clientX, y: e.clientY });
       setOpen(true);
     };
-    
+
     return (
       <div ref={ref} onContextMenu={handleContextMenu} {...props}>
         {children}
@@ -87,7 +87,7 @@ const ContextMenuContent = React.forwardRef<HTMLDivElement, ContextMenuContentPr
   ({ className, children, ...props }, ref) => {
     const { open, position, setOpen } = useContextMenu();
     const contentRef = React.useRef<HTMLDivElement>(null);
-    
+
     React.useEffect(() => {
       if (open) {
         const handleOutsideClick = (e: MouseEvent) => {
@@ -95,16 +95,16 @@ const ContextMenuContent = React.forwardRef<HTMLDivElement, ContextMenuContentPr
             setOpen(false);
           }
         };
-        
+
         document.addEventListener("mousedown", handleOutsideClick);
         return () => {
           document.removeEventListener("mousedown", handleOutsideClick);
         };
       }
     }, [open, setOpen]);
-    
+
     if (!open) return null;
-    
+
     return (
       <ContextMenuPortal>
         <div

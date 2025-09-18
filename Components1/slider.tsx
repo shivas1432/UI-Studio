@@ -49,22 +49,11 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
       }
     }, [value]);
 
-    /**
-     * Calculates the percentage position of a value on the track.
-     * @param val The value to convert to a percentage.
-     * @returns The percentage (0-100)
-     */
-    const getValuePercent = React.useCallback((val: number) => {
+const getValuePercent = React.useCallback((val: number) => {
       return ((val - min) / (max - min)) * 100;
     }, [min, max]);
 
-    /**
-     * Calculates the slider value from a given horizontal position on the track.
-     * Applies snapping to 'step' if defined.
-     * @param clientX The clientX coordinate of the pointer event.
-     * @returns The calculated slider value.
-     */
-    const getValueFromClientX = React.useCallback((clientX: number) => {
+const getValueFromClientX = React.useCallback((clientX: number) => {
       const trackRect = trackRef.current?.getBoundingClientRect();
       if (!trackRect) return min;
 
@@ -87,13 +76,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
       return Math.max(min, Math.min(max, rawValue));
     }, [min, max, step]);
 
-
-    /**
-     * Handles the start of a drag operation (pointer down on a thumb).
-     * @param e The pointer event.
-     * @param index The index of the thumb being dragged.
-     */
-    const handlePointerDown = React.useCallback((e: React.PointerEvent, index: number) => {
+const handlePointerDown = React.useCallback((e: React.PointerEvent, index: number) => {
       if (disabled) return;
       e.preventDefault(); // Prevent default browser actions (like text selection)
 
@@ -104,10 +87,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
       (e.target as HTMLElement).setPointerCapture(e.pointerId);
     }, [disabled]);
 
-    /**
-     * Handles pointer movement during a drag operation.
-     */
-    const handlePointerMove = React.useCallback((e: PointerEvent) => {
+const handlePointerMove = React.useCallback((e: PointerEvent) => {
       if (draggingIndex === null || !trackRef.current) return;
 
       const newValue = getValueFromClientX(e.clientX);
@@ -130,11 +110,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
 
     }, [draggingIndex, getValueFromClientX, onValueChange, values]);
 
-
-    /**
-     * Handles the end of a drag operation (pointer up).
-     */
-    const handlePointerUp = React.useCallback((e: PointerEvent) => {
+const handlePointerUp = React.useCallback((e: PointerEvent) => {
       if (draggingIndex !== null) {
         // Release pointer capture
         (e.target as HTMLElement).releasePointerCapture(e.pointerId);
@@ -145,8 +121,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
       onValueChange?.(values);
     }, [draggingIndex, onValueChange, values]);
 
-
-    // Attach and clean up global pointer event listeners
+// Attach and clean up global pointer event listeners
     React.useEffect(() => {
       if (draggingIndex !== null) {
         document.addEventListener("pointermove", handlePointerMove);
@@ -162,12 +137,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
       };
     }, [draggingIndex, handlePointerMove, handlePointerUp]);
 
-
-    /**
-     * Handles clicks on the track to move the closest thumb.
-     * @param e The mouse event.
-     */
-    const handleTrackClick = React.useCallback((e: React.MouseEvent) => {
+const handleTrackClick = React.useCallback((e: React.MouseEvent) => {
       if (disabled || draggingIndex !== null) return; // Prevent track click during active drag
 
       const newValue = getValueFromClientX(e.clientX);
@@ -191,13 +161,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
       onValueChange?.(values); // Use the updated 'values' state for the callback
     }, [disabled, draggingIndex, getValueFromClientX, onValueChange, values]);
 
-
-    /**
-     * Handles keyboard controls for accessibility.
-     * @param e The keyboard event.
-     * @param index The index of the thumb.
-     */
-    const handleKeyDown = React.useCallback((e: React.KeyboardEvent, index: number) => {
+const handleKeyDown = React.useCallback((e: React.KeyboardEvent, index: number) => {
       if (disabled) return;
 
       let newValue = values[index];
@@ -264,7 +228,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
         {...props}
       >
         {showLabels && (
-          <div className="absolute w-full flex justify-between text-xs text-muted-foreground -top-2"> {/* Adjusted top */}
+          <div className="absolute w-full flex justify-between text-xs text-muted-foreground -top-2"> {}
             <span>{min}</span>
             <span>{max}</span>
           </div>
@@ -278,7 +242,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
           )}
           onClick={handleTrackClick}
         >
-          {/* Render the filled track for single-thumb sliders */}
+          {}
           {values.length === 1 && (
             <div
               className="absolute h-full bg-primary rounded-full transition-all duration-100 ease-out"
@@ -289,7 +253,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
             />
           )}
 
-          {/* Render the range for multi-thumb sliders */}
+          {}
           {values.length > 1 && (
             <div
               className="absolute h-full bg-primary rounded-full transition-all duration-100 ease-out"
@@ -301,7 +265,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
           )}
         </div>
 
-        {/* Tooltips for each thumb */}
+        {}
         {showTooltip && values.map((value, index) => (
           <div
             key={`tooltip-${index}`}
@@ -323,7 +287,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps & Omit<React.HTMLAtt
           </div>
         ))}
 
-        {/* Thumbs for each value */}
+        {}
         {values.map((value, index) => (
           <div
             key={`thumb-${index}`}

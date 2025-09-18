@@ -50,7 +50,7 @@ export const BentoGrid = ({
               <div className="absolute inset-0 z-0">{card.background}</div>
             )}
 
-            {/* Hover-revealed content */}
+            {}
             <div className="relative z-10 w-full">
               <div
                 className={cn(
@@ -67,7 +67,7 @@ export const BentoGrid = ({
               </div>
             </div>
 
-            {/* Hover overlay effect */}
+            {}
             <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-black/5 dark:group-hover:bg-white/5 rounded-2xl" />
           </div>
         );

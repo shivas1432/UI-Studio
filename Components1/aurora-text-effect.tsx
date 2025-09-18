@@ -93,7 +93,7 @@ export function AuroraTextEffect({
         className
       )}
     >
-      <style>{keyframes /* This injects the keyframes into the DOM */}</style>
+      <style>{keyframes }</style>
       <div className="text-center">
         <h2
           className={cn(
@@ -108,7 +108,7 @@ export function AuroraTextEffect({
             // Switched blend mode based on theme to preserve the effect
             className="absolute inset-0 z-10 mix-blend-lighten dark:mix-blend-darken pointer-events-none"
           >
-            {/* First Aurora Layer */}
+            {}
             <div
               className={cn(
                 "absolute w-[60vw] h-[60vw] rounded-[37%_29%_27%_27%/28%_25%_41%_37%] filter mix-blend-overlay",
@@ -124,7 +124,7 @@ export function AuroraTextEffect({
               }}
             />
 
-            {/* Second Aurora Layer */}
+            {}
             <div
               className={cn(
                 "absolute w-[60vw] h-[60vw] rounded-[37%_29%_27%_27%/28%_25%_41%_37%] filter mix-blend-overlay",
@@ -140,7 +140,7 @@ export function AuroraTextEffect({
               }}
             />
 
-            {/* Third Aurora Layer */}
+            {}
             <div
               className={cn(
                 "absolute w-[60vw] h-[60vw] rounded-[37%_29%_27%_27%/28%_25%_41%_37%] filter mix-blend-overlay",
@@ -156,7 +156,7 @@ export function AuroraTextEffect({
               }}
             />
 
-            {/* Fourth Aurora Layer */}
+            {}
             <div
               className={cn(
                 "absolute w-[60vw] h-[60vw] rounded-[37%_29%_27%_27%/28%_25%_41%_37%] filter mix-blend-overlay",

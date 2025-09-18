@@ -14,61 +14,61 @@ export interface TeamMember {
 }
 
 export interface TeamCarouselProps {
-  /** Array of team members */
+
   members: TeamMember[];
-  /** Title displayed above the carousel */
+
   title?: string;
-  /** Title font size */
+
   titleSize?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  /** Title color */
+
   titleColor?: string;
-  /** Background color or gradient. Overrides the default 'bg-background' class. */
+
   background?: string;
-  /** Card width in pixels */
+
   cardWidth?: number;
-  /** Card height in pixels */
+
   cardHeight?: number;
-  /** Card border radius */
+
   cardRadius?: number;
-  /** Enable/disable navigation arrows */
+
   showArrows?: boolean;
-  /** Enable/disable dots indicator */
+
   showDots?: boolean;
-  /** Enable/disable keyboard navigation */
+
   keyboardNavigation?: boolean;
-  /** Enable/disable touch/swipe navigation */
+
   touchNavigation?: boolean;
-  /** Animation duration in milliseconds */
+
   animationDuration?: number;
-  /** Auto-play interval in milliseconds (0 to disable) */
+
   autoPlay?: number;
-  /** Pause auto-play on hover */
+
   pauseOnHover?: boolean;
-  /** Number of visible cards on each side */
+
   visibleCards?: number;
-  /** Scale factor for side cards */
+
   sideCardScale?: number;
-  /** Opacity for side cards */
+
   sideCardOpacity?: number;
-  /** Apply grayscale filter to side cards */
+
   grayscaleEffect?: boolean;
-  /** Custom className for container */
+
   className?: string;
-  /** Custom className for cards */
+
   cardClassName?: string;
-  /** Custom className for title */
+
   titleClassName?: string;
-  /** Member info position */
+
   infoPosition?: 'bottom' | 'overlay' | 'none';
-  /** Info text color */
+
   infoTextColor?: string;
-  /** Info background */
+
   infoBackground?: string;
-  /** Callback when active member changes */
+
   onMemberChange?: (member: TeamMember, index: number) => void;
-  /** Callback when card is clicked */
+
   onCardClick?: (member: TeamMember, index: number) => void;
-  /** Initial active index */
+
   initialIndex?: number;
 }
 
@@ -303,14 +303,14 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
   return (
     <div
       id="team-carousel-container"
-      className={cn(`min-h-screen flex flex-col items-center justify-center overflow-hidden relative 
+      className={cn(`min-h-screen flex flex-col items-center justify-center overflow-hidden relative
         transparent`, className)}
       style={{ background: background }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Title */}
+      {}
       {title && (
         <h2
           className={cn(
@@ -329,7 +329,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
         </h2>
       )}
 
-      {/* Carousel Container */}
+      {}
       <div
         className="w-full max-w-6xl relative mt-20"
         style={{
@@ -337,7 +337,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
           perspective: '1000px',
         }}
       >
-        {/* Navigation Arrows */}
+        {}
         {showArrows && (
           <>
             <motion.button
@@ -357,7 +357,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
           </>
         )}
 
-        {/* Cards Track */}
+        {}
         <div
           className="w-full h-full flex justify-center items-center relative"
           style={{ transformStyle: 'preserve-3d' }}
@@ -404,7 +404,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
                     className="w-full h-full object-cover"
                   />
 
-                  {/* Overlay Info */}
+                  {}
                   {infoPosition === 'overlay' && (
                     <div
                       className="absolute bottom-0 left-0 right-0 p-4 text-center"
@@ -424,7 +424,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
         </div>
       </div>
 
-      {/* Member Info (Bottom) */}
+      {}
       {infoPosition === 'bottom' && members[currentIndex] && (
         <motion.div
           key={members[currentIndex].id + "-info"}
@@ -458,7 +458,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
         </motion.div>
       )}
 
-      {/* Dots Indicator */}
+      {}
       {showDots && (
         <div className="flex justify-center gap-3 mt-15 ">
           {members.map((_, index) => (

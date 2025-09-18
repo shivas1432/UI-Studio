@@ -11,7 +11,6 @@ interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const DEFAULT_AVATAR = `https://robohash.org/${Math.random().toString(36).substring(7)}.png`;
 
-
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   ({ className, src, alt, fallback, status, ...props }, ref) => {
     return (

@@ -25,14 +25,14 @@ const AnimatedRangeInput: React.FC<AnimatedRangeInputProps> = ({
 
   return (
     <div className="relative flex items-center justify-center w-40 h-60 font-primarylw">
-      {/* Left side icon */}
+      {}
       <div className="absolute -left-10 flex flex-col items-center gap-2">
         <div className="text-black text-xl">{icon}</div>
       </div>
 
-      {/* Slider container */}
+      {}
       <div className="relative flex items-center justify-center w-16 h-full rounded-xl border border-gray-300 overflow-hidden bg-white">
-        {/* Animated Fill (based on `value`) */}
+        {}
         <AnimatePresence>
           <motion.div
             key="fill"
@@ -52,12 +52,12 @@ const AnimatedRangeInput: React.FC<AnimatedRangeInputProps> = ({
           />
         </AnimatePresence>
 
-        {/* Value display */}
+        {}
         <span className="absolute text-black text-sm font-bold z-10">
           {value}%
         </span>
 
-        {/* Hidden rotated input */}
+        {}
         <input
           id={labelId}
           type="range"

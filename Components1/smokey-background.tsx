@@ -43,30 +43,14 @@ void main() {
 }
 `;
 
-/**
- * Valid blur sizes supported by Tailwind CSS.
- */
 export type BlurSize = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
-/**
- * @typedef {Object} SmokeyBackgroundProps
- * @property {BlurSize} [backdropBlurAmount] - The size of the backdrop blur to apply.
- * Valid values are "none", "sm", "md", "lg", "xl", "2xl", "3xl".
- * Defaults to "sm" if not provided.
- * @property {string} [color] - The color of the shader's glow in hexadecimal format (e.g., "#RRGGBB").
- * Defaults to "#471CE2" (purple) if not provided.
- * @property {string} [className] - Additional CSS classes to apply to the container div.
- */
 interface SmokeyBackgroundProps {
   backdropBlurAmount?: string; // Accept any string from UI (validated internally)
   color?: string;
   className?: string;
 }
 
-/**
- * A mapping from simplified blur size names to full Tailwind CSS backdrop-blur classes.
- * This ensures Tailwind's JIT mode can correctly detect and generate the CSS.
- */
 const blurClassMap: Record<BlurSize, string> = {
   none: "backdrop-blur-none",
   sm: "backdrop-blur-sm",
@@ -77,14 +61,6 @@ const blurClassMap: Record<BlurSize, string> = {
   "3xl": "backdrop-blur-3xl",
 };
 
-/**
- * A React component that renders an interactive WebGL shader background.
- * The background features a turbulent, glowing wave pattern that responds to mouse movement.
- * An optional backdrop blur can be applied over the shader.
- *
- * @param {SmokeyBackgroundProps} props - The component props.
- * @returns {JSX.Element} The rendered SmokeyBackground component.
- */
 function SmokeyBackground({
   backdropBlurAmount = "sm",
   color = "#fff", // Default purple color
@@ -233,7 +209,7 @@ function SmokeyBackground({
         className="absolute inset-0 w-full max-w-screen h-full overflow-hidden"
         style={{ display: "block" }}
       />
-      {/* Apply the mapped Tailwind CSS class for backdrop blur */}
+      {}
       <div className={`absolute inset-0 ${finalBlurClass}`}></div>
     </div>
   );

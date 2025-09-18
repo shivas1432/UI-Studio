@@ -210,8 +210,8 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
             onChange={(e) => setSearchQuery(e.target.value)}
             onClick={(e) => e.stopPropagation()}
             placeholder="Search..."
-            className="w-full bg-transparent p-0 text-sm 
-    border-none outline-none ring-0 focus:outline-none focus:ring-0 
+            className="w-full bg-transparent p-0 text-sm
+    border-none outline-none ring-0 focus:outline-none focus:ring-0
     active:outline-none active:ring-0"
             style={{ boxShadow: "none" }} // ensure Chrome removes highlight
           />
@@ -292,10 +292,10 @@ const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(
         // Decide whether to show the dropdown below or above the trigger
         const showBelow =
           spaceBelow >= preferredMaxHeight || spaceBelow > spaceAbove;
-        
+
         const newSide = showBelow ? "bottom" : "top";
         setCurrentSide(newSide);
-        
+
         // Define the styles that will be applied
         const newStyles: React.CSSProperties = {
             position: "absolute",
@@ -317,7 +317,7 @@ const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(
             // This solves the gap issue completely.
             newStyles.bottom = `${viewportHeight - triggerRect.top - window.scrollY + sideOffset}px`;
         }
-        
+
         // --- END OF FIX ---
 
         // Handle horizontal alignment
@@ -444,7 +444,7 @@ const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(
             return child;
         });
     }, [children, searchQuery]);
-    
+
     // Check if there are any children to render after filtering
     const hasVisibleChildren = React.Children.count(filteredChildren) > 0;
 

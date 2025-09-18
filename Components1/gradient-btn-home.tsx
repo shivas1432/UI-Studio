@@ -71,8 +71,8 @@ export function GradientButton({
               background-size: 200%;
               animation: gradient-animate ${animationSpeed}s infinite linear;
               filter: blur(calc(${glowSize} * 0.2rem));
-              border-radius: 0.5rem; /* Equivalent to rounded-lg */
-              ${!glowEffect ? 'display: none;' : ''} /* Conditionally hide glow based on prop */
+              border-radius: 0.5rem;
+              ${!glowEffect ? 'display: none;' : ''}
             }
 
             .btn-gradient:hover,
@@ -93,17 +93,16 @@ export function GradientButton({
               animation: gradient-animate ${animationSpeed}s infinite linear;
             }
 
-            /* Media query for responsiveness */
-            @media screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
               .btn-gradient {
                 font-size: 2rem;
                 padding: 1rem 2rem;
-                border-radius: 0.5rem; /* Equivalent to rounded-lg */
+                border-radius: 0.5rem;
               }
               .btn-gradient::before {
                  filter: blur(calc(${glowSize} * 0.1rem));
-                 border-radius: 0.5rem; /* Equivalent to rounded-lg */
-                 ${!glowEffect ? 'display: none;' : ''} /* Conditionally hide glow based on prop */
+                 border-radius: 0.5rem;
+                 ${!glowEffect ? 'display: none;' : ''}
               }
             }
           `,

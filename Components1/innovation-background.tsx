@@ -15,17 +15,17 @@ vec2 stanh(vec2 a) {
 void mainImage( out vec4 o, vec2 u )
 {
     vec2 v = iResolution.xy;
-         u = .2*(u+u-v)/v.y;    
-         
+         u = .2*(u+u-v)/v.y;
+
     vec4 z = o = vec4(1,2,3,0);
-     
-    for (float a = .5, t = iTime, i; 
-         ++i < 19.; 
-         o += (1. + cos(z+t)) 
-            / length((1.+i*dot(v,v)) 
+
+    for (float a = .5, t = iTime, i;
+         ++i < 19.;
+         o += (1. + cos(z+t))
+            / length((1.+i*dot(v,v))
                    * sin(1.5*u/(.5-dot(u,u)) - 9.*u.yx + t))
-         )  
-        v = cos(++t - 7.*u*pow(a += .03, i)) - 5.*u, 
+         )
+        v = cos(++t - 7.*u*pow(a += .03, i)) - 5.*u,
         // use stanh here if shader has black artifacts
         //   vvvv
         u += tanh(40. * dot(u *= mat2(cos(i + .02*t - vec4(0,11,33,0)))
@@ -33,11 +33,10 @@ void mainImage( out vec4 o, vec2 u )
                       * cos(1e2*u.yx + t)) / 2e2
            + .2 * a * u
            + cos(4./exp(dot(o,o)/1e2) + t) / 3e2;
-              
-     o = 25.6 / (min(o, 13.) + 164. / o) 
+
+     o = 25.6 / (min(o, 13.) + 164. / o)
        - dot(u, u) / 250.;
 }
-
 
 void main() {
     vec4 color = vec4(0.0);
@@ -90,13 +89,13 @@ const ShaderBackground = () => {
     // For an orthographic camera at position [0,0,1] looking at [0,0,0],
     // the default vertical extent of the frustum (before zoom) is from -1 to 1,
     // so total height is 2 units.
-    const frustumHeight = 2; 
+    const frustumHeight = 2;
     const visibleHeight = frustumHeight / (camera as THREE.OrthographicCamera).zoom;
     const visibleWidth = aspect * visibleHeight;
 
     if (meshRef.current) {
       // Dispose of the old geometry to prevent memory leaks
-      meshRef.current.geometry.dispose(); 
+      meshRef.current.geometry.dispose();
       // Create a new plane geometry with dimensions that exactly match the visible area
       meshRef.current.geometry = new THREE.PlaneGeometry(
         visibleWidth,
@@ -107,9 +106,9 @@ const ShaderBackground = () => {
 
   return (
     <mesh ref={meshRef}>
-      {/* Initial plane geometry. It will be immediately replaced by the useEffect. */}
-      <planeGeometry args={[1, 1]} /> 
-      {/* Attach the material */}
+      {}
+      <planeGeometry args={[1, 1]} />
+      {}
       <primitive object={shaderMaterial.current} attach="material" />
     </mesh>
   );
@@ -118,10 +117,10 @@ const ShaderBackground = () => {
 export default function ElectroBackground() {
   return (
     <div className="relative min-h-screen w-full ">
-      {/* Shader Canvas as Background */}
+      {}
       <div className="absolute inset-0 z-0">
         <Canvas orthographic camera={{ position: [0, 0, 1], zoom: 1 }}>
-          {/* Set zoom to 1 for a straightforward 1:1 mapping with the calculated plane size */}
+          {}
           <ShaderBackground />
         </Canvas>
       </div>

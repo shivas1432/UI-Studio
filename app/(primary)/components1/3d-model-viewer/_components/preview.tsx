@@ -10,7 +10,7 @@ import {
   commandMap,
   utilcode,
   packagesMap,
-  threeDModel Viewer,
+  threeDModelViewer,
 } from "../show-code";
 import ToggleButtonGroup from "@/components/content/togglebuttongroup";
 import MainTitle from "@/components/content/maintitle";
@@ -23,12 +23,15 @@ import { CommandBlock } from "@/components/code/commmand-block";
 import ToggleManualCli from "@/components/content/togglemanualcli";
 import { CodeBlock } from "@/components/code/CodeBlock";
 import PropsTable from "@/components/content/props-table";
-import ThreeDModel Viewer from "@/Components1/3d-model-viewer";
+import ThreeDModelViewer from "@/Components1/3d-model-viewer";
 
-const ThreeDModel ViewerPreview = () => {
+const ThreeDModelViewerPreview = () => {
   const [sourceCode, setSourceCode] = useState(false);
   const [sourceManual, setSourceManual] = useState(true);
   const { previous, next } = getNavigationFeaturedItems(title);
+
+  // Sample 3D model URL - you'll need to provide an actual model file
+  const sampleModelUrl = "https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf";
 
   return (
     <MainContentContainer>
@@ -40,7 +43,7 @@ const ThreeDModel ViewerPreview = () => {
       />
       {!sourceCode ? (
         <PreviewComponentContainer>
-          <ThreeDModel Viewer />
+          <ThreeDModelViewer url="https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf" />
         </PreviewComponentContainer>
       ) : (
         <CodeBlock
@@ -86,10 +89,10 @@ const ThreeDModel ViewerPreview = () => {
           ></Dependencies>
         </>
       )}
-      <PropsTable propsData={threeDModel Viewer} />
+      <PropsTable propsData={threeDModelViewer} />
       <ComponentNavigation previous={previous} next={next} />
     </MainContentContainer>
   );
 };
 
-export default ThreeDModel ViewerPreview;
+export default ThreeDModelViewerPreview;

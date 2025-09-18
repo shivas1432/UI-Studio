@@ -1,5 +1,5 @@
 import React from "react";
-import ThreeDPerspective CardPreview from "./_components/preview";
+import ThreeDPerspectiveCardPreview from "./_components/preview";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  return <ThreeDPerspective CardPreview />;
+  return <ThreeDPerspectiveCardPreview />;
 };
 
 export default Page;

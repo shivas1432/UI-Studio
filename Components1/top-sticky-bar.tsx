@@ -3,55 +3,25 @@ import { cn } from "../lib/utils"; // Assuming you have a utility for class name
 import { useState, useEffect } from "react"; // Import useState and useEffect
 
 interface TopStickyBarProps {
-  /**
-   * Controls the visibility of the bar. True to show, false to hide.
-   * This prop is ignored if `showOnScroll` is true.
-   */
+
   show?: boolean; // Make optional as it might be controlled internally
-  /**
-   * If true, the bar's visibility will be controlled by scroll position.
-   * If false or undefined, the `show` prop controls visibility.
-   * @default false
-   */
+
   showOnScroll?: boolean;
-  /**
-   * The scroll position (in pixels) after which the bar will become visible when `showOnScroll` is true.
-   * @default 200
-   */
+
   scrollThreshold?: number;
-  /**
-   * The content to display inside the sticky bar. Can be a string, JSX, or any React Node.
-   */
+
   children: React.ReactNode;
-  /**
-   * Optional. Additional Tailwind CSS classes to apply to the bar for styling.
-   * Defaults to basic styling for a top bar.
-   */
+
   className?: string;
-  /**
-   * Optional. The animation duration in seconds.
-   * @default 0.4
-   */
+
   duration?: number;
-  /**
-   * Optional. The easing function for the animation.
-   * @default "easeInOut"
-   */
+
   ease?: Easing | Easing[];
-  /**
-   * Optional. The initial vertical offset for the animation (when hidden).
-   * @default -50
-   */
+
   initialY?: number;
-  /**
-   * Optional. The vertical offset when the bar is shown.
-   * @default 0
-   */
+
   visibleY?: number;
-  /**
-   * Optional. The vertical offset when the bar is hidden.
-   * @default -50
-   */
+
   hiddenY?: number;
 }
 

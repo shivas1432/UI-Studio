@@ -158,7 +158,7 @@ const CodeHoverCards: React.FC<CodeHoverCardsProps> = ({
                   onClick={() => handleCardClick(card)}
                   onMouseEnter={() => handleCardHover(card)}
                 >
-                  {/* Icon */}
+                  {}
                   <div className="relative z-10 text-foreground">
                     <IconComponent
                       size={iconSize}
@@ -166,10 +166,10 @@ const CodeHoverCards: React.FC<CodeHoverCardsProps> = ({
                     />
                   </div>
 
-                  {/* Gradient overlay */}
+                  {}
                   <div className="absolute inset-0 pointer-events-none z-[5]" />
 
-                  {/* Character background */}
+                  {}
                   <div
                     className="absolute inset-0 font-mono text-sm leading-tight opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden break-all text-foreground"
                     style={{
@@ -197,7 +197,7 @@ const CodeHoverCards: React.FC<CodeHoverCardsProps> = ({
                   </div>
                 </div>
 
-                {/* Card info */}
+                {}
                 {(card.title || card.description) && (
                   <div className="mt-4 text-center">
                     {card.title && (

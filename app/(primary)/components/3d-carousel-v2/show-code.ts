@@ -1,8 +1,8 @@
-export const title = "3D Image Ring";
-export const routepoint = "3d-image-ring";
-export const description = "Modern 3D Image Ring component with sleek design.";
+export const title = "3D Carousel";
+export const routepoint = "3d-carousel";
+export const description = "Modern 3D Carousel component with sleek design.";
 
-export const cliscript = "add https://UIStudio.in/registry/3d-image-ring.json";
+export const cliscript = "add https://UIStudio.in/registry/3d-carousel.json";
 
 export const commandMap = {
   npm: `npx shadcn@latest ${cliscript}`,
@@ -28,15 +28,15 @@ export const packagesMap = {
   bun: `bun add ${packagescript}`,
 };
 
-export const threeDImageRing = [
+export const threeDCarousel = [
   // Add component props here
 ];
 
-export const democode = `import ThreeDImage Ring from '@/Components1/3d-image-ring';
+export const democode = `import ThreeDCarousel from '@/Components1/3d-carousel';
 
-export function ThreeDImage RingExample() {
+export function ThreeDCarouselExample() {
   return (
-    <ThreeDImage Ring />
+    <ThreeDCarousel />
   )
 }
 `;
@@ -46,13 +46,13 @@ export const code = `// TODO: Add the actual component code here
 import React from "react";
 import { cn } from "@/lib/utils";
 
-const ThreeDImage Ring = () => {
+const ThreeDCarousel = () => {
   return (
     <div className="p-4">
-      <p>3D Image Ring component placeholder</p>
+      <p>3D Carousel component placeholder</p>
     </div>
   );
 };
 
-export default ThreeDImageRing;
+export default ThreeDCarousel;
 `;

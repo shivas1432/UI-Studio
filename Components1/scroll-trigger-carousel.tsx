@@ -59,7 +59,7 @@ const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
             <React.Fragment key={item.id}>
               <div className="flex flex-col items-center justify-center">
                 <div
-                  className="group relative overflow-hidden bg-background 
+                  className="group relative overflow-hidden bg-background
         flex items-center justify-center"
                   style={{ width: itemWidth, height: itemHeight }}
                 >

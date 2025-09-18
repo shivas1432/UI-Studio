@@ -148,7 +148,7 @@ export function GlowingLights({
               }
             }
 
-            .glowing-lights-effect-only-glow { /* Renamed for clarity */
+            .glowing-lights-effect-only-glow {
               background: linear-gradient(135deg, ${gradientString});
               background-size: 400% 400%;
               animation: fancy-gradient-animate ${animationSpeed}s infinite linear;
@@ -157,7 +157,7 @@ export function GlowingLights({
           `,
         }}
       />
-      {/* The glowing effect div, now directly exposed and can be styled externally */}
+      {}
       <div
         className={`absolute left-1/2 -translate-x-1/2 w-[100%] z-50 h-[60%] rounded-full glowing-lights-effect-only-glow opacity-20 ${className}`}
         style={{

@@ -88,10 +88,10 @@ void main(){
   // Define the core of the aurora
   float core = 0.5;
   float intensity = smoothstep(core - uBlend, core + uBlend, waveHeight);
-  
+
   vec3 auroraColor = intensity * rampColor;
   float auroraAlpha = intensity;
-  
+
   fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
 }
 `;

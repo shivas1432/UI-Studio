@@ -104,13 +104,12 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps & Reac
 );
 DialogTrigger.displayName = "DialogTrigger";
 
-
 // Define a type that omits conflicting HTML attributes for Framer Motion
-type OmittedDialogContentHTMLAttributes = Omit<React.HTMLAttributes<HTMLDivElement>, 
-  'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration' | 
-  'onTransitionEnd' | 'onDrag' | 'onDragEnd' | 'onDragEnter' | 
-  'onDragExit' | 'onDragLeave' | 'onDragOver' | 'onDragStart' | 
-  'onDrop' | 'onMouseDown' | 'onMouseEnter' | 'onMouseLeave' | 
+type OmittedDialogContentHTMLAttributes = Omit<React.HTMLAttributes<HTMLDivElement>,
+  'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration' |
+  'onTransitionEnd' | 'onDrag' | 'onDragEnd' | 'onDragEnter' |
+  'onDragExit' | 'onDragLeave' | 'onDragOver' | 'onDragStart' |
+  'onDrop' | 'onMouseDown' | 'onMouseEnter' | 'onMouseLeave' |
   'onMouseMove' | 'onMouseOut' | 'onMouseOver' | 'onMouseUp' |
   'onTouchCancel' | 'onTouchEnd' | 'onTouchMove' | 'onTouchStart' |
   'onPointerDown' | 'onPointerMove' | 'onPointerUp' | 'onPointerCancel' |
@@ -131,7 +130,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, OmittedDialogContentHTMLA
   <AnimatePresence>
   {open && ( // Conditionally render the motion components based on `open` state
    <div className="fixed inset-0 z-50 flex items-center justify-center">
-   {/* Backdrop Overlay */}
+   {}
    <motion.div
  initial={{ opacity: 0 }}
  animate={{ opacity: 1 }}
@@ -141,7 +140,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, OmittedDialogContentHTMLA
  onClick={() => setOpen(false)} // Close dialog when clicking overlay
    />
 
-   {/* Dialog Content */}
+   {}
    <motion.div
  ref={ref}
  initial={{ opacity: 0, scale: 0.95 }} // Start slightly scaled down and invisible

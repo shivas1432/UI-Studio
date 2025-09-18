@@ -28,7 +28,7 @@ export const packagesMap = {
   bun: `bun add ${packagescript}`,
 };
 
-export const threeDModel Viewer = [
+export const threeDModelViewer = [
   // Add component props here
 ];
 
@@ -54,5 +54,5 @@ const ThreeDModel Viewer = () => {
   );
 };
 
-export default ThreeDModel Viewer;
+export default ThreeDModelViewer;
 `;

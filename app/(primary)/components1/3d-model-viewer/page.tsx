@@ -1,5 +1,5 @@
 import React from "react";
-import ThreeDModel ViewerPreview from "./_components/preview";
+import ThreeDModelViewerPreview from "./_components/preview";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  return <ThreeDModel ViewerPreview />;
+  return <ThreeDModelViewerPreview />;
 };
 
 export default Page;

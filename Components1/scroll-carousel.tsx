@@ -194,7 +194,7 @@ export const ScrollCarousel = forwardRef<HTMLDivElement, ScrollCarouselProps>(
               alt=""
               className="absolute inset-0 w-full h-full object-cover z-[-1] rounded-3xl"
             />
-            {/* <RippleLoader className="!absolute z-[-1]" icon={feature.icon} /> */}
+            {}
             <div className="absolute bottom-4 z-10 w-full px-4">
               <div
                 className={cn(
@@ -207,11 +207,7 @@ export const ScrollCarousel = forwardRef<HTMLDivElement, ScrollCarouselProps>(
                 <p className="text-white text-xs mb-4 opacity-60">
                   {feature.description}
                 </p>
-                {/* <img
-                  src={feature.image}
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-cover z-[-1] rounded-3xl blur-[5px]"
-                /> */}
+                {}
               </div>
             </div>
             <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-black/5 dark:group-hover:bg-white/5 centered:bg-black/5 dark:centered:bg-white/5 rounded-2xl group-hover:blur-md" />

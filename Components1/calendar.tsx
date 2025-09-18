@@ -111,7 +111,7 @@ const Calendar = () => {
         {mode === "single" && singleDate && (
           <p>
             Selected:{" "}
-            {/* toLocaleDateString is a native method, so this works perfectly */}
+            {}
             <strong>{singleDate.toLocaleDateString("en-US")}</strong>
           </p>
         )}

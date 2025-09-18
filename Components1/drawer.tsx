@@ -130,7 +130,7 @@ const DrawerContent = React.forwardRef<HTMLDivElement, DrawerContentProps>(
       <AnimatePresence>
         {open && ( // Conditionally render the motion components based on `open` state
           <div className="fixed inset-0 z-50 flex flex-col items-center justify-end mx-auto">
-            {/* Backdrop Overlay */}
+            {}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -141,7 +141,7 @@ const DrawerContent = React.forwardRef<HTMLDivElement, DrawerContentProps>(
               aria-hidden="true" // Hide from screen readers as it's purely visual
             />
 
-            {/* Drawer Content */}
+            {}
             <motion.div
               ref={ref}
               initial={{ y: "100%" }} // Start off-screen at the bottom

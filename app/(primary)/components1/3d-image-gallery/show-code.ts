@@ -28,7 +28,7 @@ export const packagesMap = {
   bun: `bun add ${packagescript}`,
 };
 
-export const threeDImage Gallery = [
+export const threeDImageGallery = [
   // Add component props here
 ];
 
@@ -54,5 +54,5 @@ const ThreeDImage Gallery = () => {
   );
 };
 
-export default ThreeDImage Gallery;
+export default ThreeDImageGallery;
 `;

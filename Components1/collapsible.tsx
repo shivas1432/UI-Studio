@@ -114,18 +114,17 @@ const CollapsibleTrigger = React.forwardRef<HTMLButtonElement, CollapsibleTrigge
 CollapsibleTrigger.displayName = "CollapsibleTrigger";
 
 // Omit event handlers that conflict with Framer Motion's types
-type OmittedHTMLAttributes = Omit<React.HTMLAttributes<HTMLDivElement>, 
-  'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration' | 
-  'onTransitionEnd' | 'onDrag' | 'onDragEnd' | 'onDragEnter' | 
-  'onDragExit' | 'onDragLeave' | 'onDragOver' | 'onDragStart' | 
-  'onDrop' | 'onMouseDown' | 'onMouseEnter' | 'onMouseLeave' | 
+type OmittedHTMLAttributes = Omit<React.HTMLAttributes<HTMLDivElement>,
+  'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration' |
+  'onTransitionEnd' | 'onDrag' | 'onDragEnd' | 'onDragEnter' |
+  'onDragExit' | 'onDragLeave' | 'onDragOver' | 'onDragStart' |
+  'onDrop' | 'onMouseDown' | 'onMouseEnter' | 'onMouseLeave' |
   'onMouseMove' | 'onMouseOut' | 'onMouseOver' | 'onMouseUp' |
   'onTouchCancel' | 'onTouchEnd' | 'onTouchMove' | 'onTouchStart' |
   'onPointerDown' | 'onPointerMove' | 'onPointerUp' | 'onPointerCancel' |
   'onPointerEnter' | 'onPointerLeave' | 'onPointerOver' | 'onPointerOut' |
   'onGotPointerCapture' | 'onLostPointerCapture'
 >;
-
 
 interface CollapsibleContentProps extends OmittedHTMLAttributes { // Use the new type here
   forceMount?: boolean;
@@ -145,7 +144,7 @@ const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentPr
     React.useImperativeHandle(ref, () => contentRef.current!);
 
     return (
-      <AnimatePresence initial={false}> {/* initial={false} prevents initial animation on mount */}
+      <AnimatePresence initial={false}> {}
         {(open || forceMount) && (
           <motion.div
             key="collapsible-content" // Unique key for AnimatePresence to track
@@ -156,8 +155,8 @@ const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentPr
             style={{ overflow: 'hidden' }} // Ensure content is clipped during animation
             // The onAnimationStart and onAnimationComplete are not strictly necessary for basic height animation,
             // but can be useful for more complex scenarios or debugging.
-            // onAnimationStart={() => { /* maybe add data-state="animating" */ }}
-            // onAnimationComplete={() => { /* maybe remove data-state="animating" */ }}
+            // onAnimationStart={() => {  }}
+            // onAnimationComplete={() => {  }}
             className={cn(
               "overflow-hidden", // Keep overflow hidden for content clipping during animation
               className
@@ -166,7 +165,7 @@ const CollapsibleContent = React.forwardRef<HTMLDivElement, CollapsibleContentPr
             // Cast props to HTMLMotionProps<'div'> to satisfy TypeScript
             {...props as HTMLMotionProps<'div'>}
           >
-            <div ref={contentRef} className="pb-4"> {/* Add padding bottom to internal div to compensate for overflow hidden */}
+            <div ref={contentRef} className="pb-4"> {}
               {children}
             </div>
           </motion.div>

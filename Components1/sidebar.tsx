@@ -396,15 +396,15 @@ export function SidebarMenu({
     // In your SidebarMenu component's div for the indicator:
     <div ref={menuRef} className={cn("relative", className)} {...props}>
       <div
-        className="sidebar-menu-indicator opacity-0 absolute ease-in-out 
+        className="sidebar-menu-indicator opacity-0 absolute ease-in-out
       rounded-md bg-primarylw/10 dark:bg-greedy/10 border border-primarylw dark:border-greedy"
       />
       <div
-        className="sidebar-menu-indicator/10 opacity-0 absolute 
-        ease-in-out 
+        className="sidebar-menu-indicator/10 opacity-0 absolute
+        ease-in-out
       rounded-md bg-primarylw/10 dark:bg-greedy/10"
       />{" "}
-      {/* Removed border classes */}
+      {}
       {children}
     </div>
   );

@@ -26,11 +26,11 @@ export function Toaster() {
             type === "destructive" ? "destructive" :
             "default"
           );
-          
+
           return (
-            <Toast 
-              key={id} 
-              {...props} 
+            <Toast
+              key={id}
+              {...props}
               variant={toastVariant}
               duration={duration}
             >

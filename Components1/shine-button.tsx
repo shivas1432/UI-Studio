@@ -56,10 +56,10 @@ export const ShineButton: React.FC<ShineButtonProps> = ({
     >
       {label}
 
-      {/* Shine effect */}
+      {}
       <div
-        className="absolute top-0 left-[-75%] w-[200%] 
-      h-full bg-white/40 skew-x-[-20deg] opacity-0 
+        className="absolute top-0 left-[-75%] w-[200%]
+      h-full bg-white/40 skew-x-[-20deg] opacity-0
       group-hover:opacity-100 animate-shine pointer-events-none z-20"
       />
     </button>

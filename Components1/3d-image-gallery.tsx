@@ -22,10 +22,6 @@ export interface Image3DGalleryProps {
   onImageClick?: (index: number) => void; // Callback for image click
 }
 
-/**
- * ThreeDImageGallery Component
- * Renders a responsive 3D image gallery with interactive and auto-rotate features.
- */
 const ThreeDImageGallery: React.FC<Image3DGalleryProps> = ({
   // Default images if none are provided
   images = [
@@ -114,7 +110,7 @@ const ThreeDImageGallery: React.FC<Image3DGalleryProps> = ({
       onMouseMove={handleMouseMove} // Mouse move event handler
       onMouseLeave={handleMouseLeave} // Mouse leave event handler
     >
-      {/* Inner container for the rotating images, applies overall rotation */}
+      {}
       <motion.div
         style={{
           rotateX, // Apply X rotation from motion value
@@ -123,7 +119,7 @@ const ThreeDImageGallery: React.FC<Image3DGalleryProps> = ({
         }}
         className="relative"
       >
-        {/* AnimatePresence for smooth entry/exit animations of images */}
+        {}
         <AnimatePresence initial={false}>
           {images.map((img, index) => {
             // Calculate offset from the active image
@@ -167,7 +163,7 @@ const ThreeDImageGallery: React.FC<Image3DGalleryProps> = ({
                   onImageClick?.(index);
                 }}
               >
-                {/* Image element */}
+                {}
                 <img
                   src={img}
                   alt={`gallery-image-${index}`} // Alt text for accessibility

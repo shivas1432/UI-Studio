@@ -5,8 +5,6 @@ import { X } from "lucide-react";
 import { cva } from "class-variance-authority";
 import { Progress } from "./progress";
 
-
-/* Toast Components */
 const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   return <div className="toast-provider">{children}</div>;
 };
@@ -18,8 +16,8 @@ const ToastViewport = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      `fixed z-[40] flex flex-col-reverse gap-2 right-4 
-      top-4 w-auto max-w-sm `, 
+      `fixed z-[40] flex flex-col-reverse gap-2 right-4
+      top-4 w-auto max-w-sm `,
       className
     )}
     {...props}
@@ -29,7 +27,7 @@ const ToastViewport = React.forwardRef<
 ToastViewport.displayName = "ToastViewport";
 
 const toastVariants = cva(
-  `group relative flex w-96 items-center justify-between overflow-hidden rounded-md border   p-4 pr-8 shadow-lg transition-all 
+  `group relative flex w-96 items-center justify-between overflow-hidden rounded-md border   p-4 pr-8 shadow-lg transition-all
   bg-background text-foreground`,
   {
     variants: {
@@ -61,7 +59,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
 
     React.useEffect(() => {
       if (!isOpen) return;
-      
+
       const startTime = Date.now();
       const endTime = startTime + duration;
 
@@ -96,11 +94,11 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       <div
         ref={ref}
         className={cn(
-          toastVariants({ variant }), 
+          toastVariants({ variant }),
           "relative z-50 pb-2",  // Removed fixed positioning for better stacking
           className
         )}
-        style={{ 
+        style={{
           marginBottom: '8px',  // Add spacing between toasts
           zIndex: 51  // Ensure proper stacking
         }}
@@ -108,23 +106,23 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       >
         <div className="w-full min-h-8">
           {props.children}
-          {/* Bottom Progress Bar */}
+          {}
           <div className="absolute bottom-0 left-0 right-0 h-1">
-            <Progress 
-              value={progress} 
+            <Progress
+              value={progress}
               className="h-1 rounded-none"
               indicatorClassName={cn(
-                variant === "destructive" ? "bg-red-600" : 
-                variant === "success" ? "bg-green-600" : 
-                variant === "warning" ? "bg-yellow-600" : 
-                variant === "info" ? "bg-blue-600" : 
+                variant === "destructive" ? "bg-red-600" :
+                variant === "success" ? "bg-green-600" :
+                variant === "warning" ? "bg-yellow-600" :
+                variant === "info" ? "bg-blue-600" :
                 "bg-gray-600"
               )}
             />
           </div>
         </div>
 
-        {/* Close Button */}
+        {}
         <ToastClose onClick={() => {
           setIsOpen(false);
           onClose?.();

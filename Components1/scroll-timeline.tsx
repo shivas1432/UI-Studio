@@ -240,11 +240,11 @@ export const ScrollTimeline = ({
             className={cn(getConnectorClasses(), "h-full absolute top-0 z-10")}
           ></div>
 
-          {/* === MODIFICATION START === */}
-          {/* Enhanced Progress Indicator with Traveling Glow */}
+          {}
+          {}
           {progressIndicator && (
             <>
-              {/* The main filled progress line */}
+              {}
               <motion.div
                 className="absolute top-0 z-10"
                 style={{
@@ -262,7 +262,7 @@ export const ScrollTimeline = ({
                   `,
                 }}
               />
-              {/* The traveling glow "comet" at the head of the line */}
+              {}
               <motion.div
                 className="absolute z-20"
                 style={{
@@ -296,7 +296,7 @@ export const ScrollTimeline = ({
               </motion.div>
             </>
           )}
-          {/* === MODIFICATION END === */}
+          {}
 
           <div className="relative z-20">
             {events.map((event, index) => {

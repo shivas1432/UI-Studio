@@ -41,7 +41,7 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
 
   return (
     <section
-      className={`mx-auto block h-[600px] max-sm:h-[400px] 
+      className={`mx-auto block h-[600px] max-sm:h-[400px]
         overflow-hidden rounded-2xl bg-white dark:bg-black ${className}`}
     >
       <div
@@ -52,8 +52,8 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
       >
         <div className="w-full overflow-hidden scale-90 sm:scale-100">
           <div
-            className={`relative grid h-full w-full origin-center 
-              grid-cols-2 sm:grid-cols-${cols} gap-4 transform 
+            className={`relative grid h-full w-full origin-center
+              grid-cols-2 sm:grid-cols-${cols} gap-4 transform
               `}
           >
             {imageGroups.map((imagesInGroup, idx) => (

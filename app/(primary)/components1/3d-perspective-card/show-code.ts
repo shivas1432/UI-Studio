@@ -28,7 +28,7 @@ export const packagesMap = {
   bun: `bun add ${packagescript}`,
 };
 
-export const threeDPerspective Card = [
+export const threeDPerspectiveCard = [
   // Add component props here
 ];
 
@@ -54,5 +54,5 @@ const ThreeDPerspective Card = () => {
   );
 };
 
-export default ThreeDPerspective Card;
+export default ThreeDPerspectiveCard;
 `;
