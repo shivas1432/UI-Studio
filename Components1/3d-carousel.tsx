@@ -1,4 +1,3 @@
-// components/ThreeDCarousel.tsx
 "use client";
 
 import React, {
@@ -9,8 +8,6 @@ import React, {
 } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-
-import Link from "next/link";
 
 export interface ThreeDCarouselItem {
   id: number;
@@ -27,10 +24,6 @@ interface ThreeDCarouselProps {
   autoRotate?: boolean;
   rotateInterval?: number;
   cardHeight?: number;
-  title?: string;
-  subtitle?: string;
-  tagline?: string;
-  isMobileSwipe?: boolean;
 }
 
 const ThreeDCarousel = ({
@@ -38,10 +31,6 @@ const ThreeDCarousel = ({
   autoRotate = true,
   rotateInterval = 4000,
   cardHeight = 500,
-  title = "From Textile to Intelligence",
-  subtitle = "Customer Cases",
-  tagline = "Explore how our textile sensor technology is revolutionizing multiple industries with intelligent fabric solutions tailored to specific needs.",
-  isMobileSwipe = true,
 }: ThreeDCarouselProps) => {
   const [active, setActive] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -66,6 +55,11 @@ const ThreeDCarousel = ({
       ([entry]) => setIsInView(entry.isIntersecting),
       { threshold: 0.2 }
     );
+    
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current);
+    }
+    
     return () => observer.disconnect();
   }, []);
 
@@ -100,15 +94,11 @@ const ThreeDCarousel = ({
   return (
     <section
       id="ThreeDCarousel"
-      className="bg-transparent min-w-full mx-aut
-    flex items-center justify-center"
+      className="bg-transparent min-w-full mx-auto flex items-center justify-center"
     >
-      <div
-        className="w-full px-4 sm:px-6 lg:px-8
-      min-w-[350px] md:min-w-[1000px] max-w-7xl  "
-      >
+      <div className="w-full px-4 sm:px-6 lg:px-8 min-w-[350px] md:min-w-[1000px] max-w-7xl">
         <div
-          className="relative overflow-hidden h-[550px] "
+          className="relative overflow-hidden h-[550px]"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           onTouchStart={onTouchStart}
@@ -116,7 +106,7 @@ const ThreeDCarousel = ({
           onTouchEnd={onTouchEnd}
           ref={carouselRef}
         >
-          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center ">
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
             {items.map((item, index) => (
               <div
                 key={item.id}
@@ -125,8 +115,7 @@ const ThreeDCarousel = ({
                 )}`}
               >
                 <Card
-                  className={`overflow-hidden bg-background h-[${cardHeight}px] border shadow-sm
-                hover:shadow-md flex flex-col`}
+                  className={`overflow-hidden bg-background h-[${cardHeight}px] border shadow-sm hover:shadow-md flex flex-col`}
                 >
                   <div
                     className="relative bg-black p-6 flex items-center justify-center h-48 overflow-hidden"
@@ -142,7 +131,7 @@ const ThreeDCarousel = ({
                         {item.brand.toUpperCase()}
                       </h3>
                       <div className="w-12 h-1 bg-white mx-auto mb-2" />
-                      <p className="text-sm ">{item.title}</p>
+                      <p className="text-sm">{item.title}</p>
                     </div>
                   </div>
 
@@ -189,26 +178,24 @@ const ThreeDCarousel = ({
             ))}
           </div>
 
-          { (
-            <>
-              <button
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-gray-500 hover:bg-white z-30 shadow-md transition-all hover:scale-110"
-                onClick={() =>
-                  setActive((prev) => (prev - 1 + items.length) % items.length)
-                }
-                aria-label="Previous"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-gray-500 hover:bg-white z-30 shadow-md transition-all hover:scale-110"
-                onClick={() => setActive((prev) => (prev + 1) % items.length)}
-                aria-label="Next"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </>
-          )}
+          <>
+            <button
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-gray-500 hover:bg-white z-30 shadow-md transition-all hover:scale-110"
+              onClick={() =>
+                setActive((prev) => (prev - 1 + items.length) % items.length)
+              }
+              aria-label="Previous"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-gray-500 hover:bg-white z-30 shadow-md transition-all hover:scale-110"
+              onClick={() => setActive((prev) => (prev + 1) % items.length)}
+              aria-label="Next"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </>
 
           <div className="absolute bottom-6 left-0 right-0 flex justify-center items-center space-x-3 z-30">
             {items.map((_, idx) => (

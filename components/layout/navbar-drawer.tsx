@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import {
@@ -19,7 +18,6 @@ import {
   interactiveComponents,
   uiComponents,
   scrollComponents,
-  // ADD COMPONENTS1 IMPORTS
   components1ThreeDComponents,
   components1AnimationComponents,
   components1BackgroundComponents,
@@ -61,7 +59,6 @@ const NavbarDrawer = () => {
           <ScrollArea className="flex h-[calc(100vh-10rem)] w-full flex-col gap-4 py-2">
             <div className="flex flex-col gap-6 pr-6">
               
-              {/* Getting Started */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-muted-foreground/70">
                   Getting Started
@@ -75,7 +72,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* Featured Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-muted-foreground/70">
                   Featured Components
@@ -89,7 +85,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* Basic Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-muted-foreground/70">
                   Basic Components
@@ -103,9 +98,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* ORIGINAL COMPONENTS */}
-
-              {/* 3D Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-muted-foreground/70">
                   3D Components
@@ -119,7 +111,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* Animation Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-muted-foreground/70">
                   Animations
@@ -133,9 +124,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* COMPONENTS1 SECTIONS */}
-
-              {/* Components1 - 3D Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-blue-600/70">
                   Components1 - 3D
@@ -149,7 +137,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* Components1 - Animation Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-blue-600/70">
                   Components1 - Animations
@@ -163,7 +150,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* Components1 - Background Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-blue-600/70">
                   Components1 - Backgrounds
@@ -177,7 +163,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* Components1 - UI Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-blue-600/70">
                   Components1 - UI Elements
@@ -191,7 +176,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* Components1 - Interactive */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-blue-600/70">
                   Components1 - Interactive
@@ -205,7 +189,6 @@ const NavbarDrawer = () => {
                 </div>
               </div>
 
-              {/* Components1 - Scroll Components */}
               <div className="flex flex-col gap-1">
                 <div className="flex px-3 py-2 text-start text-[0.8rem] font-normal uppercase tracking-widest text-blue-600/70">
                   Components1 - Scroll Effects
@@ -235,3 +218,4 @@ const NavbarDrawer = () => {
 };
 
 export default NavbarDrawer;
+

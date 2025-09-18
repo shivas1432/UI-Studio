@@ -2,7 +2,6 @@
 import React from "react";
 import {
   SiGoogle,
-  SiTiktok,
   SiSpotify,
 } from "react-icons/si";
 import { FaDiscord } from "react-icons/fa";
@@ -15,6 +14,7 @@ import {
   Code,
 } from "lucide-react";
 import { useAnimate } from "framer-motion";
+import Image from "next/image";
 
 export const ClipPathLinks = () => {
   return (
@@ -123,9 +123,11 @@ const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href, imgSrc, className }) => {
       className="relative grid h-20 w-full place-content-center sm:h-28 md:h-36 text-foreground bg-background transition-all duration-200 hover:scale-105"
     >
       {imgSrc ? (
-        <img
+        <Image
           src={imgSrc}
           alt="custom icon"
+          width={40}
+          height={40}
           className={className ?? "max-h-10 sm:max-h-16 md:max-h-20 object-contain"}
         />
       ) : Icon ? (
@@ -138,9 +140,11 @@ const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href, imgSrc, className }) => {
         className="absolute inset-0 grid place-content-center bg-primary text-primary-foreground transition-colors duration-300"
       >
         {imgSrc ? (
-          <img
+          <Image
             src={imgSrc}
             alt="custom icon hover"
+            width={40}
+            height={40}
             className={className ?? "max-h-10 sm:max-h-16 md:max-h-20 object-contain"}
           />
         ) : Icon ? (
@@ -151,7 +155,6 @@ const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href, imgSrc, className }) => {
   );
 };
 
-// Main component wrapper for features integration
 export function SocialLinksFeature() {
   return (
     <div className="w-full max-w-2xl mx-auto p-6">

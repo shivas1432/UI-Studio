@@ -30,9 +30,6 @@ const ThreeDModelViewerPreview = () => {
   const [sourceManual, setSourceManual] = useState(true);
   const { previous, next } = getNavigationFeaturedItems(title);
 
-  // Sample 3D model URL - you'll need to provide an actual model file
-  const sampleModelUrl = "https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf";
-
   return (
     <MainContentContainer>
       <MainTitle title={title} description={description} />

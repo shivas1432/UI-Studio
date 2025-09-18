@@ -1,12 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import {
-  SiGoogle,
-  SiTiktok,
-  SiSpotify,
-} from "react-icons/si";
-import { FaDiscord } from "react-icons/fa";
+import { useEffect, useRef, useState, useCallback } from "react"
 import {
   Github,
   Twitter,
@@ -14,8 +8,10 @@ import {
   Facebook,
   Linkedin,
   Code,
+  Globe,
+  Music,
+  MessageCircle,
 } from "lucide-react";
-import { useAnimate } from "framer-motion";
 
 interface Vector2D {
   x: number
@@ -142,7 +138,6 @@ class Particle {
   }
 }
 
-// Social Links Component
 const NO_CLIP = "polygon(0 0, 100% 0, 100% 100%, 0% 100%)";
 const BOTTOM_RIGHT_CLIP = "polygon(0 0, 100% 0, 0 0, 0% 100%)";
 const TOP_RIGHT_CLIP = "polygon(0 0, 0 100%, 100% 100%, 0% 100%)";
@@ -164,17 +159,17 @@ const EXIT_KEYFRAMES = {
 };
 
 interface LinkBoxProps {
-  Icon?: React.ComponentType<{ className?: string }>;
+  Icon: React.ComponentType<{ className?: string }>;
   href: string;
   imgSrc?: string;
   className?: string;
 }
 
 const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href, imgSrc, className }) => {
-  const [scope, animate] = useAnimate();
+  const [clipPath, setClipPath] = useState<string>(BOTTOM_RIGHT_CLIP);
 
   const getNearestSide = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
+    const target = e.currentTarget as HTMLElement;
     const box = target.getBoundingClientRect();
 
     const proximityToLeft = {
@@ -206,16 +201,12 @@ const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href, imgSrc, className }) => {
 
   const handleMouseEnter = (e: React.MouseEvent) => {
     const side = getNearestSide(e);
-    animate(scope.current, {
-      clipPath: ENTRANCE_KEYFRAMES[side],
-    });
+    setClipPath(ENTRANCE_KEYFRAMES[side][1]);
   };
 
   const handleMouseLeave = (e: React.MouseEvent) => {
     const side = getNearestSide(e);
-    animate(scope.current, {
-      clipPath: EXIT_KEYFRAMES[side],
-    });
+    setClipPath(EXIT_KEYFRAMES[side][1]);
   };
 
   return (
@@ -231,26 +222,32 @@ const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href, imgSrc, className }) => {
         <img
           src={imgSrc}
           alt="custom icon"
+          width={32}
+          height={32}
           className={className ?? "max-h-8 object-contain"}
         />
-      ) : Icon ? (
+      ) : (
         <Icon className="text-lg" />
-      ) : null}
+      )}
 
       <div
-        ref={scope}
-        style={{ clipPath: BOTTOM_RIGHT_CLIP }}
+        style={{ 
+          clipPath: clipPath,
+          transition: 'clip-path 0.3s ease'
+        }}
         className="absolute inset-0 grid place-content-center bg-blue-600 text-white"
       >
         {imgSrc ? (
           <img
             src={imgSrc}
             alt="custom icon hover"
+            width={32}
+            height={32}
             className={className ?? "max-h-8 object-contain"}
           />
-        ) : Icon ? (
+        ) : (
           <Icon className="text-lg" />
-        ) : null}
+        )}
       </div>
     </a>
   );
@@ -260,7 +257,7 @@ const ClipPathLinks = () => {
   return (
     <div className="w-full max-w-md bg-gray-900 border border-gray-700 rounded-lg overflow-hidden">
       <div className="grid grid-cols-2 divide-x divide-gray-700">
-        <LinkBox Icon={SiGoogle} href="#" />
+        <LinkBox Icon={Globe} href="#" />
         <LinkBox Icon={Github} href="#" />
       </div>
       <div className="grid grid-cols-4 divide-x divide-gray-700 border-t border-gray-700">
@@ -270,15 +267,14 @@ const ClipPathLinks = () => {
         <LinkBox Icon={Facebook} href="#" />
       </div>
       <div className="grid grid-cols-3 divide-x divide-gray-700 border-t border-gray-700">
-        <LinkBox Icon={FaDiscord} href="#" />
-        <LinkBox Icon={SiSpotify} href="#" />
+        <LinkBox Icon={MessageCircle} href="#" />
+        <LinkBox Icon={Music} href="#" />
         <LinkBox Icon={Code} href="#" />
       </div>
     </div>
   );
 };
 
-// Main Particle Text Effect Component
 interface ParticleTextEffectProps {
   words?: string[]
 }
@@ -287,7 +283,7 @@ const DEFAULT_WORDS = ["HELLO", "UI STUDIO"]
 
 export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffectProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
   const particlesRef = useRef<Particle[]>([])
   const frameCountRef = useRef(0)
   const wordIndexRef = useRef(0)
@@ -296,7 +292,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
   const pixelSteps = 6
   const drawAsPoints = true
 
-  const generateRandomPos = (x: number, y: number, mag: number): Vector2D => {
+  const generateRandomPos = useCallback((x: number, y: number, mag: number): Vector2D => {
     const randomX = Math.random() * 1000
     const randomY = Math.random() * 500
 
@@ -315,9 +311,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
       x: x + direction.x,
       y: y + direction.y,
     }
-  }
+  }, [])
 
-  const nextWord = (word: string, canvas: HTMLCanvasElement) => {
+  const nextWord = useCallback((word: string, canvas: HTMLCanvasElement) => {
     const offscreenCanvas = document.createElement("canvas")
     offscreenCanvas.width = canvas.width
     offscreenCanvas.height = canvas.height
@@ -396,9 +392,9 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     for (let i = particleIndex; i < particles.length; i++) {
       particles[i].kill(canvas.width, canvas.height)
     }
-  }
+  }, [generateRandomPos, pixelSteps])
 
-  const animate = () => {
+  const animateParticles = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -442,8 +438,8 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
       nextWord(words[wordIndexRef.current], canvas)
     }
 
-    animationRef.current = requestAnimationFrame(animate)
-  }
+    animationRef.current = requestAnimationFrame(animateParticles)
+  }, [words, nextWord, drawAsPoints])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -453,7 +449,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
     canvas.height = 500
 
     nextWord(words[0], canvas)
-    animate()
+    animateParticles()
 
     const handleMouseDown = (e: MouseEvent) => {
       mouseRef.current.isPressed = true
@@ -492,7 +488,7 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
       canvas.removeEventListener("mousemove", handleMouseMove)
       canvas.removeEventListener("contextmenu", handleContextMenu)
     }
-  }, [])
+  }, [words, nextWord, animateParticles])
 
   return (
     <div style={{
@@ -505,7 +501,6 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
       padding: '16px',
       gap: '24px'
     }}>
-      {/* Particle Text Canvas */}
       <canvas
         ref={canvasRef}
         style={{
@@ -517,7 +512,6 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
         }}
       />
       
-      {/* Particle Text Info */}
       <div style={{
         color: 'white',
         fontSize: '14px',
@@ -525,12 +519,8 @@ export function ParticleTextEffect({ words = DEFAULT_WORDS }: ParticleTextEffect
         maxWidth: '448px'
       }}>
         <p style={{ marginBottom: '8px', fontSize: '16px', fontWeight: 'bold' }}>Particle Text Effect</p>
-        <p style={{ color: '#9CA3AF', fontSize: '12px' }}>
-         
-        </p>
+        
       </div>
-
-      {/* Social Links Component */}
       <div style={{
         color: 'white',
         textAlign: 'center'

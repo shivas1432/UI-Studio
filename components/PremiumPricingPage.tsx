@@ -33,7 +33,6 @@ const PremiumPricingPage = () => {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900/20">
-        {/* Header Section */}
         <div className="container mx-auto px-4 py-16">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -62,7 +61,6 @@ const PremiumPricingPage = () => {
             </p>
           </motion.div>
 
-          {/* Country Selection */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -88,9 +86,7 @@ const PremiumPricingPage = () => {
             </div>
           </motion.div>
 
-          {/* Pricing Cards */}
           <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Free Plan */}
             <motion.div
               key={`free-${selectedCountry}`}
               initial={{ y: 30, opacity: 0 }}
@@ -139,7 +135,6 @@ const PremiumPricingPage = () => {
               </button>
             </motion.div>
 
-            {/* Premium Plan */}
             <motion.div
               key={`premium-${selectedCountry}`}
               initial={{ y: 30, opacity: 0 }}
@@ -147,7 +142,6 @@ const PremiumPricingPage = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border-2 border-blue-300 dark:border-blue-600 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 hover:shadow-2xl relative"
             >
-              {/* Popular Badge */}
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
                   <Star className="w-4 h-4" />
@@ -229,7 +223,6 @@ const PremiumPricingPage = () => {
             </motion.div>
           </div>
 
-          {/* Features Grid */}
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -237,7 +230,7 @@ const PremiumPricingPage = () => {
             className="mt-20"
           >
             <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-              What's included in Premium
+              What&apos;s included in Premium
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -263,7 +256,6 @@ const PremiumPricingPage = () => {
             </div>
           </motion.div>
 
-          {/* Trust Indicators */}
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -288,7 +280,6 @@ const PremiumPricingPage = () => {
         </div>
       </div>
 
-      {/* Checkout Modal */}
       <PremiumCheckout
         isOpen={checkoutOpen}
         onClose={() => setCheckoutOpen(false)}
