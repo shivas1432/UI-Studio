@@ -24,7 +24,7 @@ import { CommandBlock } from "@/components/code/commmand-block";
 import ToggleManualCli from "@/components/content/togglemanualcli";
 import { CodeBlock } from "@/components/code/CodeBlock";
 import PropsTable from "@/components/content/props-table";
-import ThreeDPerspectiveCard from "@/Components1/3d-perspective-card";
+import ThreeDPerspectiveCard from "@/Components1/3D-Perspective-Card";
 
 const ThreeDPerspectiveCardPreview = () => {
   const [sourceCode, setSourceCode] = useState(false);
