@@ -164,3 +164,5 @@ HoverCardContent.displayName = "HoverCardContent";
 
 // Exports
 export { HoverCard, HoverCardTrigger, HoverCardContent };
+
+export default HoverCard;

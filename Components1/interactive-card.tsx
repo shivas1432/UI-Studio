@@ -109,3 +109,5 @@ export const InteractiveCard = ({
     </motion.div>
   );
 };
+
+export default InteractiveCard;

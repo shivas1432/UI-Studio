@@ -71,3 +71,5 @@ export const TrustedUsers: React.FC<TrustedUsersProps> = ({
     </div>
   );
 };
+
+export default TrustedUsers;

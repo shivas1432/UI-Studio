@@ -123,3 +123,5 @@ const ScrollBar = React.forwardRef<HTMLDivElement, ScrollBarProps>(
 ScrollBar.displayName = "ScrollBar";
 
 export { ScrollArea, ScrollBar };
+
+export default ScrollArea;

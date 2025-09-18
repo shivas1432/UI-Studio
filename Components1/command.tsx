@@ -381,3 +381,5 @@ export {
   CommandShortcut,
   CommandSeparator,
 };
+
+export default Command;

@@ -349,3 +349,5 @@ export {
   SheetTitle,
   SheetTrigger,
 };
+
+export default Sheet;

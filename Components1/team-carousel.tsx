@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence, TargetAndTransition} from 'framer-motion';
-import { cn } from '../lib/utils'; // Assuming this utility correctly merges class names
+import React, { useState, useCallback, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { cn } from "../lib/utils";
 
 export interface TeamMember {
   id: string;
@@ -14,66 +14,38 @@ export interface TeamMember {
 }
 
 export interface TeamCarouselProps {
-
-  members: TeamMember[];
-
+  members?: TeamMember[];
   title?: string;
-
-  titleSize?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-
+  titleSize?: "sm" | "md" | "lg" | "xl" | "2xl";
   titleColor?: string;
-
   background?: string;
-
   cardWidth?: number;
-
   cardHeight?: number;
-
   cardRadius?: number;
-
   showArrows?: boolean;
-
   showDots?: boolean;
-
   keyboardNavigation?: boolean;
-
   touchNavigation?: boolean;
-
   animationDuration?: number;
-
   autoPlay?: number;
-
   pauseOnHover?: boolean;
-
   visibleCards?: number;
-
   sideCardScale?: number;
-
   sideCardOpacity?: number;
-
   grayscaleEffect?: boolean;
-
   className?: string;
-
   cardClassName?: string;
-
   titleClassName?: string;
-
-  infoPosition?: 'bottom' | 'overlay' | 'none';
-
+  infoPosition?: "bottom" | "overlay" | "none";
   infoTextColor?: string;
-
   infoBackground?: string;
-
   onMemberChange?: (member: TeamMember, index: number) => void;
-
   onCardClick?: (member: TeamMember, index: number) => void;
-
   initialIndex?: number;
 }
 
 export const TeamCarousel: React.FC<TeamCarouselProps> = ({
-  members,
+  members = [],
   title = "OUR TEAM",
   titleSize = "2xl",
   titleColor = "rgba(0, 76, 255, 1)",
@@ -103,7 +75,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
   initialIndex = 0,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const [direction, setDirection] = useState(0); // 0: no movement, 1: next, -1: prev
+  const [direction, setDirection] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 
@@ -120,197 +92,162 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
     [currentIndex, totalMembers, members, onMemberChange]
   );
 
-  const wrapIndex = (index: number) => {
-    return (index + totalMembers) % totalMembers;
-  };
+  const wrapIndex = (index: number) => (index + totalMembers) % totalMembers;
 
-  const calculatePosition = (index: number) => {
+  const calculatePosition = (index: number): string => {
     const activeIndex = currentIndex;
     const diff = wrapIndex(index - activeIndex);
 
-    if (diff === 0) return 'center';
+    if (diff === 0) return "center";
     if (diff <= visibleCards) return `right-${diff}`;
     if (diff >= totalMembers - visibleCards) return `left-${totalMembers - diff}`;
-    return 'hidden';
+    return "hidden";
   };
 
-  // Explicitly type the return of getVariantStyles to match framer-motion's expectations
-  const getVariantStyles = (position: string): TargetAndTransition => {
-    // FIX: Changed ease from number[] to an array of string presets or a valid CubicBezier type
-    // Using string presets for simplicity and type compatibility.
-    // If you need the exact cubic-bezier values, ensure they are compatible with framer-motion's Easing type.
-    // For custom cubic-bezier, you might need to use a type assertion like `as [number, number, number, number]`
-    // or import CubicBezier from 'framer-motion/types/value/types'.
+  /** Variants for motion.div */
+  const getVariants = (position: string): Variants => {
     const transition = {
       duration: animationDuration / 1000,
-      // You can use a string preset like 'easeInOut' or a valid cubic-bezier array if framer-motion's types support it directly
-      // For the given numbers, 'easeInOut' is a close approximation or 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' if framer-motion accepted it directly as string
-      // To strictly match [0.25, 0.46, 0.45, 0.94], framer-motion expects it as a CubicBezier tuple:
       ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     };
 
-    switch (position) {
-      case 'center':
-        return {
-          zIndex: 10,
-          opacity: 1,
-          scale: 1.1,
-          x: 0,
-          filter: 'grayscale(0%)',
-          pointerEvents: 'auto',
-          transition,
-        };
-      case 'right-1':
-        return {
-          zIndex: 5,
-          opacity: sideCardOpacity,
-          scale: sideCardScale,
-          x: cardWidth * 0.7,
-          filter: grayscaleEffect ? 'grayscale(100%)' : 'grayscale(0%)',
-          pointerEvents: 'auto',
-          transition,
-        };
-      case 'right-2':
-        return {
-          zIndex: 1,
-          opacity: sideCardOpacity * 0.7,
-          scale: sideCardScale * 0.9,
-          x: cardWidth * 1.4,
-          filter: grayscaleEffect ? 'grayscale(100%)' : 'grayscale(0%)',
-          pointerEvents: 'auto',
-          transition,
-        };
-      case 'left-1':
-        return {
-          zIndex: 5,
-          opacity: sideCardOpacity,
-          scale: sideCardScale,
-          x: -cardWidth * 0.7,
-          filter: grayscaleEffect ? 'grayscale(100%)' : 'grayscale(0%)',
-          pointerEvents: 'auto',
-          transition,
-        };
-      case 'left-2':
-        return {
-          zIndex: 1,
-          opacity: sideCardOpacity * 0.7,
-          scale: sideCardScale * 0.9,
-          x: -cardWidth * 1.4,
-          filter: grayscaleEffect ? 'grayscale(100%)' : 'grayscale(0%)',
-          pointerEvents: 'auto',
-          transition,
-        };
-      default:
-        return {
-          zIndex: 0,
-          opacity: 0,
-          scale: 0.8,
-          x: direction > 0 ? cardWidth * (visibleCards + 1) : -cardWidth * (visibleCards + 1),
-          pointerEvents: 'none',
-          filter: grayscaleEffect ? 'grayscale(100%)' : 'grayscale(0%)',
-          transition,
-        };
-    }
+    return {
+      hidden: {
+        zIndex: 0,
+        opacity: 0,
+        scale: 0.8,
+        x: direction > 0 ? cardWidth * (visibleCards + 1) : -cardWidth * (visibleCards + 1),
+        filter: grayscaleEffect ? "grayscale(100%)" : "grayscale(0%)",
+        pointerEvents: "none",
+        transition,
+      },
+      center: {
+        zIndex: 10,
+        opacity: 1,
+        scale: 1.1,
+        x: 0,
+        filter: "grayscale(0%)",
+        pointerEvents: "auto",
+        transition,
+      },
+      "right-1": {
+        zIndex: 5,
+        opacity: sideCardOpacity,
+        scale: sideCardScale,
+        x: cardWidth * 0.7,
+        filter: grayscaleEffect ? "grayscale(100%)" : "grayscale(0%)",
+        pointerEvents: "auto",
+        transition,
+      },
+      "right-2": {
+        zIndex: 1,
+        opacity: sideCardOpacity * 0.7,
+        scale: sideCardScale * 0.9,
+        x: cardWidth * 1.4,
+        filter: grayscaleEffect ? "grayscale(100%)" : "grayscale(0%)",
+        pointerEvents: "auto",
+        transition,
+      },
+      "left-1": {
+        zIndex: 5,
+        opacity: sideCardOpacity,
+        scale: sideCardScale,
+        x: -cardWidth * 0.7,
+        filter: grayscaleEffect ? "grayscale(100%)" : "grayscale(0%)",
+        pointerEvents: "auto",
+        transition,
+      },
+      "left-2": {
+        zIndex: 1,
+        opacity: sideCardOpacity * 0.7,
+        scale: sideCardScale * 0.9,
+        x: -cardWidth * 1.4,
+        filter: grayscaleEffect ? "grayscale(100%)" : "grayscale(0%)",
+        pointerEvents: "auto",
+        transition,
+      },
+    };
   };
 
-  // Auto-play functionality
+  // Auto-play
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (autoPlay > 0) {
-      interval = setInterval(() => {
-        paginate(1);
-      }, autoPlay);
-    }
+    if (autoPlay <= 0 || totalMembers === 0) return;
+    let interval = setInterval(() => paginate(1), autoPlay);
 
-    const carouselContainer = document.getElementById('team-carousel-container');
+    const container = document.getElementById("team-carousel-container");
 
-    const handleMouseEnter = () => {
-      if (pauseOnHover && autoPlay > 0) clearInterval(interval);
+    const handleEnter = () => {
+      if (pauseOnHover) clearInterval(interval);
+    };
+    const handleLeave = () => {
+      if (pauseOnHover) interval = setInterval(() => paginate(1), autoPlay);
     };
 
-    const handleMouseLeave = () => {
-      if (pauseOnHover && autoPlay > 0) {
-        interval = setInterval(() => {
-          paginate(1);
-        }, autoPlay);
-      }
-    };
-
-    if (carouselContainer && pauseOnHover && autoPlay > 0) {
-      carouselContainer.addEventListener('mouseenter', handleMouseEnter);
-      carouselContainer.addEventListener('mouseleave', handleMouseLeave);
-    }
+    container?.addEventListener("mouseenter", handleEnter);
+    container?.addEventListener("mouseleave", handleLeave);
 
     return () => {
       clearInterval(interval);
-      if (carouselContainer && pauseOnHover && autoPlay > 0) {
-        carouselContainer.removeEventListener('mouseenter', handleMouseEnter);
-        carouselContainer.removeEventListener('mouseleave', handleMouseLeave);
-      }
+      container?.removeEventListener("mouseenter", handleEnter);
+      container?.removeEventListener("mouseleave", handleLeave);
     };
-  }, [autoPlay, paginate, pauseOnHover]);
+  }, [autoPlay, paginate, pauseOnHover, totalMembers]);
 
-  // Keyboard navigation
+  // Keyboard nav
   useEffect(() => {
     if (!keyboardNavigation) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        paginate(-1);
-      } else if (e.key === 'ArrowRight') {
-        paginate(1);
-      }
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") paginate(-1);
+      if (e.key === "ArrowRight") paginate(1);
     };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
   }, [keyboardNavigation, paginate]);
 
-  // Touch navigation
+  // Touch nav
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!touchNavigation) return;
     setTouchStart(e.targetTouches[0].clientX);
   };
-
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!touchNavigation) return;
     setTouchEnd(e.targetTouches[0].clientX);
   };
-
   const handleTouchEnd = () => {
     if (!touchNavigation) return;
-
     const swipeThreshold = 50;
     const diff = touchStart - touchEnd;
-
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        paginate(1);
-      } else {
-        paginate(-1);
-      }
-    }
+    if (Math.abs(diff) > swipeThreshold) diff > 0 ? paginate(1) : paginate(-1);
   };
 
   const titleSizeClasses = {
-    sm: 'text-4xl',
-    md: 'text-5xl',
-    lg: 'text-6xl',
-    xl: 'text-7xl',
-    '2xl': 'text-8xl',
+    sm: "text-4xl",
+    md: "text-5xl",
+    lg: "text-6xl",
+    xl: "text-7xl",
+    "2xl": "text-8xl",
   };
+
+  if (totalMembers === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-[300px] text-gray-500">
+        No team members available
+      </div>
+    );
+  }
 
   return (
     <div
       id="team-carousel-container"
-      className={cn(`min-h-screen flex flex-col items-center justify-center overflow-hidden relative
-        transparent`, className)}
-      style={{ background: background }}
+      className={cn(
+        "min-h-screen flex flex-col items-center justify-center overflow-hidden relative",
+        className
+      )}
+      style={{ background }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {}
       {title && (
         <h2
           className={cn(
@@ -319,25 +256,20 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
             titleClassName
           )}
           style={{
-            color: 'transparent',
+            color: "transparent",
             background: `linear-gradient(to bottom, ${titleColor}75 40%, transparent 76%)`,
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
           }}
         >
           {title}
         </h2>
       )}
 
-      {}
       <div
         className="w-full max-w-6xl relative mt-20"
-        style={{
-          height: cardHeight + 100,
-          perspective: '1000px',
-        }}
+        style={{ height: cardHeight + 100, perspective: "1000px" }}
       >
-        {}
         {showArrows && (
           <>
             <motion.button
@@ -357,17 +289,15 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
           </>
         )}
 
-        {}
         <div
           className="w-full h-full flex justify-center items-center relative"
-          style={{ transformStyle: 'preserve-3d' }}
+          style={{ transformStyle: "preserve-3d" }}
         >
           <AnimatePresence initial={false} custom={direction}>
-            {members.map((member, index) => {
+            {members.map((member, index): React.ReactNode => {
               const position = calculatePosition(index);
               const isCurrent = index === currentIndex;
-
-              if (position === 'hidden' && !isCurrent) return null;
+              if (position === "hidden" && !isCurrent) return null;
 
               return (
                 <motion.div
@@ -380,14 +310,15 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
                     width: cardWidth,
                     height: cardHeight,
                     borderRadius: cardRadius,
-                    top: '50%',
-                    left: '50%',
+                    top: "50%",
+                    left: "50%",
                     marginLeft: -cardWidth / 2,
                     marginTop: -cardHeight / 2,
                   }}
-                  initial={getVariantStyles('hidden')}
-                  animate={getVariantStyles(position)}
-                  exit={getVariantStyles('hidden')}
+                  variants={getVariants(position)}
+                  initial="hidden"
+                  animate={position}
+                  exit="hidden"
                   onClick={() => {
                     if (!isCurrent) {
                       const newDirection = index > currentIndex ? 1 : -1;
@@ -403,13 +334,13 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
                     alt={member.name}
                     className="w-full h-full object-cover"
                   />
-
-                  {}
-                  {infoPosition === 'overlay' && (
+                  {infoPosition === "overlay" && (
                     <div
                       className="absolute bottom-0 left-0 right-0 p-4 text-center"
                       style={{
-                        background: infoBackground || "linear-gradient(transparent, rgba(0,0,0,0.8))",
+                        background:
+                          infoBackground ||
+                          "linear-gradient(transparent, rgba(0,0,0,0.8))",
                         color: infoTextColor,
                       }}
                     >
@@ -424,8 +355,7 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
         </div>
       </div>
 
-      {}
-      {infoPosition === 'bottom' && members[currentIndex] && (
+      {infoPosition === "bottom" && members[currentIndex] && (
         <motion.div
           key={members[currentIndex].id + "-info"}
           initial={{ opacity: 0, y: 20 }}
@@ -458,9 +388,8 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
         </motion.div>
       )}
 
-      {}
       {showDots && (
-        <div className="flex justify-center gap-3 mt-15 ">
+        <div className="flex justify-center gap-3 mt-15">
           {members.map((_, index) => (
             <motion.button
               key={index}
@@ -474,14 +403,11 @@ export const TeamCarousel: React.FC<TeamCarouselProps> = ({
               }}
               className={cn(
                 "w-3 h-3 rounded-full transition-all duration-300",
-                index === currentIndex
-                  ? "scale-125"
-                  : "hover:scale-110"
+                index === currentIndex ? "scale-125" : "hover:scale-110"
               )}
               style={{
-                background: index === currentIndex
-                  ? infoTextColor
-                  : `${infoTextColor}40`,
+                background:
+                  index === currentIndex ? infoTextColor : `${infoTextColor}40`,
               }}
               whileTap={{ scale: 0.9 }}
             />

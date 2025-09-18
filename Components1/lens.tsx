@@ -166,3 +166,5 @@ export const Lens: React.FC<LensProps> = ({
     </div>
   );
 };
+
+export default Lens;

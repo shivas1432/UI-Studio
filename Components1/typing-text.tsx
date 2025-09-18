@@ -114,3 +114,5 @@ export const TypingText = ({
     </Component>
   );
 };
+
+export default TypingText;

@@ -181,3 +181,5 @@ export function SparkleParticles({
     )
   );
 }
+
+export default SparkleParticles;

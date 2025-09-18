@@ -192,3 +192,5 @@ animation: var(--animation) var(--duration);
     </>
   );
 };
+
+export default TrialButton;

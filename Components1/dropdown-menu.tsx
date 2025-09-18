@@ -573,3 +573,5 @@ export {
   DropdownMenuSeparator,
   DropdownMenuGroup,
 };
+
+export default DropdownMenu;

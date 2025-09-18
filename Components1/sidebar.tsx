@@ -611,3 +611,5 @@ export function SidebarMenuButton({
 }
 
 export { Sidebar as SidebarRoot };
+
+export default Sidebar;

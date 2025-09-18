@@ -99,3 +99,5 @@ export function InteractiveCardGallery({
     </div>
   );
 }
+
+export default InteractiveCardGallery;

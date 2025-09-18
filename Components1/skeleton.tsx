@@ -122,3 +122,5 @@ function TemplateCardSkeleton() {
 }
 
 export { Skeleton, TemplateCardSkeleton };
+
+export default Skeleton;

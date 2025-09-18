@@ -195,3 +195,5 @@ export function PasswordStrengthIndicator({
     </div>
   );
 }
+
+export default PasswordStrengthIndicator;

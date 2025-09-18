@@ -194,3 +194,5 @@ export {
   MenubarContent,
   MenubarItem,
 };
+
+export default Menubar;

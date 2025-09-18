@@ -102,3 +102,5 @@ export function VideoText({
     </MotionComponent>
   );
 }
+
+export default VideoText;

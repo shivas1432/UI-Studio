@@ -175,3 +175,5 @@ export function CountUp({
     </div>
   );
 }
+
+export default CountUp;

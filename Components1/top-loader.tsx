@@ -236,3 +236,5 @@ const TopLoader = React.forwardRef<HTMLDivElement, TopLoaderProps>(
 TopLoader.displayName = "TopLoader";
 
 export { TopLoader };
+
+export default TopLoader;

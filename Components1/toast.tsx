@@ -183,3 +183,5 @@ export {
   ToastDescription,
   ToastClose,
 };
+
+export default Toast;

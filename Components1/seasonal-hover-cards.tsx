@@ -67,3 +67,5 @@ export function SeasonalHoverCards({
     </div>
   );
 }
+
+export default SeasonalHoverCards;

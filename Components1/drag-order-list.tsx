@@ -119,3 +119,5 @@ function useRaisedShadow(value: ReturnType<typeof useMotionValue>) {
 
   return boxShadow;
 }
+
+export default DragOrderList;

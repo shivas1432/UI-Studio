@@ -187,3 +187,5 @@ const ConfettiButton = React.forwardRef<HTMLButtonElement, ConfettiButtonProps>(
 ConfettiButton.displayName = "ConfettiButton";
 
 export { ConfettiButton, confettiButtonVariants };
+
+export default ConfettiButton;

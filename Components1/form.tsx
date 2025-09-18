@@ -182,3 +182,5 @@ export {
   FormMessage,
   FormField,
 };
+
+export default Form;

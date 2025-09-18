@@ -236,3 +236,5 @@ export const CanvasConfettiCursor: React.FC<CanvasConfettiCursorProps> = ({
     </div>
   );
 };
+
+export default CanvasConfettiCursor;

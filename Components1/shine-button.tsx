@@ -65,3 +65,5 @@ export const ShineButton: React.FC<ShineButtonProps> = ({
     </button>
   );
 };
+
+export default ShineButton;

@@ -413,3 +413,5 @@ export const ScrollTimeline = ({
     </div>
   );
 };
+
+export default ScrollTimeline;

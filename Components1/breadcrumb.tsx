@@ -130,3 +130,5 @@ export {
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
 };
+
+export default Breadcrumb;

@@ -326,3 +326,5 @@ const handleKeyDown = React.useCallback((e: React.KeyboardEvent, index: number) 
 Slider.displayName = "Slider";
 
 export { Slider };
+
+export default Slider;

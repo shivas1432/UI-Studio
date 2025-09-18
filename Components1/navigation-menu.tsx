@@ -285,3 +285,5 @@ export {
   NavigationMenuIndicator,
   NavigationMenuViewport,
 };
+
+export default NavigationMenu;
