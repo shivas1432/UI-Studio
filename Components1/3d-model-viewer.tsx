@@ -10,7 +10,7 @@ import {
   ContactShadows,
   Center,
 } from "@react-three/drei";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 import * as THREE from "three";
 
 // ---
@@ -72,7 +72,7 @@ const GltfContent: FC<{ url: string; onLoaded: () => void }> = ({
   const { scene } = useGLTF(url);
   useLayoutEffect(() => {
     if (scene) {
-      scene.traverse((o) => {
+      scene.traverse((o: THREE.Object3D) => {
         if ((o as THREE.Mesh).isMesh) {
           o.castShadow = true;
           o.receiveShadow = true;
@@ -92,7 +92,7 @@ const FbxContent: FC<{ url: string; onLoaded: () => void }> = ({
   const fbx = useFBX(url);
   useLayoutEffect(() => {
     if (fbx) {
-      fbx.traverse((o) => {
+      fbx.traverse((o: THREE.Object3D) => {
         if ((o as THREE.Mesh).isMesh) {
           o.castShadow = true;
           o.receiveShadow = true;
@@ -109,10 +109,10 @@ const ObjContent: FC<{ url: string; onLoaded: () => void }> = ({
   url,
   onLoaded,
 }) => {
-  const obj = useLoader(OBJLoader as unknown as any, url);
+  const obj = useLoader(OBJLoader, url);
   useLayoutEffect(() => {
     if (obj) {
-      obj.traverse((o) => {
+      obj.traverse((o: THREE.Object3D) => {
         if ((o as THREE.Mesh).isMesh) {
           o.castShadow = true;
           o.receiveShadow = true;
@@ -188,11 +188,13 @@ const ModelViewer: FC<ViewerProps> = ({
   autoRotateSpeed = 0.35,
   onModelLoaded,
 }) => {
-  // Preload hook calls should also be unconditional.
-  // The 'useGLTF.preload' hook is called here, but if you had other preloaders,
-  // they would need to be handled similarly.
-  // We'll call useGLTF.preload unconditionally, but it's only effective for gltf/glb files.
-  useEffect(() => void useGLTF.preload(url), [url]);
+  // Preload GLTF models
+  useEffect(() => {
+    const ext = url.split(".").pop()?.toLowerCase();
+    if (ext === "gltf" || ext === "glb") {
+      useGLTF.preload(url);
+    }
+  }, [url]);
 
   return (
     <div style={{ width, height }} className="relative">
@@ -220,7 +222,7 @@ const ModelViewer: FC<ViewerProps> = ({
         </Suspense>
 
         {environmentPreset !== "none" && (
-          <Environment preset={environmentPreset as any} />
+          <Environment preset={environmentPreset} />
         )}
 
         <ambientLight intensity={ambientIntensity} />

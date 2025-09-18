@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Dependencies from "@/components/content/dependencies";
 import {
@@ -40,7 +41,11 @@ const ThreeDPerspectiveCardPreview = () => {
       />
       {!sourceCode ? (
         <PreviewComponentContainer>
-          <ThreeDPerspectiveCard />
+          <ThreeDPerspectiveCard 
+            image="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop" 
+            width="300px"
+            height="350px"
+          />
         </PreviewComponentContainer>
       ) : (
         <CodeBlock

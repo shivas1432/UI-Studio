@@ -1,4 +1,4 @@
-// Components1/index.ts - Clean version excluding problematic files
+// Components1/index.ts - Fixed version with consistent casing
 
 // Re-export everything from working files only
 export * from './3d-carousel';
@@ -6,7 +6,7 @@ export * from './3d-hover-gallery';
 export * from './3d-image-gallery';
 export * from './3d-image-ring';
 export * from './3d-model-viewer';
-export * from './3D-Perspective-Card';
+export * from './3d-perspective-card'; 
 export * from './accordion';
 export * from './animated-bubble-particles';
 export * from './animated-notification';
@@ -129,3 +129,4 @@ export * from './woofy-hover-image';
 export { default as ThreeDCarousel } from './3d-carousel';
 export { default as ThreeDHoverGallery } from './3d-hover-gallery';
 export { default as ThreeDImageGallery } from './3d-image-gallery';
+export { default as ThreeDPerspectiveCard } from './3d-perspective-card'; // Added missing default export
