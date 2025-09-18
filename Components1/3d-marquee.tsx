@@ -18,15 +18,15 @@ export interface ThreeDMarqueeProps {
 }
 
 export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
-  images,
+  images = [],
   className = "",
   cols = 4,
   onImageClick,
 }) => {
-  // Clone the image list twice
-  const duplicatedImages = [...images, ...images];
+  // Safely clone the image list
+  const duplicatedImages = [...(images || []), ...(images || [])];
 
-  const groupSize = Math.ceil(duplicatedImages.length / cols);
+  const groupSize = Math.ceil(duplicatedImages.length / Math.max(cols, 1));
   const imageGroups = Array.from({ length: cols }, (_, index) =>
     duplicatedImages.slice(index * groupSize, (index + 1) * groupSize)
   );
@@ -41,22 +41,17 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
 
   return (
     <section
-      className={`mx-auto block h-[600px] max-sm:h-[400px]
-        overflow-hidden rounded-2xl bg-white dark:bg-black ${className}`}
+      className={`mx-auto block h-[600px] max-sm:h-[400px] overflow-hidden rounded-2xl bg-white dark:bg-black ${className}`}
     >
       <div
         className="flex w-full h-full items-center justify-center"
-        style={{
-          transform: "rotateX(55deg) rotateY(0deg) rotateZ(45deg)",
-        }}
+        style={{ transform: "rotateX(55deg) rotateY(0deg) rotateZ(45deg)" }}
       >
         <div className="w-full overflow-hidden scale-90 sm:scale-100">
           <div
-            className={`relative grid h-full w-full origin-center
-              grid-cols-2 sm:grid-cols-${cols} gap-4 transform
-              `}
+            className={`relative grid h-full w-full origin-center grid-cols-2 sm:grid-cols-${cols} gap-4 transform`}
           >
-            {imageGroups.map((imagesInGroup, idx) => (
+            {(imageGroups || []).map((imagesInGroup, idx) => (
               <motion.div
                 key={`column-${idx}`}
                 animate={{ y: idx % 2 === 0 ? 100 : -100 }}
@@ -68,7 +63,7 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
                 className="flex flex-col items-center gap-6 relative"
               >
                 <div className="absolute left-0 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-700" />
-                {imagesInGroup.map((image, imgIdx) => {
+                {(imagesInGroup || []).map((image, imgIdx) => {
                   const globalIndex = idx * groupSize + imgIdx;
                   const isClickable = image.href || onImageClick;
 

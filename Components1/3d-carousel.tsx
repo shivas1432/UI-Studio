@@ -1,11 +1,6 @@
 "use client";
 
-import React, {
-  useRef,
-  useEffect,
-  useState,
-  TouchEvent,
-} from "react";
+import React, { useRef, useEffect, useState, TouchEvent } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -27,7 +22,7 @@ interface ThreeDCarouselProps {
 }
 
 const ThreeDCarousel = ({
-  items,
+  items = [],
   autoRotate = true,
   rotateInterval = 4000,
   cardHeight = 500,
@@ -42,7 +37,7 @@ const ThreeDCarousel = ({
   const minSwipeDistance = 50;
 
   useEffect(() => {
-    if (autoRotate && isInView && !isHovering) {
+    if (autoRotate && isInView && !isHovering && items.length > 0) {
       const interval = setInterval(() => {
         setActive((prev) => (prev + 1) % items.length);
       }, rotateInterval);
@@ -55,11 +50,11 @@ const ThreeDCarousel = ({
       ([entry]) => setIsInView(entry.isIntersecting),
       { threshold: 0.2 }
     );
-    
+
     if (carouselRef.current) {
       observer.observe(carouselRef.current);
     }
-    
+
     return () => observer.disconnect();
   }, []);
 
@@ -73,7 +68,7 @@ const ThreeDCarousel = ({
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    if (touchStart === null || touchEnd === null) return;
     const distance = touchStart - touchEnd;
     if (distance > minSwipeDistance) {
       setActive((prev) => (prev + 1) % items.length);
@@ -107,7 +102,7 @@ const ThreeDCarousel = ({
           ref={carouselRef}
         >
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-            {items.map((item, index) => (
+            {(items || []).map((item, index) => (
               <div
                 key={item.id}
                 className={`absolute top-0 w-full max-w-md transform transition-all duration-500 ${getCardAnimationClass(
@@ -115,7 +110,8 @@ const ThreeDCarousel = ({
                 )}`}
               >
                 <Card
-                  className={`overflow-hidden bg-background h-[${cardHeight}px] border shadow-sm hover:shadow-md flex flex-col`}
+                  style={{ height: cardHeight }}
+                  className="overflow-hidden bg-background border shadow-sm hover:shadow-md flex flex-col"
                 >
                   <div
                     className="relative bg-black p-6 flex items-center justify-center h-48 overflow-hidden"
@@ -128,7 +124,7 @@ const ThreeDCarousel = ({
                     <div className="absolute inset-0 bg-black/50" />
                     <div className="relative z-10 text-center text-white">
                       <h3 className="text-2xl font-bold mb-2">
-                        {item.brand.toUpperCase()}
+                        {item.brand?.toUpperCase()}
                       </h3>
                       <div className="w-12 h-1 bg-white mx-auto mb-2" />
                       <p className="text-sm">{item.title}</p>
@@ -148,7 +144,7 @@ const ThreeDCarousel = ({
 
                     <div className="mt-4">
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {item.tags.map((tag, idx) => (
+                        {(item.tags || []).map((tag, idx) => (
                           <span
                             key={idx}
                             className="px-2 py-1 bg-gray-50 text-gray-600 rounded-full text-xs animate-pulse-slow"
@@ -162,7 +158,7 @@ const ThreeDCarousel = ({
                         href={item.link}
                         className="text-gray-500 flex items-center hover:underline relative group"
                         onClick={() => {
-                          if (item.link.startsWith("/")) {
+                          if (item.link?.startsWith("/")) {
                             window.scrollTo(0, 0);
                           }
                         }}
@@ -198,7 +194,7 @@ const ThreeDCarousel = ({
           </>
 
           <div className="absolute bottom-6 left-0 right-0 flex justify-center items-center space-x-3 z-30">
-            {items.map((_, idx) => (
+            {(items || []).map((_, idx) => (
               <button
                 key={idx}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${

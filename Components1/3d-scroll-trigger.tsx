@@ -92,7 +92,6 @@ function ThreeDScrollTriggerRowImpl({
     const container = containerRef.current;
     if (!container) return;
 
-    // Use a single observer for the container to update the number of copies
     const ro = new ResizeObserver(([entry]) => {
       const containerWidth = entry.contentRect.width;
       const block = container.querySelector(
@@ -113,7 +112,6 @@ function ThreeDScrollTriggerRowImpl({
     });
 
     ro.observe(container);
-
     return () => ro.disconnect();
   }, []);
 
@@ -150,7 +148,7 @@ function ThreeDScrollTriggerRowImpl({
         className="inline-flex will-change-transform transform-gpu"
         style={{ x: useTransform(x, (v) => `${-v}px`) }}
       >
-        {Array.from({ length: numCopies }).map((_, i) => (
+        {Array.from({ length: numCopies || 1 }).map((_, i) => (
           <div
             key={i}
             className={cn(

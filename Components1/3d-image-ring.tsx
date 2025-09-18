@@ -1,53 +1,33 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useMemo } from "react";
-import { motion, AnimatePresence, useMotionValue, easeOut } from "framer-motion";
-import { cn } from "../lib/utils"; // Assuming you have this utility for class names
-import { animate } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, animate } from "framer-motion";
+import { cn } from "../lib/utils"; // Utility for class names
 
 export interface ThreeDImageRingProps {
-
   images: string[];
-
   width?: number;
-
   perspective?: number;
-
   imageDistance?: number;
-
   initialRotation?: number;
-
   animationDuration?: number;
-
   staggerDelay?: number;
-
   hoverOpacity?: number;
-
   containerClassName?: string;
-
   ringClassName?: string;
-
   imageClassName?: string;
-
   backgroundColor?: string;
-
   draggable?: boolean;
-
   ease?: string;
-
   mobileBreakpoint?: number;
-
   mobileScaleFactor?: number;
-
   inertiaPower?: number;
-
   inertiaTimeConstant?: number;
-
   inertiaVelocityMultiplier?: number;
 }
 
 export function ThreeDImageRing({
-  images,
+  images = [],
   width = 300,
   perspective = 2000,
   imageDistance = 500,
@@ -63,9 +43,9 @@ export function ThreeDImageRing({
   ease = "easeOut",
   mobileBreakpoint = 768,
   mobileScaleFactor = 0.8,
-  inertiaPower = 0.8, // Default power for inertia
-  inertiaTimeConstant = 300, // Default time constant for inertia
-  inertiaVelocityMultiplier = 20, // Default multiplier for initial spin
+  inertiaPower = 0.8,
+  inertiaTimeConstant = 300,
+  inertiaVelocityMultiplier = 20,
 }: ThreeDImageRingProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
@@ -74,12 +54,12 @@ export function ThreeDImageRing({
   const startX = useRef<number>(0);
   const currentRotationY = useRef<number>(initialRotation);
   const isDragging = useRef<boolean>(false);
-  const velocity = useRef<number>(0); // To track drag velocity
+  const velocity = useRef<number>(0);
 
   const [currentScale, setCurrentScale] = useState(1);
   const [showImages, setShowImages] = useState(false);
 
-  const angle = useMemo(() => 360 / images.length, [images.length]);
+  const angle = useMemo(() => 360 / Math.max(images.length, 1), [images.length]);
 
   const getBgPos = (imageIndex: number, currentRot: number, scale: number) => {
     const scaledImageDistance = imageDistance * scale;
@@ -126,13 +106,10 @@ export function ThreeDImageRing({
     isDragging.current = true;
     const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
     startX.current = clientX;
-    // Stop any ongoing animation instantly when drag starts
     rotationY.stop();
-    velocity.current = 0; // Reset velocity
-    if (ringRef.current) {
-      (ringRef.current as HTMLElement).style.cursor = "grabbing";
-    }
-    // Attach global move and end listeners to document when dragging starts
+    velocity.current = 0;
+    if (ringRef.current) ringRef.current.style.cursor = "grabbing";
+
     document.addEventListener("mousemove", handleDrag);
     document.addEventListener("mouseup", handleDragEnd);
     document.addEventListener("touchmove", handleDrag);
@@ -140,75 +117,62 @@ export function ThreeDImageRing({
   };
 
   const handleDrag = (event: MouseEvent | TouchEvent) => {
-    // Only proceed if dragging is active
     if (!draggable || !isDragging.current) return;
 
-    const clientX = "touches" in event ? (event as TouchEvent).touches[0].clientX : (event as MouseEvent).clientX;
+    const clientX =
+      "touches" in event
+        ? (event as TouchEvent).touches[0].clientX
+        : (event as MouseEvent).clientX;
+
     const deltaX = clientX - startX.current;
-
-    // Update velocity based on deltaX
-    velocity.current = -deltaX * 0.5; // Factor of 0.5 to control sensitivity
-
+    velocity.current = -deltaX * 0.5;
     rotationY.set(currentRotationY.current + velocity.current);
-
     startX.current = clientX;
   };
 
-const handleDragEnd = () => {
-  isDragging.current = false;
-  if (ringRef.current) {
-    ringRef.current.style.cursor = "grab";
-    currentRotationY.current = rotationY.get();
-  }
+  const handleDragEnd = () => {
+    isDragging.current = false;
+    if (ringRef.current) {
+      ringRef.current.style.cursor = "grab";
+      currentRotationY.current = rotationY.get();
+    }
 
-  document.removeEventListener("mousemove", handleDrag);
-  document.removeEventListener("mouseup", handleDragEnd);
-  document.removeEventListener("touchmove", handleDrag);
-  document.removeEventListener("touchend", handleDragEnd);
+    document.removeEventListener("mousemove", handleDrag);
+    document.removeEventListener("mouseup", handleDragEnd);
+    document.removeEventListener("touchmove", handleDrag);
+    document.removeEventListener("touchend", handleDragEnd);
 
-  const initial = rotationY.get();
-  const velocityBoost = velocity.current * inertiaVelocityMultiplier;
-  const target = initial + velocityBoost;
+    const initial = rotationY.get();
+    const velocityBoost = velocity.current * inertiaVelocityMultiplier;
+    const target = initial + velocityBoost;
 
-  // Animate with inertia manually using `animate()`
-  animate(initial, target, {
-    type: "inertia",
-    velocity: velocityBoost,
-    power: inertiaPower,
-    timeConstant: inertiaTimeConstant,
-    restDelta: 0.5,
-    modifyTarget: (target) => Math.round(target / angle) * angle,
-    onUpdate: (latest) => {
-      rotationY.set(latest);
-    },
-  });
+    animate(initial, target, {
+      type: "inertia",
+      velocity: velocityBoost,
+      power: inertiaPower,
+      timeConstant: inertiaTimeConstant,
+      restDelta: 0.5,
+      modifyTarget: (t) => Math.round(t / angle) * angle,
+      onUpdate: (latest) => rotationY.set(latest),
+    });
 
-  velocity.current = 0;
-};
+    velocity.current = 0;
+  };
 
-// Corrected imageVariants: no function for 'visible' state
   const imageVariants = {
     hidden: { y: 200, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      // Transition properties will be defined directly on the motion.div using `custom` prop
-    },
+    visible: { y: 0, opacity: 1 },
   };
 
   return (
     <div
       ref={containerRef}
-      className={cn(
-        "w-full h-full overflow-hidden select-none relative",
-        containerClassName
-      )}
+      className={cn("w-full h-full overflow-hidden select-none relative", containerClassName)}
       style={{
         backgroundColor,
         transform: `scale(${currentScale})`,
         transformOrigin: "center center",
       }}
-      // Attach initial drag start listeners only
       onMouseDown={draggable ? handleDragStart : undefined}
       onTouchStart={draggable ? handleDragStart : undefined}
     >
@@ -225,10 +189,7 @@ const handleDragEnd = () => {
       >
         <motion.div
           ref={ringRef}
-          className={cn(
-            "w-full h-full absolute",
-            ringClassName
-          )}
+          className={cn("w-full h-full absolute", ringClassName)}
           style={{
             transformStyle: "preserve-3d",
             rotateY: rotationY,
@@ -236,13 +197,10 @@ const handleDragEnd = () => {
           }}
         >
           <AnimatePresence>
-            {showImages && images.map((imageUrl, index) => (
+            {(images || []).map((imageUrl, index) => (
               <motion.div
                 key={index}
-                className={cn(
-                  "w-full h-full absolute",
-                  imageClassName
-                )}
+                className={cn("w-full h-full absolute", imageClassName)}
                 style={{
                   transformStyle: "preserve-3d",
                   backgroundImage: `url(${imageUrl})`,
@@ -257,32 +215,28 @@ const handleDragEnd = () => {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                variants={imageVariants} // Use the simplified variants object
-                custom={index} // Pass the index as a custom prop
+                variants={imageVariants}
+                custom={index}
                 transition={{
-                  delay: index * staggerDelay, // Use index directly in transition
+                  delay: index * staggerDelay,
                   duration: animationDuration,
-                  ease: easeOut, // Apply ease for entrance animation
+                  ease: "easeOut",
                 }}
                 whileHover={{ opacity: 1, transition: { duration: 0.15 } }}
                 onHoverStart={() => {
-                  // Prevent hover effects while dragging
                   if (isDragging.current) return;
                   if (ringRef.current) {
                     Array.from(ringRef.current.children).forEach((imgEl, i) => {
-                      if (i !== index) {
-                        (imgEl as HTMLElement).style.opacity = `${hoverOpacity}`;
-                      }
+                      if (i !== index) (imgEl as HTMLElement).style.opacity = `${hoverOpacity}`;
                     });
                   }
                 }}
                 onHoverEnd={() => {
-                  // Prevent hover effects while dragging
                   if (isDragging.current) return;
                   if (ringRef.current) {
-                    Array.from(ringRef.current.children).forEach((imgEl) => {
-                      (imgEl as HTMLElement).style.opacity = `1`;
-                    });
+                    Array.from(ringRef.current.children).forEach(
+                      (imgEl) => ((imgEl as HTMLElement).style.opacity = "1")
+                    );
                   }
                 }}
               />
