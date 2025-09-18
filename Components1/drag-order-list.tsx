@@ -7,6 +7,7 @@ import {
   useDragControls,
   motion,
   animate,
+  MotionValue,
   DragControls,
 } from "framer-motion";
 import { GripVertical } from "lucide-react";
@@ -25,11 +26,11 @@ interface DragOrderListProps {
 }
 
 export function DragOrderList({ items, onReorder }: DragOrderListProps) {
-  const [list, setList] = React.useState(items);
+  const [list, setList] = React.useState(items ?? []);
 
   useEffect(() => {
     if (onReorder) onReorder(list);
-  }, [list]);
+  }, [list, onReorder]);
 
   return (
     <Reorder.Group
@@ -38,9 +39,8 @@ export function DragOrderList({ items, onReorder }: DragOrderListProps) {
       onReorder={setList}
       className="space-y-4 w-full max-w-2xl mx-auto"
     >
-      {list.map((item) => (
-        <DragOrderItem key={item.id} item={item} />
-      ))}
+      {Array.isArray(list) &&
+        list.map((item) => <DragOrderItem key={item.id} item={item} />)}
     </Reorder.Group>
   );
 }
@@ -96,12 +96,12 @@ function ReorderHandle({ dragControls }: { dragControls: DragControls }) {
 
 const inactiveShadow = "0px 0px 0px rgba(0,0,0,0.8)";
 
-function useRaisedShadow(value: ReturnType<typeof useMotionValue>) {
-  const boxShadow = useMotionValue(inactiveShadow);
+function useRaisedShadow(value: MotionValue<number>) {
+  const boxShadow = useMotionValue<string>(inactiveShadow);
 
   useEffect(() => {
     let isActive = false;
-    value.onChange((latest) => {
+    const unsubscribe = value.onChange((latest) => {
       const wasActive = isActive;
       if (latest !== 0) {
         isActive = true;
@@ -115,7 +115,11 @@ function useRaisedShadow(value: ReturnType<typeof useMotionValue>) {
         }
       }
     });
-  }, [value]);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [value, boxShadow]);
 
   return boxShadow;
 }
