@@ -1,4 +1,4 @@
-// Components1/index.ts - Fixed version with consistent casing
+// Components1/index.ts - Complete version with all default exports
 
 // Re-export everything from working files only
 export * from './3d-carousel';
@@ -125,8 +125,68 @@ export * from './video-text';
 export * from './wave-background';
 export * from './woofy-hover-image';
 
-// Default exports for components that have them
+// Default exports for components that actually have them (based on scan results)
 export { default as ThreeDCarousel } from './3d-carousel';
 export { default as ThreeDHoverGallery } from './3d-hover-gallery';
 export { default as ThreeDImageGallery } from './3d-image-gallery';
-export { default as ThreeDPerspectiveCard } from './3D-Perspective-Card'; // Added missing default export
+export { default as ThreeDImageRing } from './3d-image-ring';
+export { default as ThreeDModelViewer } from './3d-model-viewer';
+export { default as ThreeDPerspectiveCard } from './3D-Perspective-Card';
+export { default as Accordion } from './accordion';
+export { default as AnimatedBubbleParticles } from './animated-bubble-particles';
+export { default as AnimatedNotification } from './animated-notification';
+export { default as AnimatedOceanWaves } from './animated-ocean-waves';
+export { default as AnimatedRangeInput } from './animated-range-input';
+export { default as AnimatedWave } from './animated-wave';
+export { default as AuroraShader } from './aurora-shader';
+export { default as Calendar } from './calendar';
+export { default as CodeHoverCards } from './code-hover-cards';
+export { default as Dock } from './dock';
+export { default as DotPattern } from './dot-pattern';
+export { default as DynamicNavigation } from './dynamic-navigation';
+export { default as GlassFolder } from './glass-folder';
+export { default as Globe } from './globe';
+export { default as GlowingBackground } from './glowing-background';
+export { default as GlowingCards } from './glowing-cards';
+export { default as GradientBackground } from './gradient-background';
+export { default as GradientBtnHome } from './gradient-btn-home';
+export { default as GradientButton } from './gradient-button';
+export { default as GridDotBackgrounds } from './grid-dot-backgrounds';
+export { default as HamburgerMenuOverlay } from './hamburger-menu-overlay';
+export { default as HellBackground } from './hell-background';
+export { default as ImageReveal } from './image-reveal';
+export { default as ImageSlidingMarquee } from './image-sliding-marquee';
+export { default as ImageTrailEffect } from './image-trail-effect';
+export { default as InnovationBackground } from './innovation-background';
+export { default as InteractiveGradientCard } from './interactive-gradient-card';
+export { default as MagicLoader } from './magic-loader';
+export { default as MorphingNavigation } from './morphing-navigation';
+export { default as NavEffect } from './nav-effect';
+export { default as OrbitCard } from './orbit-card';
+export { default as ParticleOrbitEffect } from './particle-orbit-effect';
+export { default as ParticlesBackground } from './particles-background';
+export { default as ReflectBackground } from './reflect-background';
+export { default as RippleButton } from './ripple-button';
+export { default as RippleLoader } from './ripple-loader';
+export { default as ScrollCarousel } from './scroll-carousel';
+export { default as ScrollList } from './scroll-list';
+export { default as ScrollReveal } from './scroll-reveal';
+export { default as ScrollStack } from './scroll-stack';
+export { default as ScrollTriggerCarousel } from './scroll-trigger-carousel';
+export { default as ShaderBackground } from './shader-background';
+export { default as ShinyText } from './shiny-text';
+export { default as SlidingCards } from './sliding-cards';
+export { default as SlidingLogoMarquee } from './sliding-logo-marquee';
+export { default as SmokeyBackground } from './smokey-background';
+export { default as SmokeyCursor } from './smokey-cursor';
+export { default as SmoothCursor } from './smooth-cursor';
+export { default as SparkleNavbar } from './sparkle-navbar';
+export { default as StackList } from './stack-list';
+export { default as StripesBackground } from './stripes-background';
+export { default as TeamCarousel } from './team-carousel';
+export { default as TerminalCard } from './terminal-card';
+export { default as TextScrollMarquee } from './text-scroll-marquee';
+export { default as TopStickyBar } from './top-sticky-bar';
+export { default as TypewriterInput } from './typewriter-input';
+export { default as WaveBackground } from './wave-background';
+export { default as WoofyHoverImage } from './woofy-hover-image';

@@ -14,10 +14,7 @@ import {
   primaryItems,
   threeDComponents,
   animationComponents,
-  backgroundComponents,
-  interactiveComponents,
-  uiComponents,
-  scrollComponents,
+  
   components1ThreeDComponents,
   components1AnimationComponents,
   components1BackgroundComponents,
